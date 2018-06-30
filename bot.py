@@ -136,7 +136,7 @@ async def cryptocurrency(ctx,coin:str=None):
     if coin == None:
         ngiverole=discord.Embed(title='Error',description='You don\'t have permission to give roles to members!',color=0xFF0000)
         ngiverole.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=pgiverole)
+        return await bot.say(embed=ngiverole)
     await bot.say(json['RAW'][str(coin)]['USD']['PRICE'])
 
 '''
