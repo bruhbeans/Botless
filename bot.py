@@ -113,7 +113,7 @@ async def info(ctx):
     embed=discord.Embed(title='Information',color=0x00FF00)
     embed.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     embed.add_field(name='Memory Usage',value='{} megabytes ({}%) used, with {} megabytes left over.'.format(usedmemory, int(percentmemoryused), freememory))
-    
+    await bot.say(embed=embed)
 
 '''
 '##::::'##::::'###::::'##::: ##::::'###:::::'######:::'####:'##::: ##::'######:::                                               
