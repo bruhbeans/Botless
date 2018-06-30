@@ -351,7 +351,7 @@ async def softban(ctx, member : discord.Member=None,*, reason='The softban hamme
     await bot.say(embed=ssoftban)
     return await bot.send_message(member, f'You have been softbanned from {discord.Server.name} by {ctx.message.author.mention}, because {reason}', tts=True) 
 
-@client.command(pass_context = True)
+@bot.command(pass_context = True)
 async def mute(ctx, member : discord.Member, mutetime, reason : str):
     """Mutes (player) will not be able to talk!"""
     if not ctx.message.author.server_permissions.administrator:
