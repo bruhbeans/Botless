@@ -36,7 +36,7 @@ async def help(ctx, helpc: str = None):
     if helpc == None:
         hhelp=discord.Embed(title='Help', color=0x0000FF)
         hhelp.add_field(name='General', value='`help` `ping`')
-        hhelp.add_field(name='Informational', value='Test')
+        hhelp.add_field(name='Informational', value='`Test`')
         hhelp.add_field(name='Fun', value='Test')
         hhelp.add_field(name='Managing', value='`giverole` `takerole`')
         hhelp.add_field(name='Moderation', value='`kick` `ban` `unban` `softban`')
