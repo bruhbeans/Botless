@@ -28,9 +28,9 @@ async def on_ready():
  ##:::: ##: ########: ########: ##::::::::                                                                                      
 ..:::::..::........::........::..:::::::::     '''
 
-@bot.command(pass_context=True,aliases=['commands','cmds'],brief='Shows a list of commands.',description='!commands, !cmds')
+@bot.command(pass_context=True,aliases=['commands','cmds'])
 async def help(ctx, helpc: str = None):
-    '''!help [command]'''
+    '''Get the list of commands.\nUsage: !help [command]\nAliases: !commands, !cmds\nPermissions: None'''
     if helpc == None:
         hhelp=discord.Embed(title='Help', color=0x0000FF)
         hhelp.add_field(name='General', value='`help` `ping`')
@@ -44,7 +44,7 @@ async def help(ctx, helpc: str = None):
     if helpc:
         helpget = bot.get_command(helpc)
         shelp=discord.Embed(title='Help', color=0x0000FF)
-        shelp.add_field(name=f'Command: !{helpc}',value=f'Help: {helpget.brief}\nUsage: {helpget.help}\nAliases: {helpget.description}')
+        shelp.add_field(name=f'Command: !{helpc}',value=f'Help: {helpget.help}')
         return await bot.say(embed=shelp)
     else:
         return
@@ -58,17 +58,17 @@ async def help(ctx, helpc: str = None):
  ##:::: ##: ##: ##: ##: ##:. ###: ##::::::: ##::. ##::                                                                          
 . #######::. ###. ###:: ##::. ##: ########: ##:::. ##:                                                                          
 :.......::::...::...:::..::::..::........::..:::::..::  '''
-@bot.command(pass_context=True,brief='Says something as the bot.')
+@bot.command(pass_context=True)
 @commands.check(pointcheck)
 async def say(ctx, *, text: str = None):
-    '''!say <text>'''
+    '''Make the bot say something.\nUsage: !say <text>\nAliases: None\nPermissions: Bot Owner'''
     await bot.delete_message(ctx.message)
     await bot.say(text)
 
-@bot.command(pass_context=True,brief='Restart the bot.')
+@bot.command(pass_context=True,aliases=['shutdown'])
 @commands.check(pointcheck)
 async def restart(ctx):
-    '''!restart'''
+    '''Stop and run the bot again.\nUsage: !restart\nAliases: !shutdown\nPermissions: Bot Owner'''
     embed = discord.Embed(title='Restart',description=f'Sorry, but {ctx.message.author.mention} has forced me to restart. It\'ll only take a moment!',color=0xFF0000)
     embed.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     await bot.say(embed=embed)
@@ -84,9 +84,9 @@ async def restart(ctx):
 . ######::: ########: ##::. ##: ########: ##:::. ##: ##:::: ##: ########:                                                       
 :......::::........::..::::..::........::..:::::..::..:::::..::........::        '''
 
-@bot.command(pass_context=True,aliases=['latency','pong'],brief='Shows the response time in milliseconds.')
+@bot.command(pass_context=True,aliases=['latency','pong'])
 async def ping(ctx):
-    '''!ping'''
+    '''Find the response time in milliseconds.\nUsage: !ping\nAliases: !latency, !pong\nPermissions: None'''
     ptime = time.time()
     embed=discord.Embed(Title = 'Ping', color = 0x00FF00)
     embed.add_field(name = 'Pong!', value = 'Calculating...')
@@ -97,6 +97,10 @@ async def ping(ctx):
     ping1.add_field(name='Pong!', value='{} milliseconds.'.format(int((round(ping2 * 1000)))))
     ping1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     await bot.edit_message(ping3,embed=ping1)
+
+@bot.command(pass_context=True,aliases=['stats','statistics','information'])
+async def info(ctx):
+    '''All the info\'s here!\nUsage: !info\nAliases: !stats, !statistics, !information\nPermissions: None'''
 
 
 '''
@@ -109,9 +113,9 @@ async def ping(ctx):
  ##:::: ##: ##:::: ##: ##::. ##: ##:::: ##:. ######:::'####: ##::. ##:. ######:::                                               
 ..:::::..::..:::::..::..::::..::..:::::..:::......::::....::..::::..:::......::::    '''
 
-@bot.command(pass_context=True,aliases=['gr'],brief='Give roles to members.')
+@bot.command(pass_context=True,aliases=['gr'])
 async def giverole(ctx, member: discord.Member, *, role: discord.Role = None):
-    '''!giverole <member> <role>'''
+    '''Give a role to someone\nUsage: !giverole <member> <role>\nAliases: !gr\nPermissions: Manage Roles'''
     if not ctx.message.author.server_permissions.manage_roles:
         pgiverole=discord.Embed(title='Error',description='You don\'t have permission to give roles to members!',color=0xFF0000)
         pgiverole.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
@@ -141,9 +145,9 @@ async def giverole(ctx, member: discord.Member, *, role: discord.Role = None):
             return await bot.say(embed=egiverole)
         else:
             pass
-@bot.command(pass_context=True,aliases=['tr'],brief='Take roles from members')
+@bot.command(pass_context=True,aliases=['tr'])
 async def takerole(ctx, member: discord.Member, *, role: discord.Role = None):
-    '''!takerole <member> <role>'''
+    '''Take a role away from someone\nUsage: !takerole <member> <role>\nAliases: !tr\nPermissions: Manage Roles'''
     if not ctx.message.author.server_permissions.manage_roles:
         ptakerole=discord.Embed(title='Error',description='You don\'t have permission to give roles to members!',color=0xFF0000)
         ptakerole.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
@@ -182,9 +186,9 @@ async def takerole(ctx, member: discord.Member, *, role: discord.Role = None):
  ##:.:: ##: ##:::: ##: ##:::: ##: ##::::::: ##::. ##:: ##.... ##:::: ##::::: ##:: ##:::: ##: ##:. ###:                          
  ##:::: ##:. #######:: ########:: ########: ##:::. ##: ##:::: ##:::: ##::::'####:. #######:: ##::. ##:                          
 ..:::::..:::.......:::........:::........::..:::::..::..:::::..:::::..:::::....:::.......:::..::::..::   '''
-@bot.command(pass_context=True,brief='Kick members.')
+@bot.command(pass_context=True,aliases=['k'])
 async def kick(ctx, member : discord.Member=None,*, reason='The kick hammer has spoken!'):
-    '''!kick <member> [reason]'''
+    '''Kick someone.\nUsage: !kick <member> [reason]\nAliases: !k\nPermissions: Kick Members'''
     if not ctx.message.author.server_permissions.kick_members:
         pkick=discord.Embed(title='Error',description='You don\'t have permission to kick members!',color=0xFF0000)
         pkick.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
@@ -211,10 +215,10 @@ async def kick(ctx, member : discord.Member=None,*, reason='The kick hammer has 
     await bot.say(embed=skick)
     return await bot.send_message(member, f'You have been kicked from {discord.Server.name} by {ctx.message.author.mention}, because {reason}', tts=True) 
 
-@bot.command(pass_context=True,brief='Ban members.')
+@bot.command(pass_context=True,aliases=['b'])
 async def ban(ctx, member : discord.Member=None,*, reason='The ban hammer has spoken!'):
-    '''!ban <member> [reason]'''
-    if not ctx.message.author.server_permissions.kick_members:
+    '''Ban someone\nUsage: !ban <member> [reason]\nAliases: !b\nPermissions: Ban Members'''
+    if not ctx.message.author.server_permissions.ban_members:
         pban=discord.Embed(title='Error',description='You don\'t have permission to ban members!',color=0xFF0000)
         pban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=pban)
@@ -240,11 +244,11 @@ async def ban(ctx, member : discord.Member=None,*, reason='The ban hammer has sp
     await bot.say(embed=sban)
     return await bot.send_message(member, f'You have been banned from {discord.Server.name} by {ctx.message.author.mention}, because {reason}', tts=True) 
 
-@bot.command(pass_context=True,brief='Unban members.')
+@bot.command(pass_context=True,aliases=['ub','uban'])
 async def unban(ctx, member : discord.Member=None,*, reason='The unban hammer has spoken!'):
-    '''!unban <member> [reason]'''
+    '''Unban someone\nUsage: !unban <member> [reason]\nAliases: !ub, !uban\nPermissions: Ban Members'''
     await bot.say('May not work currently, but I\'ll give it a go!')
-    if not ctx.message.author.server_permissions.kick_members:
+    if not ctx.message.author.server_permissions.ban_members:
         punban=discord.Embed(title='Error',description='You don\'t have permission to unban members!',color=0xFF0000)
         punban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=punban)
@@ -270,10 +274,10 @@ async def unban(ctx, member : discord.Member=None,*, reason='The unban hammer ha
     await bot.say(embed=unban)
     return await bot.send_message(member, f'You have been unbanned from {discord.Server.name} by {ctx.message.author.mention}, because {reason}', tts=True) 
 
-@bot.command(pass_context=True,brief='Ban then unban someone to clear all messages within 7 days.')
+@bot.command(pass_context=True,aliases=['sban','sb'])
 async def softban(ctx, member : discord.Member=None,*, reason='The softban hammer has spoken!'):
-    '''!softban <member> [reason]'''
-    if not ctx.message.author.server_permissions.kick_members:
+    '''Ban then unban someone to remove all messages sent by the user within 7 days.\nUsage: !softban <member> [reason]\nAliases: !sban, !sb\nPermissions: Ban Members'''
+    if not ctx.message.author.server_permissions.ban_members:
         psoftban=discord.Embed(title='Error',description='You don\'t have permission to softban members!',color=0xFF0000)
         psoftban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=psoftban)
