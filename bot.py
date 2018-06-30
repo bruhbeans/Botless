@@ -11,10 +11,10 @@ bot.remove_command('help')
 
 @bot.event
 async def on_ready():
-    await print('Bot online!')
-    await print('Name: {}'.format(str(bot.user)))
-    await print('ID: {}'.format(str(bot.user.id)))
-    await print('Invite Link: https://discordapp.com/oauth2/authorize?client_id=462562571229200384&scope=bot&permissions=2146958591')
+    print('Bot online!')
+    print('Name: {}'.format(str(bot.user)))
+    print('ID: {}'.format(str(bot.user.id)))
+    print('Invite Link: https://discordapp.com/oauth2/authorize?client_id=462562571229200384&scope=bot&permissions=2146958591')
 
 @bot.event
 async def on_member_join(member):
