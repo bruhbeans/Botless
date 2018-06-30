@@ -16,11 +16,21 @@ async def on_ready():
     print('ID: {}'.format(str(bot.user.id)))
     print('Invite Link: https://discordapp.com/oauth2/authorize?client_id=462562571229200384&scope=bot&permissions=2146958591')
 
-@bot.event
-async def on_member_join(member):
-    Channel = bot.get_channel(431850419392741398)
-    await bot.send_message(Channel, f'Welcome, {member}, to Botless\' support server!')
-
+@bot.command(pass_context=True)
+async def help(ctx, helpc: str = None):
+    """This thing"""
+    if helpc == None:
+        hhelp=discord.Embed(title='Help', color=0x0000FF)
+        hhelp.add_field(name='General', value='`help`, `ping`')
+        hhelp.set_footer(text='I\'m a bot that has commands that are yet to come!')
+        await bot.say(embed=hhelp)
+    if helpc:
+        helpget = bot.get_command(helpc)
+        shelp=discord.Embed(title='Help', color=0x0000FF)
+        shelp.add_field(name=f'{helpc}',value=f'Help: {helpget.help}\nUsage: {helpget.signature}')
+        return await bot.say(embed=shelp)
+    else:
+        return
 @bot.command(pass_context=True,aliases=['latency','pong'])
 async def ping(ctx):
     ptime = time.time()
