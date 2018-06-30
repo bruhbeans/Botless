@@ -1,6 +1,7 @@
 {
     "python.pythonPath": "D:\\. Programs\\Python\\python.exe",
     "cSpell.words": [
+        "asyncio",
         "psutil"
     ]
 }
