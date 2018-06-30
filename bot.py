@@ -27,7 +27,7 @@ async def help(ctx, helpc: str = None):
     if helpc:
         helpget = bot.get_command(helpc)
         shelp=discord.Embed(title='Help', color=0x0000FF)
-        shelp.add_field(name=f'{helpc}',value=f'Help: {helpget.help}\nUsage: {helpget.signature}')
+        shelp.add_field(name=f'{helpc}',value=f'Help: {helpget.brief}\nUsage: {helpget.help}')
         return await bot.say(embed=shelp)
     else:
         return
