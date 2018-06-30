@@ -131,7 +131,7 @@ async def info(ctx):
 @bot.command(pass_context=True,aliases=['cc'])
 async def cryptocurrency(ctx,coin:str=None):
     '''Find out cryptocurrency rates.\nUsage: !cryptocurrency <cryptocurrency symbol>\nAliases: !cc\nPermissions: None'''
-    r = requests.get('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + (strcoin) + '&tsyms=USD')
+    r = requests.get('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + (coin) + '&tsyms=USD')
     json = r.json()
     if coin == None:
         ncryptocurrency=discord.Embed(title='Error',description='Specify the cryptocurrency symbol!',color=0xFF0000)
