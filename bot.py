@@ -33,11 +33,11 @@ async def help(ctx, helpc: str = None):
     '''!help [command]'''
     if helpc == None:
         hhelp=discord.Embed(title='Help', color=0x0000FF)
-        hhelp.add_field(name='General', value='`help`, `ping`')
+        hhelp.add_field(name='General', value='`help` `ping`')
         hhelp.add_field(name='Informational', value='')
         hhelp.add_field(name='Fun', value='')
-        hhelp.add_field(name='Managing', value='')
-        hhelp.add_field(name='Moderation', value='')
+        hhelp.add_field(name='Managing', value='`giverole` `takerole`,')
+        hhelp.add_field(name='Moderation', value='`kick` `ban` `unban` `softban`')
         hhelp.add_field(name='Owner', value='`say`, `restart`')
         hhelp.set_footer(text='Do !help <command> to find out what it does.\nI\'m a bot that has commands that are yet to come!')
         await bot.say(embed=hhelp)
@@ -184,7 +184,7 @@ async def takerole(ctx, member: discord.Member, *, role: discord.Role = None):
 ..:::::..:::.......:::........:::........::..:::::..::..:::::..:::::..:::::....:::.......:::..::::..::   '''
 @bot.command(pass_context=True,brief='Kick members.')
 async def kick(ctx, member : discord.Member=None,*, reason='The kick hammer has spoken!'):
-    '''!kick <member> <reason>'''
+    '''!kick <member> [reason]'''
     if not ctx.message.author.server_permissions.kick_members:
         pkick=discord.Embed(title='Error',description='You don\'t have permission to kick members!',color=0xFF0000)
         pkick.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
@@ -206,14 +206,14 @@ async def kick(ctx, member : discord.Member=None,*, reason='The kick hammer has 
             return await bot.say(embed=ekick)
         else:
             pass
-    skick=discord.Embed(title='Kick',description=f'{ctx.message.author.mention} has kicked {member.name}, because: {reason}!',color=0x00FF00)
+    skick=discord.Embed(title='Kick',description=f'{ctx.message.author.mention} has kicked {member.name}, because: {reason}',color=0x00FF00)
     skick.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     await bot.say(embed=skick)
-    return await bot.send_message(member, f'You have been kicked from {discord.Server.name} by {ctx.message.author.mention}, because {reason}!', tts=True) 
+    return await bot.send_message(member, f'You have been kicked from {discord.Server.name} by {ctx.message.author.mention}, because {reason}', tts=True) 
 
 @bot.command(pass_context=True,brief='Ban members.')
 async def ban(ctx, member : discord.Member=None,*, reason='The ban hammer has spoken!'):
-    '''!ban <member> <reason>'''
+    '''!ban <member> [reason]'''
     if not ctx.message.author.server_permissions.kick_members:
         pban=discord.Embed(title='Error',description='You don\'t have permission to ban members!',color=0xFF0000)
         pban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
@@ -235,14 +235,14 @@ async def ban(ctx, member : discord.Member=None,*, reason='The ban hammer has sp
             return await bot.say(embed=eban)
         else:
             pass
-    sban=discord.Embed(title='Ban',description=f'{ctx.message.author.mention} has banned {member.name}, because: {reason}!',color=0x00FF00)
+    sban=discord.Embed(title='Ban',description=f'{ctx.message.author.mention} has banned {member.name}, because: {reason}',color=0x00FF00)
     sban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     await bot.say(embed=sban)
-    return await bot.send_message(member, f'You have been banned from {discord.Server.name} by {ctx.message.author.mention}, because {reason}!', tts=True) 
+    return await bot.send_message(member, f'You have been banned from {discord.Server.name} by {ctx.message.author.mention}, because {reason}', tts=True) 
 
 @bot.command(pass_context=True,brief='Unban members.')
 async def unban(ctx, member : discord.Member=None,*, reason='The unban hammer has spoken!'):
-    '''!unban <member> <reason>'''
+    '''!unban <member> [reason]'''
     await bot.say('May not work currently, but I\'ll give it a go!')
     if not ctx.message.author.server_permissions.kick_members:
         punban=discord.Embed(title='Error',description='You don\'t have permission to unban members!',color=0xFF0000)
@@ -265,14 +265,14 @@ async def unban(ctx, member : discord.Member=None,*, reason='The unban hammer ha
             return await bot.say(embed=eunban)
         else:
             pass
-    sunban=discord.Embed(title='Unban',description=f'{ctx.message.author.mention} has unbanned {member.name}, because: {reason}!',color=0x00FF00)
+    sunban=discord.Embed(title='Unban',description=f'{ctx.message.author.mention} has unbanned {member.name}, because: {reason}',color=0x00FF00)
     sunban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     await bot.say(embed=unban)
-    return await bot.send_message(member, f'You have been unbanned from {discord.Server.name} by {ctx.message.author.mention}, because {reason}!', tts=True) 
+    return await bot.send_message(member, f'You have been unbanned from {discord.Server.name} by {ctx.message.author.mention}, because {reason}', tts=True) 
 
 @bot.command(pass_context=True,brief='Ban then unban someone to clear all messages within 7 days.')
 async def softban(ctx, member : discord.Member=None,*, reason='The softban hammer has spoken!'):
-    '''!softban <member> <reason>'''
+    '''!softban <member> [reason]'''
     if not ctx.message.author.server_permissions.kick_members:
         psoftban=discord.Embed(title='Error',description='You don\'t have permission to softban members!',color=0xFF0000)
         psoftban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
@@ -295,9 +295,9 @@ async def softban(ctx, member : discord.Member=None,*, reason='The softban hamme
             return await bot.say(embed=esoftban)
         else:
             pass
-    ssoftban=discord.Embed(title='Softban',description=f'{ctx.message.author.mention} has softbanned {member.name}, because: {reason}!',color=0x00FF00)
+    ssoftban=discord.Embed(title='Softban',description=f'{ctx.message.author.mention} has softbanned {member.name}, because: {reason}',color=0x00FF00)
     ssoftban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     await bot.say(embed=ssoftban)
-    return await bot.send_message(member, f'You have been softbanned from {discord.Server.name} by {ctx.message.author.mention}, because {reason}!', tts=True) 
+    return await bot.send_message(member, f'You have been softbanned from {discord.Server.name} by {ctx.message.author.mention}, because {reason}', tts=True) 
 
 bot.run(os.environ.get('TOKEN'))
