@@ -142,7 +142,7 @@ async def cryptocurrency(ctx,coin:str=None):
         scryptocurrency.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         scryptocurrency.add_field(name='Price',value=json['DISPLAY'][str(coin)]['USD']['PRICE'])
         
-        sreturn await bot.say(embed=scryptocurrency)
+        return await bot.say(embed=scryptocurrency)
 
 '''
 '##::::'##::::'###::::'##::: ##::::'###:::::'######:::'####:'##::: ##::'######:::                                               
