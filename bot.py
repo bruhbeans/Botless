@@ -148,7 +148,7 @@ async def cryptocurrency(ctx,coin:str=None):
         scryptocurrency.set_footer('Cryptocurrency rates by [CryptoCompare](https://cryptocompare.com/)')
         return await bot.say(embed=scryptocurrency)
     else:
-        await bot.say('The API is down most probabl')
+        await bot.say('The API is down most probably.')
 
 '''
 '##::::'##::::'###::::'##::: ##::::'###:::::'######:::'####:'##::: ##::'######:::                                               
