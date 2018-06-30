@@ -4,6 +4,7 @@ from discord.ext import commands
 import os
 import time
 import math
+import psutil
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('!'), description='The one, and only: Botless, created by Pointless#1278.', self_bot=False)
 bot.remove_command('help')
@@ -101,7 +102,18 @@ async def ping(ctx):
 @bot.command(pass_context=True,aliases=['stats','statistics','information'])
 async def info(ctx):
     '''All the info\'s here!\nUsage: !info\nAliases: !stats, !statistics, !information\nPermissions: None'''
-
+    second = time.time() - start_time
+    minute, second = divmod(second, 60)
+    hour, minute = divmod(minute, 60)
+    day, hour = divmod(hour, 24)
+    memory = psutil.virtual_memory()
+    usedmemory = memory.used >> 20
+    percentmemoryused = memory.percent
+    freememory = memory.free >> 20
+    embed=discord.Embed(title='Information',color=0x00FF00)
+    embed.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    embed.add_field(name='Memory Usage',value='{} megabytes ({}%) used, with {} megabytes left over.'.format(usedmemory, int(percentmemoryused), freememory))
+    
 
 '''
 '##::::'##::::'###::::'##::: ##::::'###:::::'######:::'####:'##::: ##::'######:::                                               
