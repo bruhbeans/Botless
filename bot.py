@@ -210,7 +210,7 @@ async def takerole(ctx, member: discord.Member, *, role: discord.Role = None):
     if role not in ctx.message.server.roles:
         ntakerole=discord.Embed(title='Error',description='That isn\'t a role!',color=0xFF0000)
         ntakerole.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=ntakerole)
+        return await sbot.say(embed=ntakerole)
     try:
         await bot.remove_roles(member, role)
         stakerole=discord.Embed(title='Takerole',description=f'{ctx.message.author.mention} has taken the role, {role}, from {member.name}!',color=0x00FF00)
