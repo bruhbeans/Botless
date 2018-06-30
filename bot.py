@@ -3,6 +3,7 @@ from discord.ext.commands import Bot
 from discord.ext import commands
 import os
 import time
+from time import sleep
 import random
 from random import randint
 import math
@@ -367,7 +368,7 @@ async def softban(ctx, member : discord.Member=None,*, reason='The softban hamme
     return await bot.send_message(member, f'You have been softbanned from {discord.Server.name} by {ctx.message.author.mention}, because {reason}', tts=True) 
 
 @bot.command(pass_context = True,aliases=['cmute','channelm','cm'])
-async def channelmute(ctx, member : discord.Member, time: int ='5', reason : str='The channel mute hammer has spoken!'):
+async def channelmute(ctx, member : discord.Member, mtime: int ='5', reason : str='The channel mute hammer has spoken!'):
     '''Mute someone in a channel.\nUsage: !softban <member> [time (minutes)] [reason]\nAliases: !sban, !sb\nPermissions: Ban Members'''
     if not ctx.message.author.server_permissions.manage_messages:
         pchannelmute=discord.Embed(title='Error',description='You don\'t have permission to channelmute members!',color=0xFF0000)
@@ -381,21 +382,21 @@ async def channelmute(ctx, member : discord.Member, time: int ='5', reason : str
         rchannelmute=discord.Embed(title='Error',description='You must specify a reason!',color=0xFF0000)
         rchannelmute.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=rchannelmute)
-    if not time:
+    if not mtime:
         tchannelmute=discord.Embed(title='Error',description='You must specify a time, in minutes!',color=0xFF0000)
         tchannelmute.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=tchannelmute)
     overwrite = discord.PermissionOverwrite()
     overwrite.send_messages = False
     await bot.edit_channel_permissions(ctx.message.channel, member, overwrite)
-    schannelmute=discord.Embed(title='Channelmute',description=f'{ctx.message.author.mention} has channelmuted {member.mention} for {time} minutes, because: {reason}',color=0x00FF00)
+    schannelmute=discord.Embed(title='Channelmute',description=f'{ctx.message.author.mention} has channelmuted {member.mention} for {mtime} minutes, because: {reason}',color=0x00FF00)
     schannelmute.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     await bot.say(embed=schannelmute)
-    await bot.send_message(member, f'You have been channelmuted in {discord.Server.name} by {ctx.message.author.mention} for {time} minutes, because {reason}', tts=True) 
-    await time.sleep(time * 60)
+    await bot.send_message(member, f'You have been channelmuted in {discord.Server.name} by {ctx.message.author.mention} for {mtime} minutes, because {reason}', tts=True) 
+    await time.sleep(mtime * 60)
     overwrite.send_messages = True
     await bot.edit_channel_permissions(ctx.message.channel, member, overwrite)
-    return await bot.send_message(member, f'Your channel mute has expired in {discord.Server.name}, which was made by {ctx.message.author.mention} for {time} minutes, because {reason}', tts=True) 
+    return await bot.send_message(member, f'Your channel mute has expired in {discord.Server.name}, which was made by {ctx.message.author.mention} for {mtime} minutes, because {reason}', tts=True) 
 
 
 bot.run(os.environ.get('TOKEN'))
