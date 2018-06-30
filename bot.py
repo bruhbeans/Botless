@@ -12,7 +12,7 @@ async def on_ready():
     print('Bot online!')
     print('Name: ' + str(bot.user))
     print('ID: ' + str(bot.user.id))
-    bot.say('Hallo!')
+    bot.send_message(destination='431973452677775363',content='Hey!')
 
 @bot.command(pass_context=True)
 async def test(ctx):
