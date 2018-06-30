@@ -3,6 +3,7 @@ from discord.ext.commands import Bot
 from discord.ext import commands
 import os
 import time
+import math
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('!'), description='The one, and only: Botless, created by Pointless#1278.', self_bot=False, pm_help=None)
 bot.remove_command('help')
@@ -17,12 +18,12 @@ async def on_ready():
 @bot.command(pass_context=True,aliases=['latency','pong'])
 async def ping(ctx):
     ptime = time.time()
-    embed = discord.Embed(Title = 'Ping', color = 0x0000FF)
+    embed=discord.Embed(Title = 'Ping', color = 0x0000FF)
     embed.add_field(name = 'Pong!', value = 'Calculating...')
-    ping3 = await bot.say(embed=embed)
-    ping2 = time.time() - ptime
-    ping1 = discord.Embed(Title = 'Ping', color = 0x0000FF)
-    ping1.add_field(name = 'Pong!', value = "{} seconds".format(ping2))
-    await bot.edit_message(ping3, embed=ping1)
+    ping3=await bot.say(embed=embed)
+    ping2=time.time() - ptime *1000
+    ping1=discord.Embed(Title = 'Ping', color = 0x0000FF)
+    ping1.add_field(name='Pong!', value=round(ping2[, 2]) + ' ms')
+    await bot.edit_message(ping3,embed=ping1)
 
 bot.run(os.environ.get('TOKEN'))
