@@ -16,23 +16,25 @@ async def on_ready():
     print('ID: {}'.format(str(bot.user.id)))
     print('Invite Link: https://discordapp.com/oauth2/authorize?client_id=462562571229200384&scope=bot&permissions=2146958591')
 
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,brief='Shows a list of commands.')
 async def help(ctx, helpc: str = None):
-    """This thing"""
+    '''!help [command]'''
     if helpc == None:
         hhelp=discord.Embed(title='Help', color=0x0000FF)
         hhelp.add_field(name='General', value='`help`, `ping`')
-        hhelp.set_footer(text='I\'m a bot that has commands that are yet to come!')
+        hhelp.set_footer(text='Do !help <command> to find out what it does.\nI\'m a bot that has commands that are yet to come!')
         await bot.say(embed=hhelp)
     if helpc:
         helpget = bot.get_command(helpc)
         shelp=discord.Embed(title='Help', color=0x0000FF)
-        shelp.add_field(name=f'{helpc}',value=f'Help: {helpget.brief}\nUsage: {helpget.help}')
+        shelp.add_field(name=f'Command: !{helpc}',value=f'Help: {helpget.brief}\nUsage: {helpget.help}')
         return await bot.say(embed=shelp)
     else:
         return
-@bot.command(pass_context=True,aliases=['latency','pong'])
+
+@bot.command(pass_context=True,aliases=['latency','pong'],brief='Shows the response time in milliseconds.')
 async def ping(ctx):
+    '''!ping'''
     ptime = time.time()
     embed=discord.Embed(Title = 'Ping', color = 0x00FF00)
     embed.add_field(name = 'Pong!', value = 'Calculating...')
