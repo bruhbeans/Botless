@@ -130,7 +130,7 @@ async def giverole(ctx, member: discord.Member, *, role: discord.Role = None):
         return await bot.say(embed=ngiverole)
     try:
         rolegive = discord.utils.get(ctx.message.server.roles, name=role)
-        bot.add_roles(member, role)
+        await bot.add_roles(member, role)
         sgiverole=discord.Embed(title='Giverole',description=f'{ctx.message.author.mention} has given the role, {role}, to {member.name}!',color=0x00FF00)
         sgiverole.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         await bot.say(embed=sgiverole)
