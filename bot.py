@@ -134,7 +134,7 @@ async def cryptocurrency(ctx,coin:str=None):
     r = requests.get('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + (coin) + '&tsyms=USD')
     json = r.json()
     if coin == None:
-        ncoin
+        nco
     await bot.say(json['RAW'][str(coin)]['USD']['PRICE'])
 
 '''
