@@ -28,7 +28,7 @@ async def on_ready():
  ##:::: ##: ########: ########: ##::::::::                                                                                      
 ..:::::..::........::........::..:::::::::     '''
 
-@bot.command(pass_context=True,brief='Shows a list of commands.')
+@bot.command(pass_context=True,aliases=['commands','cmds'],brief='Shows a list of commands.',description='!commands, !cmds')
 async def help(ctx, helpc: str = None):
     '''!help [command]'''
     if helpc == None:
@@ -36,15 +36,15 @@ async def help(ctx, helpc: str = None):
         hhelp.add_field(name='General', value='`help` `ping`')
         hhelp.add_field(name='Informational', value='Test')
         hhelp.add_field(name='Fun', value='Test')
-        hhelp.add_field(name='Managing', value='`giverole` `takerole`,')
+        hhelp.add_field(name='Managing', value='`giverole` `takerole`')
         hhelp.add_field(name='Moderation', value='`kick` `ban` `unban` `softban`')
-        hhelp.add_field(name='Owner', value='`say`, `restart`')
+        hhelp.add_field(name='Owner', value='`say` `restart`')
         hhelp.set_footer(text='Do !help <command> to find out what it does.\nI\'m a bot that has commands that are yet to come!')
         await bot.say(embed=hhelp)
     if helpc:
         helpget = bot.get_command(helpc)
         shelp=discord.Embed(title='Help', color=0x0000FF)
-        shelp.add_field(name=f'Command: !{helpc}',value=f'Help: {helpget.brief}\nUsage: {helpget.help}')
+        shelp.add_field(name=f'Command: !{helpc}',value=f'Help: {helpget.brief}\nUsage: {helpget.help}\nAliases: {helpget.description}\nPermissions: {helpget.permissions}')
         return await bot.say(embed=shelp)
     else:
         return
