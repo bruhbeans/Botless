@@ -12,6 +12,7 @@ async def on_ready():
     print('Bot online!')
     print('Name: ' + str(bot.user))
     print('ID: ' + str(bot.user.id))
+    bot.say('Hallo!')
 
 @bot.command(pass_context=True)
 async def test(ctx):
