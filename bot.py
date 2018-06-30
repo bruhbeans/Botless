@@ -3,6 +3,8 @@ from discord.ext.commands import Bot
 from discord.ext import commands
 import os
 import time
+import random
+from random import randint
 import math
 import requests
 import asyncio
@@ -119,6 +121,7 @@ async def info(ctx):
     embed.add_field(name='Discord.py version', value='Version {}'.format(discord.__version__))
     embed.add_field(name='Memory Usage',value='{} gigabytes ({}%) used, with {} gigabytes left over.'.format(usedmemory, int(percentmemoryused), freememory))
     await bot.say(embed=embed)
+
 '''
 '####:'##::: ##:'########::'#######::'########::'##::::'##::::'###::::'########:'####::'#######::'##::: ##::::'###::::'##:::::::
 . ##:: ###:: ##: ##.....::'##.... ##: ##.... ##: ###::'###:::'## ##:::... ##..::. ##::'##.... ##: ###:: ##:::'## ##::: ##:::::::
@@ -150,6 +153,17 @@ async def cryptocurrency(ctx,coin:str=None):
         return await bot.say(embed=scryptocurrency)
     else:
         await bot.say('The API is down most probably.')
+'''
+
+ ****     ****             **   **     
+/**/**   **/**            /**  /**     
+/**//** ** /**  ******   ******/**     
+/** //***  /** //////** ///**/ /****** 
+/**  //*   /**  *******   /**  /**///**
+/**   /    /** **////**   /**  /**  /**
+/**        /**//********  //** /**  /**
+//         //  ////////    //  //   // 
+'''
 
 '''
 '##::::'##::::'###::::'##::: ##::::'###:::::'######:::'####:'##::: ##::'######:::                                               
@@ -317,10 +331,10 @@ async def unban(ctx, member : discord.Member=None,*, reason='The unban hammer ha
             return await bot.say(embed=eunban)
         else:
             pass
-    sunban=discord.Embed(title='Unban',description=f'{ctx.message.author.mention} has unbanned {member.name}, because: {reason}',color=0x00FF00)
+    sunban=discord.Embed(title='Unban',description=f'{ctx.message.author.mention} has unbanned {member.mention}, because: {reason}',color=0x00FF00)
     sunban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     await bot.say(embed=unban)
-    return await bot.send_message(member, f'You have been unbanned from {discord.Server.name} by {ctx.message.author.mention}, because {reason}', tts=True) 
+    return await bot.send_message(member, f'{member.mention}, You have been unbanned from {discord.Server.name} by {ctx.message.author.mention}, because {reason}', tts=True) 
 
 @bot.command(pass_context=True,aliases=['sban','sb'])
 async def softban(ctx, member : discord.Member=None,*, reason='The softban hammer has spoken!'):
@@ -347,23 +361,39 @@ async def softban(ctx, member : discord.Member=None,*, reason='The softban hamme
             return await bot.say(embed=esoftban)
         else:
             pass
-    ssoftban=discord.Embed(title='Softban',description=f'{ctx.message.author.mention} has softbanned {member.name}, because: {reason}',color=0x00FF00)
+    ssoftban=discord.Embed(title='Softban',description=f'{ctx.message.author.mention} has softbanned {member.mention}, because: {reason}',color=0x00FF00)
     ssoftban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     await bot.say(embed=ssoftban)
     return await bot.send_message(member, f'You have been softbanned from {discord.Server.name} by {ctx.message.author.mention}, because {reason}', tts=True) 
 
 @bot.command(pass_context = True,aliases=['cmute','channelm','cm'])
-async def channelmute(ctx, member : discord.Member, time, reason : str='The channel mute hammer has spoken!'):
-    """Mutes (player) will not be able to talk!"""
+async def channelmute(ctx, member : discord.Member, time: int ='5', reason : str='The channel mute hammer has spoken!'):
+    '''Mute someone in a channel.\nUsage: !softban <member> [time (minutes)] [reason]\nAliases: !sban, !sb\nPermissions: Ban Members'''
     if not ctx.message.author.server_permissions.manage_messages:
-        return await bot.say("Your rank does not allow you to mute!")
+        pchannelmute=discord.Embed(title='Error',description='You don\'t have permission to channelmute members!',color=0xFF0000)
+        pchannelmute.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=pchannelmute)
+    if not member:
+        mchannelmute=discord.Embed(title='Error',description='You must specify a member!',color=0xFF0000)
+        mchannelmute.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=mchannelmute)
+    if not reason:
+        rchannelmute=discord.Embed(title='Error',description='You must specify a reason!',color=0xFF0000)
+        rchannelmute.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=rchannelmute)
+    if not time:
+        tchannelmute=discord.Embed(title='Error',description='You must specify a time, in minutes!',color=0xFF0000)
+        tchannelmute.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=tchannelmute)
     overwrite = discord.PermissionOverwrite()
     overwrite.send_messages = False
-    await client.edit_channel_permissions(ctx.message.channel, member, overwrite)
-    await client.say("" + member.mention + " has been muted for " + mutetime + "!")
+    await bot.edit_channel_permissions(ctx.message.channel, member, overwrite)
+    schannelmute=discord.Embed(title='Channelmute',description=f'{ctx.message.author.mention} has channelmuted {member.mention} for {time} minutes, because: {reason}',color=0x00FF00)
+    schannelmute.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    await bot.say(embed=schannelmute)
     await asyncio.sleep(int(mutetime * 60))
-    overwrite.send_messages = False
-    await client.edit_channel_permissions(ctx.message.channel, member, overwrite)
-    await client.send_message(member, f'You have been muted in {discord.Server.name}')
+    overwrite.send_messages = True
+    await bot.edit_channel_permissions(ctx.message.channel, member, overwrite)
+    return await bot.send_message(member, f'You have been channelmuted in {discord.Server.name} by {ctx.message.author.mention} for {time} minutes, because {reason}', tts=True) 
 
 bot.run(os.environ.get('TOKEN'))
