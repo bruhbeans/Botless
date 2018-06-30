@@ -130,7 +130,7 @@ async def info(ctx):
 
 @bot.command(pass_context=True,aliases=['cc'])
 async def cryptocurrency(ctx,coin:str=None):
-    '''Find out cryptocurrency rates.\nUsage: !cryptocurrency <crypto\nAliases: !cc\nPermissions: None'''
+    '''Find out cryptocurrency rates.\nUsage: !cryptocurrency <crypto c\nAliases: !cc\nPermissions: None'''
     r = requests.get('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + (coin) + '&tsyms=USD')
     json = r.json()
     if coin == None:
