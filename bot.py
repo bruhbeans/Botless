@@ -134,7 +134,9 @@ async def cryptocurrency(ctx,coin:str=None):
     r = requests.get('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + (coin) + '&tsyms=USD')
     json = r.json()
     if coin == None:
-        ncoin=
+        ncoin=        pgiverole=discord.Embed(title='Error',description='You don\'t have permission to give roles to members!',color=0xFF0000)
+        pgiverole.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=pgiverole)
     await bot.say(json['RAW'][str(coin)]['USD']['PRICE'])
 
 '''
