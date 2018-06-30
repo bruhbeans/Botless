@@ -129,7 +129,7 @@ async def info(ctx):
 ....::..::::..::..:::::::::.......:::..:::::..::..:::::..::..:::::..:::::..:::::....:::.......:::..::::..::..:::::..::........::'''
 
 @bot.command(pass_context=True,aliases=['cc'])
-async def cryptocurrency(ctx,coin: str):
+async def cryptocurrency(ctx,coin: str=No):
     '''Find out cryptocurrency rates.\nUsage: !cryptocurrency\nAliases: !cc\nPermissions: None'''
     r = requests.get('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + coin + '&tsyms=USD')
     await bot.say(r.json([]))
