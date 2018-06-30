@@ -136,7 +136,7 @@ async def cryptocurrency(ctx,coin:str=None):
     if coin == None:
         ncryptocurrency=discord.Embed(title='Error',description='Specify the cryptocurrency symbol!',color=0xFF0000)
         ncryptocurrency.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=ncrypto)
+        return await bot.say(embed=ncryptocurre)
     if coin:
         s
     await bot.say(json['RAW'][str(coin)]['USD']['PRICE'])
