@@ -145,7 +145,7 @@ async def cryptocurrency(ctx,coin:str=None):
         scryptocurrency.add_field(name='Lowest Price Today',value=json['DISPLAY'][str(coin)]['USD']['LOWDAY'])
         scryptocurrency.add_field(name='Last Updated',value=json['DISPLAY'][str(coin)]['USD']['LASTUPDATE'])
         scryptocurrency.add_field(name='Supply',value=json['DISPLAY'][str(coin)]['USD']['SUPPLY'])
-        scryptocurrency.set_footer(text='Cryptocurrency rates by https://cryptocompare.co')
+        scryptocurrency.set_footer(text='Cryptocurrency rates by https://cryptocompare.com/')
         return await bot.say(embed=scryptocurrency)
     else:
         await bot.say('The API is down most probably.')
