@@ -352,8 +352,8 @@ async def softban(ctx, member : discord.Member=None,*, reason='The softban hamme
     await bot.say(embed=ssoftban)
     return await bot.send_message(member, f'You have been softbanned from {discord.Server.name} by {ctx.message.author.mention}, because {reason}', tts=True) 
 
-@bot.command(pass_context = True)
-async def mute(ctx, member : discord.Member, mutetime, reason : str):
+@bot.command(pass_context = True,aliases=['cmute','channelm','cm'])
+async def channelmute(ctx, member : discord.Member, mutetime, reason : str):
     """Mutes (player) will not be able to talk!"""
     if not ctx.message.author.server_permissions.administrator:
         return await client.say("Your rank does not allow you to mute!")
@@ -365,4 +365,5 @@ async def mute(ctx, member : discord.Member, mutetime, reason : str):
     overwrite.send_messages = False
     await client.edit_channel_permissions(ctx.message.channel, member, overwrite)
     await client.send_message(member, "You've been muted in for" + mutetime + "seconds." + "Mute Reason:" + reason)
+
 bot.run(os.environ.get('TOKEN'))
