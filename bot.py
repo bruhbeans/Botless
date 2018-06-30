@@ -8,12 +8,18 @@ import math
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('!'), description='The one, and only: Botless, created by Pointless#1278.', self_bot=False, pm_help=None)
 bot.remove_command('help')
 
+
 @bot.event
 async def on_ready():
-    print('Bot online!')
-    print('Name: {}'.format(str(bot.user)))
-    print('ID: {}'.format(str(bot.user.id)))
-    print('Invite Link: https://discordapp.com/oauth2/authorize?client_id=462562571229200384&scope=bot&permissions=2146958591')
+    await print('Bot online!')
+    await print('Name: {}'.format(str(bot.user)))
+    await print('ID: {}'.format(str(bot.user.id)))
+    await print('Invite Link: https://discordapp.com/oauth2/authorize?client_id=462562571229200384&scope=bot&permissions=2146958591')
+
+@bot.event
+async def on_member_join(member):
+    channel = await bot.get_channel(431850419392741398)
+    await bot.send_message(channel, f'Welcome, {member}, to Botless\' support server!')
 
 @bot.command(pass_context=True,aliases=['latency','pong'])
 async def ping(ctx):
