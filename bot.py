@@ -2,6 +2,7 @@ import discord
 from discord.ext.commands import Bot
 from discord.ext import commands
 import os
+import time
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('!'), description='The one, and only: Botless, created by Pointless#1278.', self_bot=False, pm_help=None)
 bot.remove_command('help')
