@@ -21,9 +21,9 @@ async def ping(ctx):
     embed=discord.Embed(Title = 'Ping', color = 0x0000FF)
     embed.add_field(name = 'Pong!', value = 'Calculating...')
     ping3=await bot.say(embed=embed)
-    ping2=time.time() - ptime *1000
+    ping2=time.time() - ptime 
     ping1=discord.Embed(Title = 'Ping', color = 0x0000FF)
-    ping1.add_field(name='Pong!', value=round(ping2) + ' ms')
+    ping1.add_field(name='Pong!', value='{} milliseconds.'.format(int((round(ping2 * 1000)))))
     await bot.edit_message(ping3,embed=ping1)
 
 bot.run(os.environ.get('TOKEN'))
