@@ -147,6 +147,7 @@ async def cryptocurrency(ctx,coin:str=None):
         scryptocurrency.add_field(name='Supply',value=json['DISPLAY'][str(coin)]['USD']['SUPPLY'])
         scryptocurrency.set_footer('Cryptocurrency rates by [CryptoCompare](https://cryptocompare.com/)')
         return await bot.say(embed=scryptocurrency)
+        
 
 '''
 '##::::'##::::'###::::'##::: ##::::'###:::::'######:::'####:'##::: ##::'######:::                                               
