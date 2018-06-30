@@ -143,7 +143,6 @@ async def cryptocurrency(ctx,coin:str=None):
         scryptocurrency.add_field(name='Price',value=)
         return await bot.say(embed=scryptocurrency)
 
-
 '''
 '##::::'##::::'###::::'##::: ##::::'###:::::'######:::'####:'##::: ##::'######:::                                               
  ###::'###:::'## ##::: ###:: ##:::'## ##:::'##... ##::. ##:: ###:: ##:'##... ##::                                               
