@@ -41,7 +41,7 @@ async def help(ctx, helpc: str = None):
         hhelp.add_field(name='Managing', value='`giverole` `takerole`')
         hhelp.add_field(name='Moderation', value='`kick` `ban` `unban` `softban`')
         hhelp.add_field(name='Owner', value='`say` `restart`')
-        hhelp.set_footer(text='Do !help <command> to find out what it does.\nI\'m a bot that has commands that are yet to come!')
+        hhelp.set_footer(text='Do !help <command> to find out what it does.')
         await bot.say(embed=hhelp)
     if helpc:
         helpget = bot.get_command(helpc)
