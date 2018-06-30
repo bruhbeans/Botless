@@ -143,7 +143,7 @@ async def cryptocurrency(ctx,coin:str=None):
         scryptocurrency.add_field(name='Price',value=json['DISPLAY'][str(coin)]['USD']['PRICE'])
         scryptocurrency.add_field(name='Last Updated',value=json['DISPLAY'][str(coin)]['USD']['LASTUPDATE'])
         scryptocurrency.add_field(name='Supply',value=json['DISPLAY'][str(coin)]['USD']['SUPPLY']
-        scryptocurrency.add_field(name='Supply',value=json['DISPLAY'][str(coin)]['USD']['HI']
+        scryptocurrency.add_field(name='Supply',value=json['DISPLAY'][str(coin)]['USD']['HIGH']
 
         ])
         scryptocurrency.set_footer('Cryptocurrency rates by [CryptoCompare](https://cryptocompare.com/)')
