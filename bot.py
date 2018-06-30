@@ -5,7 +5,7 @@ import os
 import time
 import math
 import requests
-import asynci
+import asyncio
 import psutil
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('!'), description='The one, and only: Botless, created by Pointless#1278.', self_bot=False)
