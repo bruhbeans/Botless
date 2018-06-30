@@ -393,7 +393,7 @@ async def channelmute(ctx, member : discord.Member, mtime: int ='5', reason : st
     schannelmute.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     await bot.say(embed=schannelmute)
     await bot.send_message(member, f'You have been channelmuted in {discord.Server.name} by {ctx.message.author.mention} for {mtime} minutes, because {reason}', tts=True) 
-    await time.sleep(mtime * 60)
+    time.sleep(mtime * 60)
     overwrite.send_messages = True
     await bot.edit_channel_permissions(ctx.message.channel, member, overwrite)
     return await bot.send_message(member, f'Your channel mute has expired in {discord.Server.name}, which was made by {ctx.message.author.mention} for {mtime} minutes, because {reason}', tts=True) 
