@@ -8,6 +8,8 @@ import math
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('!'), description='The one, and only: Botless, created by Pointless#1278.', self_bot=False, pm_help=None)
 bot.remove_command('help')
 
+def pointcheck(ctx):
+    return ctx.message.author.id == '276043503514025984' #checks if @Pointless#1278 is the author of the command
 
 @bot.event
 async def on_ready():
