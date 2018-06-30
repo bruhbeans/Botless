@@ -350,19 +350,7 @@ async def softban(ctx, member : discord.Member=None,*, reason='The softban hamme
     ssoftban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     await bot.say(embed=ssoftban)
     return await bot.send_message(member, f'You have been softbanned from {discord.Server.name} by {ctx.message.author.mention}, because {reason}', tts=True) 
-@client.command(pass_context = True)
-async def mute(ctx, member : discord.Member, mutetime, reason : str):
-    """Mutes (player) will not be able to talk!"""
-    if not ctx.message.author.server_permissions.administrator:
-        return await client.say("Your rank does not allow you to mute!")
-    overwrite = discord.PermissionOverwrite()
-    overwrite.send_messages = False
-    await client.edit_channel_permissions(ctx.message.channel, member, overwrite)
-    await client.say("" + member.mention + " has been muted for " + mutetime + "!")
-    await asyncio.sleep(int(mutetime))
-    overwrite.send_messages = False
-    await client.edit_channel_permissions(ctx.message.channel, member, overwrite)
-    await client.send_message(member, "You've been muted in for" + mutetime + "seconds." + "Mute Reason:" + reason)
+
 @bot.command(pass_context = True)
 async def mute(ctx, member : discord.Member, mutetime, reason : str):
     """Mutes (player) will not be able to talk!"""
