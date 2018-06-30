@@ -133,7 +133,7 @@ async def cryptocurrency(ctx,coin:str=None):
     '''Find out cryptocurrency rates.\nUsage: !cryptocurrency\nAliases: !cc\nPermissions: None'''
     r = requests.get('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + (coin) + '&tsyms=USD')
     json = r.json()
-    
+    if
     await bot.say(json['RAW'][str(coin)]['USD']['PRICE'])
 
 '''
