@@ -134,7 +134,7 @@ async def cryptocurrency(ctx,coin:str=None):
     r = requests.get('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + (coin) + '&tsyms=USD')
     json = r.json()
     if coin == None:
-        ngiverole=discord.Embed(title='Error',description='',color=0xFF0000)
+        ngiverole=discord.Embed(title='Error',description='Sa',color=0xFF0000)
         ngiverole.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=ngiverole)
     await bot.say(json['RAW'][str(coin)]['USD']['PRICE'])
