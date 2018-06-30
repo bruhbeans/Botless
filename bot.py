@@ -108,12 +108,12 @@ async def info(ctx):
     hour, minute = divmod(minute, 60)
     day, hour = divmod(hour, 24)
     memory = psutil.virtual_memory()
-    usedmemory = memory.used 
+    usedmemory = memory.used >> 30
     percentmemoryused = memory.percent
-    freememory = memory.free
+    freememory = memory.free >> 30
     embed=discord.Embed(title='Information',color=0x00FF00)
     embed.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-    embed.add_field(name='Memory Usage',value='{} bytes ({}%) used, with {} bytes left over.'.format(usedmemory, int(percentmemoryused), freememory))
+    embed.add_field(name='Memory Usage',value='{} gigabytes ({}%) used, with {} gigabytes left over.'.format(usedmemory, int(percentmemoryused), freememory))
     await bot.say(embed=embed)
 
 '''
