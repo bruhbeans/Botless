@@ -13,4 +13,8 @@ async def on_ready():
     print('Name: ' + str(bot.user))
     print('ID: ' + str(bot.user.id))
 
+@bot.command(pass_context=True)
+async def test(ctx):
+    bot.say('Hey there!')
+
 bot.run(os.environ.get('TOKEN'))
