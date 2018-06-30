@@ -138,7 +138,7 @@ async def cryptocurrency(ctx,coin:str=None):
         ncryptocurrency.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=ncryptocurrency)
     if coin:
-        scryptocurrency=discord.Embed(title='Cryptocurrency',description='Rates calcua!',color=0xFF0000)
+        scryptocurrency=discord.Embed(title='Cryptocurrency',description='Rates calculate!',color=0xFF0000)
         scryptocurrency.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=scryptocurrency)
     await bot.say(json['RAW'][str(coin)]['USD']['PRICE'])
