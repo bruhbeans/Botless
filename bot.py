@@ -18,6 +18,7 @@ async def on_ready():
 
 @bot.event
 async def on_member_join(member):
+    Channel = bot.get_channel(431850419392741398)
     await bot.send_message(Channel, f'Welcome, {member}, to Botless\' support server!')
 
 @bot.command(pass_context=True,aliases=['latency','pong'])
