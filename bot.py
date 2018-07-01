@@ -69,7 +69,7 @@ async def help(ctx, helpc: str = None):
 @bot.command(pass_context=True)
 @commands.check(pointcheck)
 async def say(ctx, *, text: str = None):
-    '''Make the bot say something.\nUsage: !say <text>\nAliases: None\nPermissions: Bot Owner'''
+    '''Make the bot say something of your choice.\nUsage: !say <text>\nAliases: None\nPermissions: Bot Owner'''
     await bot.delete_message(ctx.message)
     await bot.say(text)
 
@@ -86,7 +86,9 @@ async def restart(ctx):
 @commands.check(pointcheck)
 async def git(ctx):
     '''Commit and push to github.\nUsage: !git\nAliases: !commit, !push\nPermissions: Bot Owner'''
-    call('git init', shell=True)
+    call('git status', shell=True)
+    call('git pull', shell=True)
+    call('git status', shell=True)
     call('git add .', shell = True)
     call('git commit -a "commiting..."', shell = True)
     call('git push origin master', shell = True)
