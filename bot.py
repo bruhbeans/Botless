@@ -310,7 +310,6 @@ async def ban(ctx, member : discord.Member=None,*, reason='The ban hammer has sp
 @bot.command(pass_context=True,aliases=['ub','uban'])
 async def unban(ctx, member : discord.Member=None,*, reason='The unban hammer has spoken!'):
     '''Unban someone\nUsage: !unban <member> [reason]\nAliases: !ub, !uban\nPermissions: Ban Members'''
-    await bot.say('May not work currently, but I\'ll give it a go!')
     if not ctx.message.author.server_permissions.ban_members:
         punban=discord.Embed(title='Error',description='You don\'t have permission to unban members!',color=0xFF0000)
         punban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
@@ -324,18 +323,20 @@ async def unban(ctx, member : discord.Member=None,*, reason='The unban hammer ha
         runban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=runban)
     try:
-        await bot.unban(discord.Server,member)
-    except Exception as e:
-        if 'Privilege is too low' in str(e):
-            eunban=discord.Embed(title='Error',description='The person you are trying to unban has high permissions.',color=0xFF0000)
-            eunban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-            return await bot.say(embed=eunban)
-        else:
-            pass
-    sunban=discord.Embed(title='Unban',description=f'{ctx.message.author.mention} has unbanned {member.mention}, because: {reason}',color=0x00FF00)
+        banned = await bot.get_bans(ctx.message.server)
+    except:
+        return
+    bember = discord.utils.get(banned, name=member)
+    if bember is None:
+        nunban=discord.Embed(title='Error',description=f'There isn\'t a person named {member.name} who is banned.',color=0xFF0000)
+        nunban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nunban)
+    await bot.unban(ctx.message.server, user)
+    sunban=discord.Embed(title='Unban',description=f'{ctx.message.author.mention} has unbanned {bember.mention}, because: {reason}',color=0x00FF00)
     sunban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-    await bot.say(embed=unban)
-    return await bot.send_message(member, f'{member.mention}, You have been unbanned from {ctx.message.server.name} by {ctx.message.author.mention}, because {reason}', tts=True) 
+    await bot.say(embed=sunban)
+    return await bot.send_message(member, f'You have been unbanned from {ctx.message.server.name} by {ctx.message.author.mention}, because {reason}', tts=True) 
+
 
 @bot.command(pass_context=True,aliases=['sban','sb'])
 async def softban(ctx, member : discord.Member=None,*, reason='The softban hammer has spoken!'):
@@ -412,7 +413,7 @@ async def channelunmute(ctx, member : discord.Member, *,reason : str='The channe
     schannelmute=discord.Embed(title='Channelmute',description=f'{ctx.message.author.mention} has channelunmuted {member.mention}, because: {reason}',color=0x00FF00)
     schannelmute.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     await bot.say(embed=schannelmute)
-    await bot.send_message(member, f'You have been channelmuted in {ctx.message.server.name} in the {ctx.message.channel.name} channel by {ctx.message.author.mention}, because {reason}', tts=True) 
+    await bot.send_message(member, f'You have been channelunmuted in {ctx.message.server.name} in the {ctx.message.channel.name} channel by {ctx.message.author.mention}, because {reason}', tts=True) 
 
 
 
