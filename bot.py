@@ -86,6 +86,7 @@ async def restart(ctx):
 @commands.check(pointcheck)
 async def git(ctx):
     '''Commit and push to github.\nUsage: !git\nAliases: !commit, !push\nPermissions: Bot Owner'''
+    call('git init', shell=True)
     call('git status', shell=True)
     call('git pull', shell=True)
     call('git status', shell=True)
