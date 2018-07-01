@@ -6,6 +6,7 @@ import time
 from time import sleep
 import random
 from random import randint
+from subprocess import call
 import math
 import requests
 import asyncio
@@ -13,6 +14,7 @@ import psutil
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('!'), description='The one, and only: Botless, created by Pointless#1278.', self_bot=False)
 bot.remove_command('help')
+
 
 def pointcheck(ctx):
     return ctx.message.author.id == '276043503514025984' #checks if @Pointless#1278 is the author of the command
@@ -79,6 +81,14 @@ async def restart(ctx):
     embed.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     await bot.say(embed=embed)
     await bot.logout()
+
+@bot.command(pass_context=True,aliases=['commit','push'])
+@commands.check(pointcheck)
+async def git(ctx):
+    '''Commit and push to github.\nUsage: !git\nAliases: !commit, !push\nPermissions: Bot Owner'''
+    call('git add .', shell = True)
+    call('git commit -a "commiting..."', shell = True)
+    call('git push origin master', shell = True)
 
 '''
 :'######:::'########:'##::: ##:'########:'########:::::'###::::'##:::::::                                                       
