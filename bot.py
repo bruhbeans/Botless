@@ -5,10 +5,11 @@ import os
 import time
 from time import sleep
 import random
-import git
 from random import randint
 from subprocess import call
 import math
+import cmath
+import statistics
 import requests
 import asyncio
 import psutil
@@ -424,7 +425,7 @@ async def atantwo(ctx,a,b):
 
 @bot.command(pass_context=True)
 async def cos(ctx,a):
-    '''Find the cosine of a number, in radians.\nUsage: !acos <number>\nAliases: None\nPermissions: None'''
+    '''Find the cosine of a number, in radians.\nUsage: !cos <number>\nAliases: None\nPermissions: None'''
     if a == None:
         ncos=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
         ncos.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
@@ -447,6 +448,204 @@ async def euclidean(ctx,a,b):
     seuclidean=discord.Embed(title='Euclidean Norm',description=math.hypot(int(a),int(b)),color=0x00FF00)
     seuclidean.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=seuclidean)
+
+@bot.command(pass_context=True)
+async def acosh(ctx,a):
+    '''Find the inverse hyperbolic cosine of a number\nUsage: !acosh <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nacosh=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        nacosh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nacosh)
+    sacosh=discord.Embed(title='Inverse Hyperbolic Cosine',description=math.acosh(int(a)),color=0x00FF00)
+    sacosh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sacosh)
+
+@bot.command(pass_context=True)
+async def cosh(ctx,a):
+    '''Find the hyperbolic cosine of a number\nUsage: !cosh <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        ncosh=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        ncosh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=ncosh)
+    sacosh=discord.Embed(title='Hyperbolic Cosine',description=math.acosh(int(a)),color=0x00FF00)
+    sacosh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sacosh)
+
+@bot.command(pass_context=True)
+async def asinh(ctx,a):
+    '''Find the inverse hyperbolic sine of a number\nUsage: !asinh <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nasinh=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        nasinh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nasinh)
+    sasinh=discord.Embed(title='Inverse Hyperbolic Sine',description=math.asinh(int(a)),color=0x00FF00)
+    sasinh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sasinh)
+
+@bot.command(pass_context=True)
+async def sinh(ctx,a):
+    '''Find the hyperbolic sine of a number\nUsage: !sinh <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nsinh=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        nsinh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nsinh)
+    ssinh=discord.Embed(title='Hyperbolic Sine',description=math.sinh(int(a)),color=0x00FF00)
+    ssinh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=ssinh)
+
+@bot.command(pass_context=True)
+async def atanh(ctx,a):
+    '''Find the inverse hyperbolic tangent of a number\nUsage: !atanh <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        natanh=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        natanh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=natanh)
+    satanh=discord.Embed(title='Inverse Hyperbolic Tanget',description=math.atanh(int(a)),color=0x00FF00)
+    satanh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=satanh)
+
+@bot.command(pass_context=True)
+async def tanh(ctx,a):
+    '''Find the hyperbolic tangent of a number\nUsage: !tanh <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        ntanh=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        ntanh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=ntanh)
+    stanh=discord.Embed(title='Hyperbolic Tanget',description=math.tanh(int(a)),color=0x00FF00)
+    stanh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=stanh)
+
+@bot.command(pass_context=True)
+async def gamma(ctx,a):
+    '''Find the gamma (Γ) of a number\nUsage: !gamma <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        ngamma=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        ngamma.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=ngamma)
+    sgamma=discord.Embed(title='Gamma Function',description=math.gamma(int(a)),color=0x00FF00)
+    sgamma.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sgamma)
+
+@bot.command(pass_context=True)
+async def lgamma(ctx,a):
+    '''Find the natural logarithm of the absolute value of gamma (Γ) at a number\nUsage: !lgamma <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        ngammal=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        ngammal.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=ngammal)
+    sgammal=discord.Embed(title='Natural Logarithm of Absolute Value of Gamma Function at a Number',description=math.lgamma(int(a)),color=0x00FF00)
+    sgammal.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sgammal)
+
+@bot.command(pass_context=True)
+async def pi(ctx,a):
+    '''Find the pi (π) × by a number.\nUsage: !pi <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        npi=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        npi.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=npi)
+    spi=discord.Embed(title='Pi (π)',description=math.pi * int(a),color=0x00FF00)
+    spi.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=spi)
+
+@bot.command(pass_context=True)
+async def e(ctx,a):
+    '''Find the e (e) × by a number.\nUsage: !e <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        ne=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        ne.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=ne)
+    se=discord.Embed(title='e (e)',description=math.e * int(a),color=0x00FF00)
+    se.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=se)
+
+@bot.command(pass_context=True)
+async def tau(ctx,a):
+    '''Find the tau (τ or 2π) × by a number.\nUsage: !tau <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        ntau=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        ntau.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=ntau)
+    stau=discord.Embed(title='Tau (τ)',description=math.tau * int(a),color=0x00FF00)
+    stau.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=stau)
+
+@bot.command(pass_context=True)
+async def polar(ctx,a):
+    '''Find the representation of a number in polar co-ordinates.\nUsage: !polar <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        npolar=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        npolar.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=npolar)
+    spolar=discord.Embed(title='Polar',description=cmath.polar(int(a)),color=0x00FF00)
+    spolar.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=spolar)
+
+@bot.command(pass_context=True)
+async def mean(ctx,a):
+    '''Find the mean of a list of numbers.\nUsage: !mean <[number1, number2, number3, ...]>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nmean=discord.Embed(title='Error',description='Specify the numbers!',color=0xFF0000)
+        nmean.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nmean)
+    smean=discord.Embed(title='Mean',description=statistics.mean(list(a)),color=0x00FF00)
+    smean.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=smean)
+
+@bot.command(pass_context=True)
+async def harmonicmean(ctx,a):
+    '''Find the harmonic mean of a list of numbers.\nUsage: !harmonicmean <[number1, number2, number3, ...]>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nharmonicmean=discord.Embed(title='Error',description='Specify the numbers!',color=0xFF0000)
+        nharmonicmean.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nharmonicmean)
+    sharmonicmean=discord.Embed(title='Mean',description=statistics.harmonic_mean(list(a)),color=0x00FF00)
+    sharmonicmean.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sharmonicmean)
+
+@bot.command(pass_context=True)
+async def median(ctx,a):
+    '''Find the median (middle value) of a list of numbers.\nUsage: !median <[number1, number2, number3, ...]>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nmedian=discord.Embed(title='Error',description='Specify the numbers!',color=0xFF0000)
+        nmedian.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nmedian)
+    smedian=discord.Embed(title='Median',description=statistics.median(list(a)),color=0x00FF00)
+    smedian.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=smedian)
+
+@bot.command(pass_context=True)
+async def medianlow(ctx,a):
+    '''Find the low median (lowest of a middle value) of a list of numbers.\nUsage: !medianlow <[number1, number2, number3, ...]>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nmedianlow=discord.Embed(title='Error',description='Specify the numbers!',color=0xFF0000)
+        nmedianlow.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nmedianlow)
+    smedianlow=discord.Embed(title='Low Median',description=statistics.median_low(list(a)),color=0x00FF00)
+    smedianlow.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=smedianlow)
+
+@bot.command(pass_context=True)
+async def medianhigh(ctx,a):
+    '''Find the high median (highest of a middle value) of a list of numbers.\nUsage: !medianhigh <[number1, number2, number3, ...]>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nmedianhigh=discord.Embed(title='Error',description='Specify the numbers!',color=0xFF0000)
+        nmedianhighx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nmedianhigh)
+    smedianhigh=discord.Embed(title='High Median',description=statistics.median_high(list(a)),color=0x00FF00)
+    smedianhigh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=smedianhigh)
+
+@bot.command(pass_context=True)
+async def mode(ctx,a):
+    '''Find the mode (highest amount of values) of a list of numbers.\nUsage: !mode <[number1, number2, number3, ...]>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nmode=discord.Embed(title='Error',description='Specify the numbers!',color=0xFF0000)
+        nmode.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nmode)
+    smode=discord.Embed(title='Median',description=statistic.mode(list(a)),color=0x00FF00)
+    smode.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=smode)
 
 
 
