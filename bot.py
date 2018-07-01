@@ -5,6 +5,7 @@ import os
 import time
 from time import sleep
 import random
+import git
 from random import randint
 from subprocess import call
 import math
@@ -85,14 +86,12 @@ async def restart(ctx):
 @bot.command(pass_context=True,aliases=['commit','push'])
 @commands.check(pointcheck)
 async def git(ctx):
-    '''Commit and push to github.\nUsage: !git\nAliases: !commit, !push\nPermissions: Bot Owner'''
-    call('git init', shell=True)
-    call('git status', shell=True)
-    call('git pull', shell=True)
-    call('git status', shell=True)
-    call('git add .', shell = True)
-    call('git commit -a "commiting..."', shell = True)
-    call('git push origin master', shell = True)
+    '''Commit and push to Github.\nUsage: !git\nAliases: !commit, !push\nPermissions: Bot Owner'''
+    repo = git.Repo('Botless')
+    repo.git.add('.')
+    repo.git.commit('Update!')
+    repo.git.push("origin", "HEAD:refs/for/master")
+    await bot.say('Pushed!')
 
 '''
 :'######:::'########:'##::: ##:'########:'########:::::'###::::'##:::::::                                                       
