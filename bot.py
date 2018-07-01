@@ -46,7 +46,7 @@ async def help(ctx, helpc: str = None):
         hhelp.add_field(name='General', value='`help` `ping`')
         hhelp.add_field(name='Informational', value='`cryptocurrency`')
         hhelp.add_field(name='Fun', value='Test')
-        hhelp.add_field(name='Math', value='`add` `subtract` `multiply` `divide` `factorial` `floor` `gcd` `exp` `expone` `logarithm` `logarithmbase` `logarithmonep` `logarithmtwo` `logarithmten` `exponent` `sqrt` `acos` `asin` `atan` `atantwo` `cos` `euclidean` `sin` `tan` `acosh` `asinh` `atanh` `cosh` `sinh` `tanh` `gamma` `logarithmgamma` `pi` `e` `tau` `phase` `polar` `complexpolar` `mean` `harmonicmean` `median` `medianlow` `medianhigh` `mode`')
+        hhelp.add_field(name='Math', value='`add` `subtract` `multiply` `d̶i̶v̶i̶d̶e̶` `factorial` `gcd` `median` `medianlow` `medianhigh`')
         hhelp.add_field(name='Managing', value='`giverole` `takerole`')
         hhelp.add_field(name='Moderation', value='`kick` `ban` `unban` `softban` `channelmute` `channelunmute`')
         hhelp.add_field(name='Owner', value='`say` `restart`')
@@ -226,7 +226,7 @@ async def divide(ctx,a,b):
     if b == None:
         ndivide2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
         ndivide2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=ndivide2)
+        return await bot.say(embed=nadd2)
     sdivide=discord.Embed(title='Divide',description=int(a) / int(b),color=0x00FF00)
     sdivide.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sdivide)
@@ -241,7 +241,7 @@ async def factorial(ctx,a):
     sfactorial=discord.Embed(title='Factorial',description=math.factorial(int(a)),color=0x00FF00)
     sfactorial.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sfactorial)
-
+"""
 @bot.command(pass_context=True)
 async def floor(ctx,a):
     '''Find the floor of a number.\nUsage: !floor <number>\nAliases: None\nPermissions: None'''
@@ -252,7 +252,7 @@ async def floor(ctx,a):
     sfloor=discord.Embed(title='Floor',description=math.floor(int(a)),color=0x00FF00)
     sfloor.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sfloor)
-
+"""
 @bot.command(pass_context=True,aliases=['hcf'])
 async def gcd(ctx,a,b):
     '''Find the greatest common divisor (highest common factor) of two numbers.\nUsage: !gcd <number1> <number2>\nAliases: !hcf\nPermissions: None'''
@@ -267,7 +267,7 @@ async def gcd(ctx,a,b):
     sgcd=discord.Embed(title='Greatest Common Divisor (Highest Common Factor)',description=math.gcd(int(a),int(b)),color=0x00FF00)
     sgcd.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sgcd)
-
+"""
 @bot.command(pass_context=True)
 async def exp(ctx,a):
     '''Find the e constant to the power of a number.\nUsage: !exp <number>\nAliases: None\nPermissions: None'''
@@ -602,7 +602,7 @@ async def harmonicmean(ctx,a):
     sharmonicmean=discord.Embed(title='Mean',description=statistics.harmonic_mean(list(a)),color=0x00FF00)
     sharmonicmean.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sharmonicmean)
-
+"""
 @bot.command(pass_context=True)
 async def median(ctx,a):
     '''Find the median (middle value) of a list of numbers.\nUsage: !median <[number1, number2, number3, ...]>\nAliases: None\nPermissions: None'''
