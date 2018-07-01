@@ -395,6 +395,7 @@ async def channelmute(ctx, member : discord.Member, mtime: int ='5', reason : st
     await bot.send_message(member, f'You have been channelmuted in {discord.Server.name} by {ctx.message.author.mention} for {mtime} minutes, because {reason}', tts=True) 
     loop = asyncio.get_event_loop()
     sleep = time.sleep(mtime * 60)
+    a
     asyncio.ensure_future(sleep)
     loop.run_until_complete(sleep)
     loop.close()
