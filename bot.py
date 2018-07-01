@@ -226,7 +226,7 @@ async def divide(ctx,a,b):
     if b == None:
         ndivide2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
         ndivide2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=nadd2)
+        return await bot.say(embed=ndivide2)
     sdivide=discord.Embed(title='Divide',description=int(a) / int(b),color=0x00FF00)
     sdivide.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sdivide)
