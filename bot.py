@@ -44,9 +44,8 @@ async def help(ctx, helpc: str = None):
     if helpc == None:
         hhelp=discord.Embed(title='Help', color=0x0000FF)
         hhelp.add_field(name='General', value='`help` `ping`')
-        hhelp.add_field(name='Informational', value='`cryptocurrency`')
+        hhelp.add_field(name='Informational', value='`cryptocurrency` `math`')
         hhelp.add_field(name='Fun', value='Test')
-        hhelp.add_field(name='Math', value='`add` `subtract` `multiply` `d̶i̶v̶i̶d̶e̶` `factorial` `gcd` `median` `medianlow` `medianhigh`')
         hhelp.add_field(name='Managing', value='`giverole` `takerole`')
         hhelp.add_field(name='Moderation', value='`kick` `ban` `unban` `softban` `channelmute` `channelunmute`')
         hhelp.add_field(name='Owner', value='`say` `restart`')
@@ -126,6 +125,7 @@ async def info(ctx):
     embed.add_field(name='Servers',value='{} servers.'.format(str(len(bot.servers))))
     embed.add_field(name='Discord.py version', value='Version {}'.format(discord.__version__))
     embed.add_field(name='Memory Usage',value='{} gigabytes ({}%) used, with {} gigabytes left over.'.format(usedmemory, int(percentmemoryused), freememory))
+    embed.add_field(name='Links',value='[Support Server](https://discord.gg/JpnSpyg \"Support Server\"\n[Invite Link](https://discordapp.com/oauth2/authorize?client_id=462562571229200384&scope=bot&permissions=2146958591 \"Invite Link\")\n')
     await bot.say(embed=embed)
 
 '''
@@ -171,7 +171,14 @@ async def cryptocurrency(ctx,coin:str=None):
 //         //  ////////    //  //   // 
 '''
 
-@bot.command(pass_context=True)
+@bot.group(pass_context=True,aliases=['maths','mathematics'])
+async def math(ctx):
+    smath=discord.Embed(title='Math',description='My child commands: `add` `subtract` `multiply` `d̶i̶v̶i̶d̶e̶` `factorial` `gcd` `median` `medianlow` `medianhigh`',color=0x00FF00)
+    smath.set_footer(text='Do `!math <child command>` to execute one.')
+    smath.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=smath)
+
+@math.command(pass_context=True)
 async def add(ctx,a,b):
     '''Add two numbers.\nUsage: !add <number1> <number2>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -186,7 +193,7 @@ async def add(ctx,a,b):
     sadd.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sadd)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def subtract(ctx,a,b):
     '''Subtract two numbers.\nUsage: !subtract <number1> <number2>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -201,7 +208,7 @@ async def subtract(ctx,a,b):
     ssubtract.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=ssubtract)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def multiply(ctx,a,b):
     '''Multiply two numbers.\nUsage: !multiply <number1> <number2>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -216,7 +223,7 @@ async def multiply(ctx,a,b):
     smultiply.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=smultiply)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def divide(ctx,a,b):
     '''Divide two numbers.\nUsage: !divide <number1> <number2>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -231,7 +238,7 @@ async def divide(ctx,a,b):
     sdivide.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sdivide)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def factorial(ctx,a):
     '''Find the factorial of a number.\nUsage: !factorial <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -242,7 +249,7 @@ async def factorial(ctx,a):
     sfactorial.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sfactorial)
 """
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def floor(ctx,a):
     '''Find the floor of a number.\nUsage: !floor <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -253,7 +260,7 @@ async def floor(ctx,a):
     sfloor.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sfloor)
 """
-@bot.command(pass_context=True,aliases=['hcf'])
+@math.command(pass_context=True,aliases=['hcf'])
 async def gcd(ctx,a,b):
     '''Find the greatest common divisor (highest common factor) of two numbers.\nUsage: !gcd <number1> <number2>\nAliases: !hcf\nPermissions: None'''
     if a == None:
@@ -268,7 +275,7 @@ async def gcd(ctx,a,b):
     sgcd.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sgcd)
 """
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def exp(ctx,a):
     '''Find the e constant to the power of a number.\nUsage: !exp <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -279,7 +286,7 @@ async def exp(ctx,a):
     sexp.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sexp)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def expone(ctx,a):
     '''Find the e constant to the power of a number minus 1.\nUsage: !exp <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -290,7 +297,7 @@ async def expone(ctx,a):
     sexpone.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sexpone)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def logarithm(ctx,a):
     '''Find the natural logarithm of a number to the base of the e constant.\nUsage: !logarithm <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -301,7 +308,7 @@ async def logarithm(ctx,a):
     slogarithm.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=slogarithm)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def logarithmbase(ctx,a,b):
     '''Find the logarithm of a number to a base.\nUsage: !logarithmbase <number> <base>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -316,7 +323,7 @@ async def logarithmbase(ctx,a,b):
     slogarithmbase.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=slogarithm)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def logarithmonep(ctx,a):
     '''Find the natural logarithm of 1 + a number (base e).\nUsage: !logarithmonep <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -327,7 +334,7 @@ async def logarithmonep(ctx,a):
     slogarithmonep.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=slogarithmonep)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def logarithmtwo(ctx,a):
     '''Find the base-2 logarithm of a number.\nUsage: !logarithmtwo <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -338,7 +345,7 @@ async def logarithmtwo(ctx,a):
     slogarithmtwo.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=slogarithmtwo)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def logarithmten(ctx,a):
     '''Find the base-10 logarithm of a number.\nUsage: !logarithmten <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -349,7 +356,7 @@ async def logarithmten(ctx,a):
     slogarithmten.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=slogarithmten)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def exponent(ctx,a,b):
     '''Find the exponent of a number.\nUsage: !exponent <number> <power to>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -364,7 +371,7 @@ async def exponent(ctx,a,b):
     sexponent.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sexponent)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def sqrt(ctx,a):
     '''Find the square root of a number.\nUsage: !sqrt <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -375,7 +382,7 @@ async def sqrt(ctx,a):
     ssqrt.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=ssqrt)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def acos(ctx,a):
     '''Find the arc cosine of a number, in radians.\nUsage: !acos <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -386,7 +393,7 @@ async def acos(ctx,a):
     sacos.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sacos)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def asin(ctx,a):
     '''Find the arc sine of a number, in radians.\nUsage: !asin <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -397,7 +404,7 @@ async def asin(ctx,a):
     sasin.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sasin)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def atan(ctx,a):
     '''Find the arc tangent of a number, in radians.\nUsage: !atan <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -408,7 +415,7 @@ async def atan(ctx,a):
     satan.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=satan)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def atantwo(ctx,a,b):
     '''Find atan(number1 / number2).\nUsage: !atantwo <number1> <number2>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -423,7 +430,7 @@ async def atantwo(ctx,a,b):
     satantwo.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=satantwo)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def cos(ctx,a):
     '''Find the cosine of a number, in radians.\nUsage: !cos <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -434,7 +441,7 @@ async def cos(ctx,a):
     scos.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=scos)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def euclidean(ctx,a,b):
     '''Find the Euclidean norm of two numbers.\nUsage: !euclidean <number1> <number2>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -449,7 +456,7 @@ async def euclidean(ctx,a,b):
     seuclidean.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=seuclidean)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def acosh(ctx,a):
     '''Find the inverse hyperbolic cosine of a number\nUsage: !acosh <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -460,7 +467,7 @@ async def acosh(ctx,a):
     sacosh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sacosh)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def cosh(ctx,a):
     '''Find the hyperbolic cosine of a number\nUsage: !cosh <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -471,7 +478,7 @@ async def cosh(ctx,a):
     sacosh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sacosh)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def asinh(ctx,a):
     '''Find the inverse hyperbolic sine of a number\nUsage: !asinh <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -482,7 +489,7 @@ async def asinh(ctx,a):
     sasinh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sasinh)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def sinh(ctx,a):
     '''Find the hyperbolic sine of a number\nUsage: !sinh <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -493,7 +500,7 @@ async def sinh(ctx,a):
     ssinh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=ssinh)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def atanh(ctx,a):
     '''Find the inverse hyperbolic tangent of a number\nUsage: !atanh <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -504,7 +511,7 @@ async def atanh(ctx,a):
     satanh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=satanh)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def tanh(ctx,a):
     '''Find the hyperbolic tangent of a number\nUsage: !tanh <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -515,7 +522,7 @@ async def tanh(ctx,a):
     stanh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=stanh)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def gamma(ctx,a):
     '''Find the gamma (Γ) of a number\nUsage: !gamma <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -526,7 +533,7 @@ async def gamma(ctx,a):
     sgamma.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sgamma)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def lgamma(ctx,a):
     '''Find the natural logarithm of the absolute value of gamma (Γ) at a number\nUsage: !lgamma <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -537,7 +544,7 @@ async def lgamma(ctx,a):
     sgammal.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sgammal)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def pi(ctx,a):
     '''Find the pi (π) × by a number.\nUsage: !pi <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -548,7 +555,7 @@ async def pi(ctx,a):
     spi.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=spi)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def e(ctx,a):
     '''Find the e (e) × by a number.\nUsage: !e <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -559,7 +566,7 @@ async def e(ctx,a):
     se.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=se)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def tau(ctx,a):
     '''Find the tau (τ or 2π) × by a number.\nUsage: !tau <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -570,7 +577,7 @@ async def tau(ctx,a):
     stau.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=stau)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def polar(ctx,a):
     '''Find the representation of a number in polar co-ordinates.\nUsage: !polar <number>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -581,7 +588,7 @@ async def polar(ctx,a):
     spolar.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=spolar)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def mean(ctx,a):
     '''Find the mean of a list of numbers.\nUsage: !mean <[number1, number2, number3, ...]>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -592,7 +599,7 @@ async def mean(ctx,a):
     smean.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=smean)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def harmonicmean(ctx,a):
     '''Find the harmonic mean of a list of numbers.\nUsage: !harmonicmean <[number1, number2, number3, ...]>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -603,7 +610,7 @@ async def harmonicmean(ctx,a):
     sharmonicmean.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sharmonicmean)
 """
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def median(ctx,a):
     '''Find the median (middle value) of a list of numbers.\nUsage: !median <[number1, number2, number3, ...]>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -614,7 +621,7 @@ async def median(ctx,a):
     smedian.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=smedian)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def medianlow(ctx,a):
     '''Find the low median (lowest of a middle value) of a list of numbers.\nUsage: !medianlow <[number1, number2, number3, ...]>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -625,7 +632,7 @@ async def medianlow(ctx,a):
     smedianlow.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=smedianlow)
 
-@bot.command(pass_context=True)
+@math.command(pass_context=True)
 async def medianhigh(ctx,a):
     '''Find the high median (highest of a middle value) of a list of numbers.\nUsage: !medianhigh <[number1, number2, number3, ...]>\nAliases: None\nPermissions: None'''
     if a == None:
@@ -636,16 +643,19 @@ async def medianhigh(ctx,a):
     smedianhigh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=smedianhigh)
 
-@bot.command(pass_context=True)
+"""
+@math.command(pass_context=True)
 async def mode(ctx,a):
     '''Find the mode (highest amount of values) of a list of numbers.\nUsage: !mode <[number1, number2, number3, ...]>\nAliases: None\nPermissions: None'''
     if a == None:
         nmode=discord.Embed(title='Error',description='Specify the numbers!',color=0xFF0000)
         nmode.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=nmode)
-    smode=discord.Embed(title='Median',description=statistic.mode(list(a)),color=0x00FF00)
+    smode=discord.Embed(title='Mode',description=statistic.mode(list(a)),color=0x00FF00)
     smode.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=smode)
+
+"""
 
 
 
