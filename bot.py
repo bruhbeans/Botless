@@ -125,7 +125,7 @@ async def info(ctx):
     embed.add_field(name='Servers',value='{} servers.'.format(str(len(bot.servers))))
     embed.add_field(name='Discord.py version', value='Version {}'.format(discord.__version__))
     embed.add_field(name='Memory Usage',value='{} gigabytes ({}%) used, with {} gigabytes left over.'.format(usedmemory, int(percentmemoryused), freememory))
-    embed.add_field(name='Links',value='[Support Server](https://discord.gg/JpnSpyg \"Support Server\"\n[Invite Link](https://discordapp.com/oauth2/authorize?client_id=462562571229200384&scope=bot&permissions=2146958591 \"Invite Link\")\n')
+    embed.add_field(name='Links',value='[Support Server](https://discord.gg/JpnSpyg \"Support Server\")\n[Invite Link](https://discordapp.com/oauth2/authorize?client_id=462562571229200384&scope=bot&permissions=2146958591 \"Invite Link\")')
     await bot.say(embed=embed)
 
 '''
@@ -174,13 +174,12 @@ async def cryptocurrency(ctx,coin:str=None):
 @bot.group(pass_context=True,aliases=['maths','mathematics'])
 async def math(ctx):
     if ctx.invoked_subcommand == None:
-        smath=discord.Embed(title='Math',description='My child commands: `add` `subtract` `multiply` `d̶i̶v̶i̶d̶e̶` `factorial` `gcd` `median` `medianlow` `medianhigh`',color=0x00FF00)
+        smath=discord.Embed(title='Math',description='My child commands: `add` `subtract` `multiply` `d̶i̶v̶i̶d̶e̶` `factorial` `gcd` `median` `medianlow` `medianhigh`',color=0x0000FF)
         smath.set_footer(text='Do `!math <child command>` to execute one.')
         smath.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=smath)
     else:
         pass
-    
 
 @math.command(pass_context=True)
 async def add(ctx,a,b):
