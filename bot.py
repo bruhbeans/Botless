@@ -215,41 +215,19 @@ async def multiply(ctx,a,b):
     return await bot.say(embed=smultiply)
 
 @bot.command(pass_context=True)
-async def ceiling(ctx,a):
-    '''Find the ceiling.\nUsage: !ceiling <number>\nAliases: None\nPermissions: None'''
+async def divide(ctx,a,b):
+    '''Divide two numbers.\nUsage: !divide <number1> <number2>\nAliases: None\nPermissions: None'''
     if a == None:
-        nceiling=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
-        nceiling.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=nceiling)
-    sceiling=discord.Embed(title='Ceiling',description=math.ceil(int(a)),color=0x00FF00)
-    sceiling.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-    return await bot.say(embed=sceiling)
-
-@bot.command(pass_context=True)
-async def magnitude(ctx,a,b):
-    '''Find the magnitude of two numbers.\nUsage: !magnitude <number1> <number2>\nAliases: None\nPermissions: None'''
-    if a == None:
-        nmagnitude1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
-        nmagnitude1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=nmagnitude1)
+        ndivide1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
+        ndivide1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=ndivide1)
     if b == None:
-        nmagnitude2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
-        nmagnitude2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=smagnitude2)
-    smagnitude=discord.Embed(title='Magnitude',description=math.copysign(int(a),int(b)),color=0x00FF00)
-    smagnitude.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-    return await bot.say(embed=smagnitude)
-
-@bot.command(pass_context=True)
-async def absolute(ctx,a):
-    '''Find the absolute value of a number.\nUsage: !absolute <number>\nAliases: None\nPermissions: None'''
-    if a == None:
-        nabsolute=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
-        nabsolute.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=nabsolute)
-    sabsolute=discord.Embed(title='Absolute Value',description=math.fabs(int(a)),color=0x00FF00)
-    sabsolute.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-    return await bot.say(embed=sabsolute)
+        ndivide2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
+        ndivide2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nadd2)
+    sdivide=discord.Embed(title='Divide',description=int(a) / int(b),color=0x00FF00)
+    sdivide.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sdivide)
 
 @bot.command(pass_context=True)
 async def factorial(ctx,a):
@@ -281,27 +259,53 @@ async def fmod(ctx,a,b):
         nfmod1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=nfmod1)
     if b == None:
-        nmagnitude2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
-        nmagnitude2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=smagnitude2)
-    smagnitude=discord.Embed(title='Magnitude',description=math.copysign(int(a),int(b)),color=0x00FF00)
-    smagnitude.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-    return await bot.say(embed=smagnitude)
+        nfmod2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
+        nfmod2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nfmod1)
+    sfmod=discord.Embed(title='Fmod',description=math.fmod(int(a),int(b)),color=0x00FF00)
+    sfmod.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sfmod)
 
 @bot.command(pass_context=True)
-async def divide(ctx,a,b):
-    '''Divide two numbers.\nUsage: !divide <number1> <number2>\nAliases: None\nPermissions: None'''
+async def mantissa(ctx,a):
+    '''Find the mantissa and exponent of a number.\nUsage: !mantissa <number>\nAliases: None\nPermissions: None'''
     if a == None:
-        ndivide1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
-        ndivide1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=ndivide1)
+        nmantissa=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        nmantissa.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nmantissa)
+    smantissa=discord.Embed(title='Mantissa and Exponent',description=math.frexp(int(a)),color=0x00FF00)
+    smantissa.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=smantissa)
+
+@bot.command(pass_context=True,aliases=['hcf'])
+async def gcd(ctx,a,b):
+    '''Find the greatest common divisor (highest common factor) of two numbers.\nUsage: !gcd <number1> <number2>\nAliases: !hcf\nPermissions: None'''
+    if a == None:
+        ngcd1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
+        ngcd1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=ngcd1)
     if b == None:
-        ndivide2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
-        ndivide2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=nadd2)
-    sdivide=discord.Embed(title='Divide',description=int(a) / int(b),color=0x00FF00)
-    sdivide.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-    return await bot.say(embed=sdivide)
+        ngcd2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
+        ngcd2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=ngcd2)
+    sgcd=discord.Embed(title='Greatest Common Divisor (Highest Common Factor)',description=math.gcd(int(a),int(b)),color=0x00FF00)
+    sgcd.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sgcd)
+
+@bot.command(pass_context=True)
+async def isclose(ctx,a,b):
+    '''Find whether two numbers are close to each other.\nUsage: !isclose <number1> <number2>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nisclose1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
+        nisclose1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nisclose1)
+    if b == None:
+        nisclose2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
+        nisclose2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nisclose2)
+    sisclose=discord.Embed(title='Is it close?',description=math.isclose(int(a),int(b)),color=0x00FF00)
+    sisclose.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sisclose)
 '''
 '##::::'##::::'###::::'##::: ##::::'###:::::'######:::'####:'##::: ##::'######:::                                               
  ###::'###:::'## ##::: ###:: ##:::'## ##:::'##... ##::. ##:: ###:: ##:'##... ##::                                               
