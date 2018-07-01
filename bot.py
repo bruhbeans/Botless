@@ -45,7 +45,7 @@ async def help(ctx, helpc: str = None):
         hhelp.add_field(name='General', value='`help` `ping`')
         hhelp.add_field(name='Informational', value='`cryptocurrency`')
         hhelp.add_field(name='Fun', value='Test')
-        hhelp.add_field(name='Math', value='`add` `subtract` `multiply` `divide` `factorial` `floor` `gcd` `exp` `expone` `logarithm` `logarithmbase` `logarithmonep` `logarithmtwo` `logarithmten` `exponent` `sqrt` `acos` `asin` `atan` `atantwo` `cos` `euclidiean` `sin` `tan` `acosh` `asinh` `atanh` `cosh` `sinh` `tanh` `gamma` `logarithmgamma` `pi` `e` `tau` `phase` `polar` `complexpolar` `mean` `harmonicmean` `median` `medianlow` `medianhigh` `mode`')
+        hhelp.add_field(name='Math', value='`add` `subtract` `multiply` `divide` `factorial` `floor` `gcd` `exp` `expone` `logarithm` `logarithmbase` `logarithmonep` `logarithmtwo` `logarithmten` `exponent` `sqrt` `acos` `asin` `atan` `atantwo` `cos` `euclidean` `sin` `tan` `acosh` `asinh` `atanh` `cosh` `sinh` `tanh` `gamma` `logarithmgamma` `pi` `e` `tau` `phase` `polar` `complexpolar` `mean` `harmonicmean` `median` `medianlow` `medianhigh` `mode`')
         hhelp.add_field(name='Managing', value='`giverole` `takerole`')
         hhelp.add_field(name='Moderation', value='`kick` `ban` `unban` `softban` `channelmute` `channelunmute`')
         hhelp.add_field(name='Owner', value='`say` `restart`')
@@ -314,6 +314,139 @@ async def logarithmbase(ctx,a,b):
     slogarithmbase=discord.Embed(title='Logarithm',description=math.log(int(a),int(b)),color=0x00FF00)
     slogarithmbase.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=slogarithm)
+
+@bot.command(pass_context=True)
+async def logarithmonep(ctx,a):
+    '''Find the natural logarithm of 1 + a number (base e).\nUsage: !logarithmonep <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nlogarithmonep=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        nlogarithmonep.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nlogarithmonep)
+    slogarithmonep=discord.Embed(title='Natural Logarithm + 1',description=math.log1p(int(a)),color=0x00FF00)
+    slogarithmonep.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=slogarithmonep)
+
+@bot.command(pass_context=True)
+async def logarithmtwo(ctx,a):
+    '''Find the base-2 logarithm of a number.\nUsage: !logarithmtwo <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nlogarithmtwo=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        nlogarithmtwo.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nlogarithmtwo)
+    slogarithmtwo=discord.Embed(title='Base-2 Logarithm',description=math.log2(int(a)),color=0x00FF00)
+    slogarithmtwo.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=slogarithmtwo)
+
+@bot.command(pass_context=True)
+async def logarithmten(ctx,a):
+    '''Find the base-10 logarithm of a number.\nUsage: !logarithmten <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nlogarithmten=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        nlogarithmten.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nlogarithmtwo)
+    slogarithmten=discord.Embed(title='Base-10 Logarithm',description=math.log10(int(a)),color=0x00FF00)
+    slogarithmten.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=slogarithmten)
+
+@bot.command(pass_context=True)
+async def exponent(ctx,a,b):
+    '''Find the exponent of a number.\nUsage: !exponent <number> <power to>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nexponent1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
+        nexponent1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nexponent1)
+    if b == None:
+        nexponent2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
+        nexponent2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nexponent2)
+    sexponent=discord.Embed(title='Exponent',description=math.pow(int(a),int(b)),color=0x00FF00)
+    sexponent.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sexponent)
+
+@bot.command(pass_context=True)
+async def sqrt(ctx,a):
+    '''Find the square root of a number.\nUsage: !sqrt <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nsqrt=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        nsqrt.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nsqrt)
+    ssqrt=discord.Embed(title='Square Root',description=math.sqrt(int(a)),color=0x00FF00)
+    ssqrt.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=ssqrt)
+
+@bot.command(pass_context=True)
+async def acos(ctx,a):
+    '''Find the arc cosine of a number, in radians.\nUsage: !acos <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nacos=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        nacos.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nacos)
+    sacos=discord.Embed(title='Arc Cosine',description=math.acos(int(a)),color=0x00FF00)
+    sacos.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sacos)
+
+@bot.command(pass_context=True)
+async def asin(ctx,a):
+    '''Find the arc sine of a number, in radians.\nUsage: !asin <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nasin=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        nasin.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nasin)
+    sasin=discord.Embed(title='Arc Sine',description=math.asin(int(a)),color=0x00FF00)
+    sasin.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sasin)
+
+@bot.command(pass_context=True)
+async def atan(ctx,a):
+    '''Find the arc tangent of a number, in radians.\nUsage: !atan <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        natan=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        natan.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=natan)
+    satan=discord.Embed(title='Arc Tangent',description=math.asin(int(a)),color=0x00FF00)
+    satan.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=satan)
+
+@bot.command(pass_context=True)
+async def atantwo(ctx,a,b):
+    '''Find atan(number1 / number2).\nUsage: !atantwo <number1> <number2>\nAliases: None\nPermissions: None'''
+    if a == None:
+        natantwo1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
+        natantwo1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=natantwo1)
+    if b == None:
+        natantwo2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
+        natantwo2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=natantwo2)
+    satantwo=discord.Embed(title='Arc Tangent x (Number 1 ÷ Number 2)',description=math.atan2(int(a),int(b)),color=0x00FF00)
+    satantwo.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=satantwo)
+
+@bot.command(pass_context=True)
+async def cos(ctx,a):
+    '''Find the cosine of a number, in radians.\nUsage: !acos <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        ncos=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        ncos.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=ncos)
+    scos=discord.Embed(title='Cosine',description=math.cos(int(a)),color=0x00FF00)
+    scos.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=scos)
+
+@bot.command(pass_context=True)
+async def euclidean(ctx,a,b):
+    '''Find the Euclidean norm of two numbers.\nUsage: !euclidean <number1> <number2>\nAliases: None\nPermissions: None'''
+    if a == None:
+        neuclidean1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
+        neuclidean1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=neuclidean1)
+    if b == None:
+        neuclidean2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
+        neuclidean2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=neuclidean2)
+    seuclidean=discord.Embed(title='Euclidean Norm',description=math.hypot(int(a),int(b)),color=0x00FF00)
+    seuclidean.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=seuclidean)
 
 
 
