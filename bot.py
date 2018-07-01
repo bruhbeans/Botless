@@ -171,34 +171,137 @@ async def cryptocurrency(ctx,coin:str=None):
 
 @bot.command(pass_context=True)
 async def add(ctx,a,b):
-    '''Add two numbers.\nUsage: !add <number1> <number2>\nAliases: None\nPermissions: Bot Owner'''
+    '''Add two numbers.\nUsage: !add <number1> <number2>\nAliases: None\nPermissions: None'''
     if a == None:
         nadd1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
         nadd1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=nadd1)
-    if a == str:
-        nsadd1=discord.Embed(title='Error',description='The first number is invalid.',color=0xFF0000)
-        nsadd1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        bot.say(embed=nsadd1)
-    if a == float:
-        nadd1=discord.Embed(title='Add',description=float(a) + float(b),color=0xFF0000)
-        nadd1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=nfadd1)
     if b == None:
         nadd2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
         nadd2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=nadd2)
-    if b == str:
-        nadd1=discord.Embed(title='Error',description='The second number is invalid.',color=0xFF0000)
-        nadd1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=nsadd2)
-    if a == float:
-        nadd1=discord.Embed(title='Add',description=float(a) + float(b),color=0xFF0000)
-        nadd1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=nfadd2)
     sadd=discord.Embed(title='Add',description=int(a) + int(b),color=0x00FF00)
     sadd.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sadd)
+
+@bot.command(pass_context=True)
+async def subtract(ctx,a,b):
+    '''Subtract two numbers.\nUsage: !subtract <number1> <number2>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nsubtract1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
+        nsubtract1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nsubtract1)
+    if b == None:
+        nsubtract2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
+        nsubtract2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nsubtract2)
+    ssubtract=discord.Embed(title='Subtract',description=int(a) - int(b),color=0x00FF00)
+    ssubtract.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=ssubtract)
+
+@bot.command(pass_context=True)
+async def multiply(ctx,a,b):
+    '''Multiply two numbers.\nUsage: !multiply <number1> <number2>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nmultiply1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
+        nmultiply1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nmultiply1)
+    if b == None:
+        nmultiply2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
+        nmultiply2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nmultiply2)
+    smultiply=discord.Embed(title='Multiply',description=int(a) * int(b),color=0x00FF00)
+    smultiply.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=smultiply)
+
+@bot.command(pass_context=True)
+async def ceiling(ctx,a):
+    '''Find the ceiling.\nUsage: !ceiling <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nceiling=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        nceiling.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nceiling)
+    sceiling=discord.Embed(title='Ceiling',description=math.ceil(int(a)),color=0x00FF00)
+    sceiling.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sceiling)
+
+@bot.command(pass_context=True)
+async def magnitude(ctx,a,b):
+    '''Find the magnitude of two numbers.\nUsage: !magnitude <number1> <number2>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nmagnitude1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
+        nmagnitude1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nmagnitude1)
+    if b == None:
+        nmagnitude2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
+        nmagnitude2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=smagnitude2)
+    smagnitude=discord.Embed(title='Magnitude',description=math.copysign(int(a),int(b)),color=0x00FF00)
+    smagnitude.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=smagnitude)
+
+@bot.command(pass_context=True)
+async def absolute(ctx,a):
+    '''Find the absolute value of a number.\nUsage: !absolute <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nabsolute=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        nabsolute.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nabsolute)
+    sabsolute=discord.Embed(title='Absolute Value',description=math.fabs(int(a)),color=0x00FF00)
+    sabsolute.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sabsolute)
+
+@bot.command(pass_context=True)
+async def factorial(ctx,a):
+    '''Find the factorial of a number.\nUsage: !factorial <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nfactorial=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        nfactorial.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nfactorial)
+    sfactorial=discord.Embed(title='Factorial',description=math.factorial(int(a)),color=0x00FF00)
+    sfactorial.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sfactorial)
+
+@bot.command(pass_context=True)
+async def floor(ctx,a):
+    '''Find the floor of a number.\nUsage: !floor <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nfloor=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        nfloor.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nfloor)
+    sfloor=discord.Embed(title='Floor',description=math.floor(int(a)),color=0x00FF00)
+    sfloor.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sfloor)
+
+@bot.command(pass_context=True)
+async def fmod(ctx,a,b):
+    '''Find the fmod of two numbers.\nUsage: !fmod <number1> <number2>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nfmod1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
+        nfmod1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nfmod1)
+    if b == None:
+        nmagnitude2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
+        nmagnitude2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=smagnitude2)
+    smagnitude=discord.Embed(title='Magnitude',description=math.copysign(int(a),int(b)),color=0x00FF00)
+    smagnitude.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=smagnitude)
+
+@bot.command(pass_context=True)
+async def divide(ctx,a,b):
+    '''Divide two numbers.\nUsage: !divide <number1> <number2>\nAliases: None\nPermissions: None'''
+    if a == None:
+        ndivide1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
+        ndivide1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=ndivide1)
+    if b == None:
+        ndivide2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
+        ndivide2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nadd2)
+    sdivide=discord.Embed(title='Divide',description=int(a) / int(b),color=0x00FF00)
+    sdivide.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sdivide)
 '''
 '##::::'##::::'###::::'##::: ##::::'###:::::'######:::'####:'##::: ##::'######:::                                               
  ###::'###:::'## ##::: ###:: ##:::'## ##:::'##... ##::. ##:: ###:: ##:'##... ##::                                               
