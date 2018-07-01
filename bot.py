@@ -45,6 +45,7 @@ async def help(ctx, helpc: str = None):
         hhelp.add_field(name='General', value='`help` `ping`')
         hhelp.add_field(name='Informational', value='`cryptocurrency`')
         hhelp.add_field(name='Fun', value='Test')
+        hhelp.add_field(name='Math', value='`add` `subtract` `multiply` `divide` `factorial` `floor` `gcd` `exp` `expone` `logarithm` `logarithmbase` `logarithmonep` `logarithmtwo` `logarithmten` `exponent` `sqrt` `acos` `asin` `atan` `atantwo` `cos` `euclidiean` `sin` `tan` `acosh` `asinh` `atanh` `cosh` `sinh` `tanh` `gamma` `logarithmgamma` `pi` `e` `tau`')
         hhelp.add_field(name='Managing', value='`giverole` `takerole`')
         hhelp.add_field(name='Moderation', value='`kick` `ban` `unban` `softban` `channelmute` `channelunmute`')
         hhelp.add_field(name='Owner', value='`say` `restart`')
@@ -251,32 +252,6 @@ async def floor(ctx,a):
     sfloor.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sfloor)
 
-@bot.command(pass_context=True)
-async def fmod(ctx,a,b):
-    '''Find the fmod of two numbers.\nUsage: !fmod <number1> <number2>\nAliases: None\nPermissions: None'''
-    if a == None:
-        nfmod1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
-        nfmod1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=nfmod1)
-    if b == None:
-        nfmod2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
-        nfmod2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=nfmod2)
-    sfmod=discord.Embed(title='Fmod',description=math.fmod(int(a),int(b)),color=0x00FF00)
-    sfmod.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-    return await bot.say(embed=sfmod)
-
-@bot.command(pass_context=True)
-async def mantissa(ctx,a):
-    '''Find the mantissa and exponent of a number.\nUsage: !mantissa <number>\nAliases: None\nPermissions: None'''
-    if a == None:
-        nmantissa=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
-        nmantissa.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=nmantissa)
-    smantissa=discord.Embed(title='Mantissa and Exponent',description=math.frexp(int(a)),color=0x00FF00)
-    smantissa.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-    return await bot.say(embed=smantissa)
-
 @bot.command(pass_context=True,aliases=['hcf'])
 async def gcd(ctx,a,b):
     '''Find the greatest common divisor (highest common factor) of two numbers.\nUsage: !gcd <number1> <number2>\nAliases: !hcf\nPermissions: None'''
@@ -293,19 +268,55 @@ async def gcd(ctx,a,b):
     return await bot.say(embed=sgcd)
 
 @bot.command(pass_context=True)
-async def isclose(ctx,a,b):
-    '''Find whether two numbers are close to each other.\nUsage: !isclose <number1> <number2>\nAliases: None\nPermissions: None'''
+async def exp(ctx,a):
+    '''Find the e constant to the power of a number.\nUsage: !exp <number>\nAliases: None\nPermissions: None'''
     if a == None:
-        nisclose1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
-        nisclose1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=nisclose1)
+        nexp=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        nexp.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nexp)
+    sexp=discord.Embed(title='Floor',description=math.exp(int(a)),color=0x00FF00)
+    sexp.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sexp)
+
+@bot.command(pass_context=True)
+async def expone(ctx,a):
+    '''Find the e constant to the power of a number minus 1.\nUsage: !exp <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nexpone=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        nexpone.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nexpone)
+    sexpone=discord.Embed(title='Floor',description=math.expm1(int(a)),color=0x00FF00)
+    sexpone.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sexpone)
+
+@bot.command(pass_context=True)
+async def logarithm(ctx,a):
+    '''Find the natural logarithm of a number to the base of the e constant.\nUsage: !logarithm <number>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nlogarithm=discord.Embed(title='Error',description='Specify the number!',color=0xFF0000)
+        nlogarithm.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nlogarithm)
+    slogarithm=discord.Embed(title='Natural Logarithm',description=math.log(int(a)),color=0x00FF00)
+    slogarithm.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=slogarithm)
+
+@bot.command(pass_context=True)
+async def logarithmbase(ctx,a,b):
+    '''Find the logarithm of a number to a base.\nUsage: !logarithmbase <number> <base>\nAliases: None\nPermissions: None'''
+    if a == None:
+        nlogarithmbase1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
+        nlogarithmbase1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nlogarithmbase1)
     if b == None:
-        nisclose2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
-        nisclose2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=nisclose2)
-    sisclose=discord.Embed(title='Is it close?',description=math.isclose(int(a),int(b)),color=0x00FF00)
-    sisclose.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-    return await bot.say(embed=sisclose)
+        nlogarithmbase2=discord.Embed(title='Error',description='Specify the base!',color=0xFF0000)
+        nlogarithmbase2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nlogarithmbase2)
+    slogarithmbase=discord.Embed(title='Logarithm',description=math.log(int(a),int(b)),color=0x00FF00)
+    slogarithmbase.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=slogarithm)
+
+
+
 '''
 '##::::'##::::'###::::'##::: ##::::'###:::::'######:::'####:'##::: ##::'######:::                                               
  ###::'###:::'## ##::: ###:: ##:::'## ##:::'##... ##::. ##:: ###:: ##:'##... ##::                                               
