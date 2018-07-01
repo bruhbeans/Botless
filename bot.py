@@ -326,7 +326,7 @@ async def unban(ctx, member : discord.Member=None,*, reason='The unban hammer ha
         banned = await bot.get_bans(ctx.message.server)
     except:
         return
-    bember = discord.utils.get(banned, name=member)
+    bember = discord.utils.get(banned, name=member.name)
     if bember is None:
         nunban=discord.Embed(title='Error',description=f'There isn\'t a person named {member.name} who is banned.',color=0xFF0000)
         nunban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
