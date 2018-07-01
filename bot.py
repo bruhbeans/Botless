@@ -45,7 +45,7 @@ async def help(ctx, helpc: str = None):
         hhelp.add_field(name='General', value='`help` `ping`')
         hhelp.add_field(name='Informational', value='`cryptocurrency`')
         hhelp.add_field(name='Fun', value='Test')
-        hhelp.add_field(name='Math', value='`add` `subtract` `multiply` `divide` `factorial` `floor` `gcd` `exp` `expone` `logarithm` `logarithmbase` `logarithmonep` `logarithmtwo` `logarithmten` `exponent` `sqrt` `acos` `asin` `atan` `atantwo` `cos` `euclidiean` `sin` `tan` `acosh` `asinh` `atanh` `cosh` `sinh` `tanh` `gamma` `logarithmgamma` `pi` `e` `tau`')
+        hhelp.add_field(name='Math', value='`add` `subtract` `multiply` `divide` `factorial` `floor` `gcd` `exp` `expone` `logarithm` `logarithmbase` `logarithmonep` `logarithmtwo` `logarithmten` `exponent` `sqrt` `acos` `asin` `atan` `atantwo` `cos` `euclidiean` `sin` `tan` `acosh` `asinh` `atanh` `cosh` `sinh` `tanh` `gamma` `logarithmgamma` `pi` `e` `tau` `phase` `polar` `complexpolar` `mean` `harmonicmean` `median` `medianlow` `medianhigh` `mode`')
         hhelp.add_field(name='Managing', value='`giverole` `takerole`')
         hhelp.add_field(name='Moderation', value='`kick` `ban` `unban` `softban` `channelmute` `channelunmute`')
         hhelp.add_field(name='Owner', value='`say` `restart`')
