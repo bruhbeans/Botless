@@ -170,13 +170,13 @@ async def cryptocurrency(ctx,coin:str=None):
 '''
 
 @bot.command(pass_context=True)
-async def add(ctx, *, number1: str = None,number2: str = None):
+async def add(ctx, *, a,b):
     '''Add two numbers.\nUsage: !add <number1> <number2>\nAliases: None\nPermissions: Bot Owner'''
-    if number1 == None:
+    if a == None:
         nadd1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
         nadd1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=nadd1)
-    if number2 == None:
+    if b == None:
         nadd2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
         nadd2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=nadd2)
