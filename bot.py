@@ -176,10 +176,26 @@ async def add(ctx,a,b):
         nadd1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
         nadd1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=nadd1)
+    if a == str:
+        nsadd1=discord.Embed(title='Error',description='The first number is invalid.',color=0xFF0000)
+        nsadd1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        bot.say(embed=nsadd1)
+    if a == float:
+        nadd1=discord.Embed(title='Add',description=float(a) + float(b),color=0xFF0000)
+        nadd1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nfadd1)
     if b == None:
         nadd2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
         nadd2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=nadd2)
+    if b == str:
+        nadd1=discord.Embed(title='Error',description='The second number is invalid.',color=0xFF0000)
+        nadd1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nsadd2)
+    if a == float:
+        nadd1=discord.Embed(title='Add',description=float(a) + float(b),color=0xFF0000)
+        nadd1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nfadd2)
     sadd=discord.Embed(title='Add',description=int(a) + int(b),color=0x00FF00)
     sadd.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sadd)
