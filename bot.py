@@ -87,12 +87,9 @@ async def restart(ctx):
 @commands.check(pointcheck)
 async def git(ctx):
     '''Commit and push to Github.\nUsage: !git\nAliases: !commit, !push\nPermissions: Bot Owner'''
-    repo = git.repo.Repo('Botless')
-    repo.git.add('.')
-    repo.git.commit('Update!')
-    repo.git.push("origin", "HEAD:refs/for/master")
-    await bot.say('Pushed!')
-
+    r = git.Repo('.')
+    r.remotes.origin.push(refspec='master')
+    r.git.push('master')
 '''
 :'######:::'########:'##::: ##:'########:'########:::::'###::::'##:::::::                                                       
 '##... ##:: ##.....:: ###:: ##: ##.....:: ##.... ##:::'## ##::: ##:::::::                                                       
