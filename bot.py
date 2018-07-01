@@ -170,7 +170,7 @@ async def cryptocurrency(ctx,coin:str=None):
 '''
 
 @bot.command(pass_context=True)
-async def add(ctx, *, a,b):
+async def add(ctx, a,b):
     '''Add two numbers.\nUsage: !add <number1> <number2>\nAliases: None\nPermissions: Bot Owner'''
     if a == None:
         nadd1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
