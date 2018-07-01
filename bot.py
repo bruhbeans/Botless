@@ -173,10 +173,14 @@ async def cryptocurrency(ctx,coin:str=None):
 
 @bot.group(pass_context=True,aliases=['maths','mathematics'])
 async def math(ctx):
-    smath=discord.Embed(title='Math',description='My child commands: `add` `subtract` `multiply` `d̶i̶v̶i̶d̶e̶` `factorial` `gcd` `median` `medianlow` `medianhigh`',color=0x00FF00)
-    smath.set_footer(text='Do `!math <child command>` to execute one.')
-    smath.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-    return await bot.say(embed=smath)
+    if ctx.invoked_subcommand == None:
+        smath=discord.Embed(title='Math',description='My child commands: `add` `subtract` `multiply` `d̶i̶v̶i̶d̶e̶` `factorial` `gcd` `median` `medianlow` `medianhigh`',color=0x00FF00)
+        smath.set_footer(text='Do `!math <child command>` to execute one.')
+        smath.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=smath)
+    else:
+        pass
+    
 
 @math.command(pass_context=True)
 async def add(ctx,a,b):
