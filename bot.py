@@ -46,7 +46,7 @@ async def help(ctx, helpc: str = None):
         hhelp.add_field(name='Informational', value='`cryptocurrency`')
         hhelp.add_field(name='Fun', value='Test')
         hhelp.add_field(name='Managing', value='`giverole` `takerole`')
-        hhelp.add_field(name='Moderation', value='`kick` `ban` `unban` `softban`')
+        hhelp.add_field(name='Moderation', value='`kick` `ban` `unban` `softban` `channelmute` `channelunmute`')
         hhelp.add_field(name='Owner', value='`say` `restart`')
         hhelp.set_footer(text='Do !help <command> to find out what it does.')
         await bot.say(embed=hhelp)
@@ -83,13 +83,6 @@ async def restart(ctx):
     await bot.say(embed=embed)
     await bot.logout()
 
-@bot.command(pass_context=True,aliases=['commit','push'])
-@commands.check(pointcheck)
-async def git(ctx):
-    '''Commit and push to Github.\nUsage: !git\nAliases: !commit, !push\nPermissions: Bot Owner'''
-    r = git.Repo('.')
-    r.remotes.origin.push(refspec='master')
-    r.git.push('master')
 '''
 :'######:::'########:'##::: ##:'########:'########:::::'###::::'##:::::::                                                       
 '##... ##:: ##.....:: ###:: ##: ##.....:: ##.... ##:::'## ##::: ##:::::::                                                       
@@ -176,6 +169,20 @@ async def cryptocurrency(ctx,coin:str=None):
 //         //  ////////    //  //   // 
 '''
 
+@bot.command(pass_context=True)
+async def add(ctx, *, number1: float = None,number2: float = None):
+    '''Add two numbers.\nUsage: !add <number1> <number2>\nAliases: None\nPermissions: Bot Owner'''
+    if not number1:
+        nadd1=discord.Embed(title='Error',description='Specify the first number!',color=0xFF0000)
+        nadd1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nadd1)
+    if not number2:
+        nadd2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
+        nadd2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nadd2)
+    sadd=discord.Embed(title='Error',description=str(number) + str(number2),color=0xFF0000)
+    sadd.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sadd)
 '''
 '##::::'##::::'###::::'##::: ##::::'###:::::'######:::'####:'##::: ##::'######:::                                               
  ###::'###:::'## ##::: ###:: ##:::'## ##:::'##... ##::. ##:: ###:: ##:'##... ##::                                               
@@ -320,6 +327,7 @@ async def ban(ctx, member : discord.Member=None,*, reason='The ban hammer has sp
 @bot.command(pass_context=True,aliases=['ub','uban'])
 async def unban(ctx, member : discord.Member=None,*, reason='The unban hammer has spoken!'):
     '''Unban someone\nUsage: !unban <member> [reason]\nAliases: !ub, !uban\nPermissions: Ban Members'''
+    await bot.say('Doesn\'t work, so if you have any way to fix it, look into my github. I\'ll credit ya!')
     if not ctx.message.author.server_permissions.ban_members:
         punban=discord.Embed(title='Error',description='You don\'t have permission to unban members!',color=0xFF0000)
         punban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
