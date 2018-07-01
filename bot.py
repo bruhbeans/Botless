@@ -261,7 +261,7 @@ async def fmod(ctx,a,b):
     if b == None:
         nfmod2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
         nfmod2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=nfmod1)
+        return await bot.say(embed=nfmod2)
     sfmod=discord.Embed(title='Fmod',description=math.fmod(int(a),int(b)),color=0x00FF00)
     sfmod.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sfmod)
