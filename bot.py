@@ -180,7 +180,7 @@ async def add(ctx,a,b):
         nadd2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
         nadd2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=nadd2)
-    sadd=discord.Embed(title='Error',description=int(a) + int(b),color=0xFF0000)
+    sadd=discord.Embed(title='Add',description=int(a) + int(b),color=0x00FF00)
     sadd.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sadd)
 '''
