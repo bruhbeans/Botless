@@ -630,7 +630,7 @@ async def medianhigh(ctx,a):
     '''Find the high median (highest of a middle value) of a list of numbers.\nUsage: !medianhigh <[number1, number2, number3, ...]>\nAliases: None\nPermissions: None'''
     if a == None:
         nmedianhigh=discord.Embed(title='Error',description='Specify the numbers!',color=0xFF0000)
-        nmedianhighx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        nmedianhigh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=nmedianhigh)
     smedianhigh=discord.Embed(title='High Median',description=statistics.median_high(list(a)),color=0x00FF00)
     smedianhigh.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
