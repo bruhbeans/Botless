@@ -173,23 +173,23 @@ async def starwars(ctx):
         pass
     
 @starwars.command(pass_context=True,aliases=['p','c','characters'])
-async def people(ctx, *, search:str=None):
+async def people(ctx, *, search:list=None):
     if search == None:
         qpeople=discord.Embed(title='Error',description='Specify the search query!',color=0xFF0000)
         qpeople.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=qpeople)
     if search:
-        r = requests.get('https://swapi.co/api/people/?search=' + str(search) + '&format=json')
+        r = requests.get('https://swapi.co/api/people/?search=' + list(search) + '&format=json')
         json = r.json()
         ssearch=discord.Embed(title='People',description='Information about the characters in Star Wars',color=0x00FF00)
         ssearch.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        ssearch.add_field(name='Name',value=str(json['results']['name']))
-        ssearch.add_field(name='Height',value=str(json['results']['height']) + ' centimetres.')
-        ssearch.add_field(name='Weight',value=str(json['results']['mass']) + ' kilograms.' )
-        ssearch.add_field(name='Hair Color',value=str(json['results']['hair_color']))
-        ssearch.add_field(name='Skin Color',value=str(json['results']['skin_color']))
-        ssearch.add_field(name='Eye Color',value=str(json['results']['eye_color']))
-        ssearch.add_field(name='Birth Year',value=str(json['results']['birth_year']))
+        ssearch.add_field(name='Name',value=list(json['results']['name']))
+        ssearch.add_field(name='Height',value=list(json['results']['height']) + ' centimetres.')
+        ssearch.add_field(name='Weight',value=list(json['results']['mass']) + ' kilograms.' )
+        ssearch.add_field(name='Hair Color',value=list(json['results']['hair_color']))
+        ssearch.add_field(name='Skin Color',value=list(json['results']['skin_color']))
+        ssearch.add_field(name='Eye Color',value=list(json['results']['eye_color']))
+        ssearch.add_field(name='Birth Year',value=list(json['results']['birth_year']))
         ssearch.set_footer(text='Information by [Swapi](https://swapi.co/ \"Swapi\")')
         return await bot.say(embed=ssearch)
     else:
