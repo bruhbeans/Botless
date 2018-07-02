@@ -179,7 +179,7 @@ async def people(ctx, *, search:str=None):
         qpeople.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=qpeople)
     if search:
-        link = 'https://swapi.co/api/people/?search=''
+        link = 'https://swapi.co/api/people/?search='
         r = requests.get(link.append(search) + '&format=json')
         json = r.json()
         ssearch=discord.Embed(title='People',description='Information about the characters in Star Wars',color=0x00FF00)
