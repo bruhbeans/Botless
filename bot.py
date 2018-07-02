@@ -178,19 +178,19 @@ async def people(ctx, *, search:str=None):
         qpeople=discord.Embed(title='Error',description='Specify the search query!',color=0xFF0000)
         qpeople.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=qpeople)
-    if search:
-        link = 'https://swapi.co/api/people/?search='
-        r = requests.get(link.append(search) + '&format=json')
+    if search == 'Luke Skywalker':
+        link = 'https://swapi.co/api/people/1&format=json'
+        r = requests.get(link)
         json = r.json()
         ssearch=discord.Embed(title='People',description='Information about the characters in Star Wars',color=0x00FF00)
         ssearch.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        ssearch.add_field(name='Name',value=list(json['results'][1]['name']))
-        ssearch.add_field(name='Height',value=list(json['results'][1]['height']) + ' centimetres.')
-        ssearch.add_field(name='Weight',value=list(json['results'][1]['mass']) + ' kilograms.' )
-        ssearch.add_field(name='Hair Color',value=list(json['results'][1]['hair_color']))
-        ssearch.add_field(name='Skin Color',value=list(json['results'][1]['skin_color']))
-        ssearch.add_field(name='Eye Color',value=list(json['results'][1]['eye_color']))
-        ssearch.add_field(name='Birth Year',value=list(json['results'][1]['birth_year']))
+        ssearch.add_field(name='Name',value=str(['name']))
+        ssearch.add_field(name='Height',value=str(['height']) + ' centimetres.')
+        ssearch.add_field(name='Weight',value=str(['mass']) + ' kilograms.' )
+        ssearch.add_field(name='Hair Color',value=str(['hair_color']))
+        ssearch.add_field(name='Skin Color',value=str(['skin_color']))
+        ssearch.add_field(name='Eye Color',value=str(['eye_color']))
+        ssearch.add_field(name='Birth Year',value=str(['birth_year']))
         ssearch.set_footer(text='Information by [Swapi](https://swapi.co/ \"Swapi\")')
         return await bot.say(embed=ssearch)
     else:
