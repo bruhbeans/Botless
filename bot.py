@@ -220,7 +220,7 @@ async def cat(ctx):
     r = requests.get(f'https://random.cat/meow')
     json = r.json()
     if r.status == 200:
-        scat=discord.Embed(title='Cat',description='A random cute cat!'),color=0x00FF00)
+        scat=discord.Embed(title='Cat',description='A random cute cat!',color=0x00FF00)
         scat.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         scat.set_image(url=json['file'])
         scat.set_footer(text='Cats by [Random.cat](http://random.cat/ \"Random.cat\")!')
@@ -236,7 +236,7 @@ async def dog(ctx):
     r = requests.get(f'https://api.thedogapi.co.uk/v2/dog.php/')
     json = r.json()
     if r.status == 200:
-        sdog=discord.Embed(title='Dog',description='A random cute dog!'),color=0x00FF00)
+        sdog=discord.Embed(title='Dog',description='A random cute dog!',color=0x00FF00)
         sdog.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         sdog.set_image(url=json['data'][0]['url'])
         sdog.set_footer(text='Dogs by [TheDogApi](http://thedogapi.co.uk/ \"The Dog API\")!')
