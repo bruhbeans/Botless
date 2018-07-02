@@ -37,16 +37,16 @@ async def on_ready():
 
 
 @bot.command(pass_context=True, aliases=['commands', 'cmds'])
-async def help(helpc: str=None):
+async def help(ctx,helpc: str=None):
     '''Get the list of commands.\nUsage: !help [command]\nAliases: !commands, !cmds\nPermissions: None'''
     if helpc == None:
         hhelp = discord.Embed(title='Help', color=0x0000FF)
-        hhelp.add_field(name='General', value='`help` `ping` `info`')
+        hhelp.add_field(name='General', value='`help` `ping` `info` `suggest`')
         hhelp.add_field(name='Informational', value='`cryptocurrency` `math`')
-        hhelp.add_field(name='Fun', value='`coinflip` `8ball` `comic` `cat` ` dog`')
-        hhelp.add_field(name='Utility', value='Test')
+        hhelp.add_field(name='Fun', value='`coinflip` `8ball` `comic` `dog`')
+        hhelp.add_field(name='Utility', value='`part` `roll` `serverinfo`')
         hhelp.add_field(name='Managing', value='`giverole` `takerole`')
-        hhelp.add_field(name='Moderation', value='`kick` `ban` `unban` `softban` `channelmute` `channelunmute` `warn`')
+        hhelp.add_field(name='Moderation', value='`kick` `ban` `unban` `softban` `channelmute` `channelunmute` `warn` `purge`')
         hhelp.add_field(name='Owner', value='`say` `restart`')
         hhelp.set_footer(text='Do !help <command> to find out what it does.')
         await bot.say(embed=hhelp)
