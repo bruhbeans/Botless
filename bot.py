@@ -240,11 +240,11 @@ async def dog(ctx):
 :.......::::::..:::::....::........::....:::::..::::::::..:::::
 '''
 @bot.command(pass_context=True)
-async def choice(ctx, *choose):
-    '''Let Botless decide about something!\nUsage: !choice <1st thing> <2nd thing> [3rd thing] [...]\nAliases: None\nPermissions: None'''
-    schoice=discord.Embed(title='Choice',description=str(random.choice(*choose)),color=0x00FF00)
-    schoice.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-    return await bot.say(embed=schoice)
+async def part(ctx, *choice):
+    '''Make Botless take a letter out of any word!\nUsage: !part <word>\nAliases: None\nPermissions: None'''
+    spart=discord.Embed(title='Part',description=str(random.choice(*choice)),color=0x00FF00)
+    spart.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=spart)
 
 '''
 '##::::'##::::'###::::'########:'##::::'##:
