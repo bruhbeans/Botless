@@ -204,7 +204,7 @@ async def comic(ctx):
     r = requests.get(f'https://xkcd.com/{random.randint(1,2013)}/info.0.json')
     json = r.json()
     if r.status == 200:
-        scomic=discord.Embed(title='Comic',description='**' + str(json['title']) + '**'),color=0x00FF00)
+        scomic=discord.Embed(title='Comic',description=str(json['title']),color=0x00FF00)
         scomic.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         scomic.set_image(url=json['img'])
         scomic.set_footer(text='Comics by [XKCD](https://xkcd.com/ \"XKCD\")!')
