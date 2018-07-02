@@ -915,6 +915,25 @@ async def channelunmute(ctx, member : discord.Member, *,reason : str='The channe
     await bot.say(embed=schannelmute)
     await bot.send_message(member, f'You have been channelunmuted in {ctx.message.server.name} in the {ctx.message.channel.name} channel by {ctx.message.author.mention}, because {reason}', tts=True) 
 
+@bot.command(pass_context = True,aliases=['cumute','channelum','cunm','chum'])
+async def warn(ctx, member : discord.Member, *,reason : str='The channel mute hammer has spoken!'):
+    '''Warn someone about doing something wrong!\nUsage: !warn <member> [reason]\nAliases: None\nPermissions: Kick Members'''
+    if not ctx.message.author.server_permissions.kick_members:
+        pchannelmute=discord.Embed(title='Error',description='You don\'t have permission to warn members!',color=0xFF0000)
+        pchannelmute.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=pchannelmute)
+    if not member:
+        mchannelmute=discord.Embed(title='Error',description='You must specify a member!',color=0xFF0000)
+        mchannelmute.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=mchannelmute)
+    if not reason:
+        rchannelmute=discord.Embed(title='Error',description='You must specify a reason!',color=0xFF0000)
+        rchannelmute.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=rchannelmute)
+    schannelmute=discord.Embed(title='Warn',description=f'{ctx.message.author.mention} has warned {member.mention}, because: {reason}',color=0x00FF00)
+    schannelmute.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    await bot.say(embed=schannelmute)
+    await bot.send_message(member, f'You have been warned in {ctx.message.server.name} by {ctx.message.author.mention}, because {reason}', tts=True) 
 
 
 bot.run(os.environ.get('TOKEN'))
