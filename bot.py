@@ -157,7 +157,7 @@ async def cryptocurrency(ctx,coin:str=None):
             scryptocurrency.add_field(name='Lowest Price Today',value=json['DISPLAY'][str(coin)]['USD']['LOWDAY'])
             scryptocurrency.add_field(name='Last Updated',value=json['DISPLAY'][str(coin)]['USD']['LASTUPDATE'])
             scryptocurrency.add_field(name='Supply',value=json['DISPLAY'][str(coin)]['USD']['SUPPLY'])
-            scryptocurrency.set_footer(text='Cryptocurrency rates by [CryptoCompare](https://cryptocompare.com/ \"CryptoCompare\")!')
+            scryptocurrency.set_footer(text='Cryptocurrency rates by https://cryptocompare.com/!')
             return await bot.say(embed=scryptocurrency)
         else:
             return
@@ -207,28 +207,12 @@ async def comic(ctx):
         scomic=discord.Embed(title='Comic',description=str(json['title']),color=0x00FF00)
         scomic.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         scomic.set_image(url=json['img'])
-        scomic.set_footer(text='Comics by [XKCD](https://xkcd.com/ \"XKCD\")!')
+        scomic.set_footer(text='Comics by https://xkcd.com/!')
         return await bot.say(embed=scomic)
     else:
         rcomic=discord.Embed(title='Error',description='I could not access the API! Direct Message Pointless#1278 so this can be fixed! (You will be credited for finding it out!)',color=0xFF0000)
         rcomic.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=rcomic)
-
-@bot.command(pass_context=True)
-async def cat(ctx):
-    '''Check out a random cute or funny cat!\nUsage: !cat\nAliases: None\nPermissions: None'''
-    r = requests.get(f'https://random.cat/meow')
-    json = r.json()
-    if r.status_code == 200:
-        scat=discord.Embed(title='Cat',description='A random cute cat!',color=0x00FF00)
-        scat.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        scat.set_image(url=json['file'])
-        scat.set_footer(text='Cats by [Random.cat](http://random.cat/ \"Random.cat\")!')
-        return await bot.say(embed=scat)
-    else:
-        rcat=discord.Embed(title='Error',description='I could not access the API! Direct Message Pointless#1278 so this can be fixed! (You will be credited for finding it out!)',color=0xFF0000)
-        rcat.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=rcat)
 
 @bot.command(pass_context=True)
 async def dog(ctx):
@@ -239,7 +223,7 @@ async def dog(ctx):
         sdog=discord.Embed(title='Dog',description='A random cute dog!',color=0x00FF00)
         sdog.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         sdog.set_image(url=json['data'][0]['url'])
-        sdog.set_footer(text='Dogs by [TheDogApi](http://thedogapi.co.uk/ \"The Dog API\")!')
+        sdog.set_footer(text='Dogs by http://thedogapi.co.uk/!')
         return await bot.say(embed=sdog)
     else:
         rdog=discord.Embed(title='Error',description='I could not access the API! Direct Message Pointless#1278 so this can be fixed! (You will be credited for finding it out!)',color=0xFF0000)
