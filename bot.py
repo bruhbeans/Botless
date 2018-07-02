@@ -293,6 +293,7 @@ async def serverinfo(ctx):
     sserverinfo.add_field(name = '__Channels__', value=len(ctx.message.server.channels))
     sserverinfo.add_field(name = 'Features', value=str(ctx.message.server.features))
     sserverinfo.set_footer(text =f'Created at: {str(ctx.message.server.created_at)}')
+    await bot.say(embed=sserverinfo)
 '''
 '##::::'##::::'###::::'########:'##::::'##:
  ###::'###:::'## ##:::... ##..:: ##:::: ##:
