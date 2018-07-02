@@ -127,7 +127,7 @@ async def info(ctx):
     sinfo.add_field(name='Discord.py version', value='Version {}'.format(discord.__version__))
     sinfo.add_field(name='Memory Usage', value='{} gigabytes ({}%) used, with {} gigabytes left over.'.format(usedmemory, int(percentmemoryused), freememory))
     sinfo.add_field(name='Links', value='[Support Server](https://discord.gg/JpnSpyg \"Support Server\")\n[Invite Link](https://discordapp.com/oauth2/authorize?client_id=462562571229200384&scope=bot&permissions=2146958591 \"Invite Link\")')
-    sinfo.set_thumbnail(url = bot.user.default_avatar_url)
+    sinfo.set_thumbnail(url = bot.user.avatar_url)
     await bot.say(embed=sinfo)
 
 @bot.command(pass_context=True)
