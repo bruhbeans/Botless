@@ -915,7 +915,7 @@ async def channelunmute(ctx, member : discord.Member, *,reason : str='The channe
     await bot.say(embed=schannelmute)
     await bot.send_message(member, f'You have been channelunmuted in {ctx.message.server.name} in the {ctx.message.channel.name} channel by {ctx.message.author.mention}, because {reason}', tts=True) 
 
-@bot.command(pass_context = True,aliases=['cumute','channelum','cunm','chum'])
+@bot.command(pass_context = True)
 async def warn(ctx, member : discord.Member, *,reason : str='The warn hammer has spoken!'):
     '''Warn someone about doing something wrong!\nUsage: !warn <member> [reason]\nAliases: None\nPermissions: Kick Members'''
     if not ctx.message.author.server_permissions.kick_members:
