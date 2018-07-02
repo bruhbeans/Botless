@@ -45,7 +45,8 @@ async def help(ctx, helpc: str = None):
         hhelp=discord.Embed(title='Help', color=0x0000FF)
         hhelp.add_field(name='General', value='`help` `ping` `info`')
         hhelp.add_field(name='Informational', value='`cryptocurrency` `math`')
-        hhelp.add_field(name='Fun', value='Test')
+        hhelp.add_field(name='Fun', value='`coinflip` `8ball` `comic` `cat` ` dog`')
+        hhelp.add_field(name='Utility', value='Test')
         hhelp.add_field(name='Managing', value='`giverole` `takerole`')
         hhelp.add_field(name='Moderation', value='`kick` `ban` `unban` `softban` `channelmute` `channelunmute` `warn`')
         hhelp.add_field(name='Owner', value='`say` `restart`')
@@ -143,39 +144,142 @@ async def cryptocurrency(ctx,coin:str=None):
     '''Find out cryptocurrency rates.\nUsage: !cryptocurrency <cryptocurrency symbol>\nAliases: !cc\nPermissions: None'''
     r = requests.get('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + str(coin) + '&tsyms=USD')
     json = r.json()
-    if coin == None:
-        ncryptocurrency=discord.Embed(title='Error',description='Specify the cryptocurrency symbol!',color=0xFF0000)
-        ncryptocurrency.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=ncryptocurrency)
-    if coin:
-        scryptocurrency=discord.Embed(title='Cryptocurrency',description='Information about the cryptocurrency, {}.'.format(str(coin)),color=0x00FF00)
-        scryptocurrency.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        scryptocurrency.add_field(name='Price',value=json['DISPLAY'][str(coin)]['USD']['PRICE'])
-        scryptocurrency.add_field(name='Highest Price Today',value=json['DISPLAY'][str(coin)]['USD']['HIGHDAY'])
-        scryptocurrency.add_field(name='Lowest Price Today',value=json['DISPLAY'][str(coin)]['USD']['LOWDAY'])
-        scryptocurrency.add_field(name='Last Updated',value=json['DISPLAY'][str(coin)]['USD']['LASTUPDATE'])
-        scryptocurrency.add_field(name='Supply',value=json['DISPLAY'][str(coin)]['USD']['SUPPLY'])
-        scryptocurrency.set_footer(text='Cryptocurrency rates by https://cryptocompare.com/.')
-        return await bot.say(embed=scryptocurrency)
+    if r.status == 200:
+        if coin == None:
+            ncryptocurrency=discord.Embed(title='Error',description='Specify the cryptocurrency symbol!',color=0xFF0000)
+            ncryptocurrency.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+            return await bot.say(embed=ncryptocurrency)
+        if coin:
+            scryptocurrency=discord.Embed(title='Cryptocurrency',description='Information about the cryptocurrency, {}.'.format(str(coin)),color=0x00FF00)
+            scryptocurrency.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+            scryptocurrency.add_field(name='Price',value=json['DISPLAY'][str(coin)]['USD']['PRICE'])
+            scryptocurrency.add_field(name='Highest Price Today',value=json['DISPLAY'][str(coin)]['USD']['HIGHDAY'])
+            scryptocurrency.add_field(name='Lowest Price Today',value=json['DISPLAY'][str(coin)]['USD']['LOWDAY'])
+            scryptocurrency.add_field(name='Last Updated',value=json['DISPLAY'][str(coin)]['USD']['LASTUPDATE'])
+            scryptocurrency.add_field(name='Supply',value=json['DISPLAY'][str(coin)]['USD']['SUPPLY'])
+            scryptocurrency.set_footer(text='Cryptocurrency rates by [CryptoCompare](https://cryptocompare.com/ \"CryptoCompare\")!')
+            return await bot.say(embed=scryptocurrency)
+        else:
+            return
     else:
-        await bot.say('The API is down most probably.')
+        rcryptocurrency=discord.Embed(title='Error',description='I could not access the API! Direct Message Pointless#1278 so this can be fixed! (You will be credited for finding it out!)',color=0xFF0000)
+        rcryptocurrency.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=rcryptocurrency)
+'''
+'########:'##::::'##:'##::: ##:
+ ##.....:: ##:::: ##: ###:: ##:
+ ##::::::: ##:::: ##: ####: ##:
+ ######::: ##:::: ##: ## ## ##:
+ ##...:::: ##:::: ##: ##. ####:
+ ##::::::: ##:::: ##: ##:. ###:
+ ##:::::::. #######:: ##::. ##:
+..:::::::::.......:::..::::..::
+'''
+@bot.command(pass_context=True)
+async def coinflip(ctx):
+    '''Flip a coin and either get heads or tails.\nUsage: !coinflip \nAliases: None\nPermissions: None'''
+    scoinflip=discord.Embed(title='Coinflip',description=random.choice(['Heads','Tails']),color=0xFF0000)
+    scoinflip.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=scoinflip)
 
+@bot.command(pass_context=True,name='8ball',aliases=['8b','eb'])
+async def eightball(ctx,question:str=None):
+    '''Ask a question and let the magic eightball answer for you!\nUsage: !eightball <question> \nAliases: None\nPermissions: None'''
+    if question == None:
+        neightball=discord.Embed(title='Error',description='Specify the question!',color=0xFF0000)
+        neightball.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=neightball)
+    if '?' not in question:
+        qeightball=discord.Embed(title='Error',description='That is invalid and not a question!',color=0xFF0000)
+        qeightball.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=qeightball)
+    else:
+        seightball=discord.Embed(title='8ball',description=random.choice(['Signs point to yes.', 'Yes.', 'Without a doubt.', 'As I see it, yes.', 'You may rely on it.', 'It is decidedly so.', 'Yes - definitely.', 'It is certain.', 'Most likely.', 'Outlook good.','Reply hazy, try again.', 'Concentrate and ask again.', 'Better not tell you now.', 'Cannot predict now.', 'Ask again later.','My sources say no.', 'Outlook not so good.', 'Very doubtful.', 'My reply is no.', 'Don\'t count on it.']),color=0x00FF00)
+        seightball.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=seightball)
+    
+@bot.command(pass_context=True,aliases=['xkcd'])
+async def comic(ctx):
+    '''Check out a random comic, with a total of 2013 comics!.\nUsage: !comic\nAliases: !xkcd\nPermissions: None'''
+    r = requests.get(f'https://xkcd.com/{random.randint(1,2013)}/info.0.json')
+    json = r.json()
+    if r.status == 200:
+        scomic=discord.Embed(title='Comic',description='**' + str(json['title']) + '**'),color=0x00FF00)
+        scomic.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        scomic.set_image(url=json['img'])
+        scomic.set_footer(text='Comics by [XKCD](https://xkcd.com/ \"XKCD\")!')
+        return await bot.say(embed=scomic)
+    else:
+        rcomic=discord.Embed(title='Error',description='I could not access the API! Direct Message Pointless#1278 so this can be fixed! (You will be credited for finding it out!)',color=0xFF0000)
+        rcomic.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=rcomic)
 
+@bot.command(pass_context=True)
+async def cat(ctx):
+    '''Check out a random cute or funny cat!\nUsage: !cat\nAliases: None\nPermissions: None'''
+    r = requests.get(f'https://random.cat/meow')
+    json = r.json()
+    if r.status == 200:
+        scat=discord.Embed(title='Cat',description='A random cute cat!'),color=0x00FF00)
+        scat.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        scat.set_image(url=json['file'])
+        scat.set_footer(text='Cats by [Random.cat](http://random.cat/ \"Random.cat\")!')
+        return await bot.say(embed=scat)
+    else:
+        rcat=discord.Embed(title='Error',description='I could not access the API! Direct Message Pointless#1278 so this can be fixed! (You will be credited for finding it out!)',color=0xFF0000)
+        rcat.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=rcat)
+
+@bot.command(pass_context=True)
+async def dog(ctx):
+    '''Check out a random cute or funny cat!\nUsage: !cat\nAliases: None\nPermissions: None'''
+    r = requests.get(f'https://api.thedogapi.co.uk/v2/dog.php/')
+    json = r.json()
+    if r.status == 200:
+        sdog=discord.Embed(title='Dog',description='A random cute dog!'),color=0x00FF00)
+        sdog.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        sdog.set_image(url=json['data'][0]['url'])
+        sdog.set_footer(text='Dogs by [TheDogApi](http://thedogapi.co.uk/ \"The Dog API\")!')
+        return await bot.say(embed=sdog)
+    else:
+        rdog=discord.Embed(title='Error',description='I could not access the API! Direct Message Pointless#1278 so this can be fixed! (You will be credited for finding it out!)',color=0xFF0000)
+        rdog.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=rdog)
+'''
+'##::::'##:'########:'####:'##:::::::'####:'########:'##:::'##:
+ ##:::: ##:... ##..::. ##:: ##:::::::. ##::... ##..::. ##:'##::
+ ##:::: ##:::: ##::::: ##:: ##:::::::: ##::::: ##:::::. ####:::
+ ##:::: ##:::: ##::::: ##:: ##:::::::: ##::::: ##::::::. ##::::
+ ##:::: ##:::: ##::::: ##:: ##:::::::: ##::::: ##::::::: ##::::
+ ##:::: ##:::: ##::::: ##:: ##:::::::: ##::::: ##::::::: ##::::
+. #######::::: ##::::'####: ########:'####:::: ##::::::: ##::::
+:.......::::::..:::::....::........::....:::::..::::::::..:::::
+'''
+@bot.command(pass_context=True)
+async def choice(ctx, *choose):
+    '''Let Botless decide about something!\nUsage: !choice <1st thing> <2nd thing> [3rd thing] [...]\nAliases: None\nPermissions: None'''
+    if len(choose) == 0 or 1:
+        lchoice=discord.Embed(title='Error',description='That is too little choices!',color=0xFF0000)
+        lchoice.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=lchoice)
+    else:
+        schoice=discord.Embed(title='Choice',description=str(random.choice(*choose)),color=0x00FF00)
+        schoice.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=C)
 
 '''
-
- ****     ****             **   **     
-/**/**   **/**            /**  /**     
-/**//** ** /**  ******   ******/**     
-/** //***  /** //////** ///**/ /****** 
-/**  //*   /**  *******   /**  /**///**
-/**   /    /** **////**   /**  /**  /**
-/**        /**//********  //** /**  /**
-//         //  ////////    //  //   // 
+'##::::'##::::'###::::'########:'##::::'##:
+ ###::'###:::'## ##:::... ##..:: ##:::: ##:
+ ####'####::'##:. ##::::: ##:::: ##:::: ##:
+ ## ### ##:'##:::. ##:::: ##:::: #########:
+ ##. #: ##: #########:::: ##:::: ##.... ##:
+ ##:.:: ##: ##.... ##:::: ##:::: ##:::: ##:
+ ##:::: ##: ##:::: ##:::: ##:::: ##:::: ##:
+..:::::..::..:::::..:::::..:::::..:::::..::
 '''
-
 @bot.group(pass_context=True,aliases=['maths','mathematics'])
 async def math(ctx):
+    '''Get a list of mathematical commands.\nUsage: !math [child command]\nAliases: !maths, !mathematics\nPermissions: None'''
     if ctx.invoked_subcommand == None:
         smath=discord.Embed(title='Math',description='My child commands: `add` `subtract` `multiply` `d̶i̶v̶i̶d̶e̶` `factorial` `gcd` `median` `medianlow` `medianhigh`',color=0x0000FF)
         smath.set_footer(text='Do `!math <child command>` to execute one.')
@@ -616,6 +720,7 @@ async def harmonicmean(ctx,a):
     sharmonicmean.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sharmonicmean)
 """
+
 @math.command(pass_context=True)
 async def median(ctx,a):
     '''Find the median (middle value) of a list of numbers.\nUsage: !median <[number1, number2, number3, ...]>\nAliases: None\nPermissions: None'''
