@@ -159,6 +159,42 @@ async def cryptocurrency(ctx,coin:str=None):
         return await bot.say(embed=scryptocurrency)
     else:
         await bot.say('The API is down most probably.')
+
+
+@bot.group(pass_context=True,aliases=['sw'])
+async def starwars(ctx):
+    '''Find out info about everything in Star Wars. The Types are: People, Films, Starships, Vehicles, Species and Planets.\nUsage: !starwars [type]\nAliases: !sw\nPermissions: None'''
+    if ctx.invoked_subcommand == None:
+        sstarwars=discord.Embed(title='Star Wars',description='My child commands: `people` `films` starships` `vehicles` `species` `planets',color=0x0000FF)
+        sstarwars.set_footer(text='Do `!starwars <child command>` to execute one.')
+        sstarwars.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=sstarwars)
+    else:
+        pass
+    
+@starwars.command(pass_context=True,aliases=['p','c','characters'])
+async def people(ctx, *, search:str=None):
+    if search == None:
+        qpeople=discord.Embed(title='Error',description='Specify the search query!',color=0xFF0000)
+        qpeople.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=qpeople)
+    if search:
+        r = requests.get('https://swapi.co/api/people/?search=' + str(search) + '&format=json')
+        json = r.json()
+        ssearch=discord.Embed(title='People',description='Information about the characters in Star Wars',color=0x00FF00)
+        ssearch.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        ssearch.add_field(name='Name',value=str(json['results']['name']))
+        ssearch.add_field(name='Height',value=str(json['results']['height']) + ' centimetres.')
+        ssearch.add_field(name='Weight',value=str(json['results']['mass']) + ' kilograms.' )
+        ssearch.add_field(name='Hair Color',value=str(json['results']['hair_color']))
+        ssearch.add_field(name='Skin Color',value=str(json['results']['skin_color'])
+        ssearch.add_field(name='Eye Color',value=str(json['results']['eye_color'])
+        ssearch.add_field(name='Birth Year',value=str(json['results']['birth_year'])
+        ssearch.add_field(name='Skin Color',value=str(json['results']['skin_color'])
+        ssearch.set_footer(text='Information by [Swapi](https://swapi.co/ \"Swapi\")')
+        return await bot.say(embed=ssearch)
+    else:
+        await bot.say('The API is down most probably.')
 '''
 
  ****     ****             **   **     
