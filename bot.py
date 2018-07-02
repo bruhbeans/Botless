@@ -246,6 +246,14 @@ async def part(ctx, *choice):
     spart.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=spart)
 
+@bot.command(pass_context=True)
+async def roll(ctx, maxnumber:int=6):
+    '''A roll command!\nUsage: !roll <maxnumber>\nAliases: None\nPermissions: None'''
+    if ma
+    sroll=discord.Embed(title='Roll',description=f'You rolled a {random.randint(1,maxnumber)}!',color=0x00FF00)
+    sroll.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=sroll)
+
 '''
 '##::::'##::::'###::::'########:'##::::'##:
  ###::'###:::'## ##:::... ##..:: ##:::: ##:
