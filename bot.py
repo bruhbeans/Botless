@@ -1114,7 +1114,7 @@ async def purge(ctx, amount:int=None):
         apurge = discord.Embed(title='Error', description='You must specify an amount!', color=0xFF0000)
         apurge.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=apurge)
-    bot.purge_from(channel=ctx.message.channel, limit=amount+1)
+    await bot.purge_from(channel=ctx.message.channel, limit=amount+1)
     spurge = discord.Embed(title='Purge', description=f'{ctx.message.author.mention} has purged {amount} messages!', color=0x00FF00)
     spurge.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     await bot.say(embed=spurge,delete_after=3.0)
