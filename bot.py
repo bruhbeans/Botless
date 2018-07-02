@@ -139,9 +139,6 @@ async def suggest(ctx, *, phrase):
         await bot.say(embed=nsuggest)
     osuggest = discord.Embed(title='Suggest',description=phrase,color=0x00FF00)
     osuggest.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-    x = bot.say(embed=osuggest)
-    await bot.add_reaction(x, '👍')
-    await bot.add_reaction(x, '👎')
     if phrase:
         for server in bot.servers:
             for channel in server.channels:
@@ -150,6 +147,9 @@ async def suggest(ctx, *, phrase):
         ssuggest = discord.Embed(title='Suggest',description='Sent that suggestion over! Thank you!',color=0x00FF00)
         ssuggest.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=ssuggest)
+        x = bot.say(embed=osuggest)
+        await bot.add_reaction(x, '👍')
+        await bot.add_reaction(x, '👎')
     else:
         return
 
