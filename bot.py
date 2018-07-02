@@ -37,7 +37,7 @@ async def on_ready():
 
 
 @bot.command(pass_context=True, aliases=['commands', 'cmds'])
-async def help(ctx, helpc: str=None):
+async def help(helpc: str=None):
     '''Get the list of commands.\nUsage: !help [command]\nAliases: !commands, !cmds\nPermissions: None'''
     if helpc == None:
         hhelp = discord.Embed(title='Help', color=0x0000FF)
@@ -117,24 +117,34 @@ async def ping(ctx):
 @bot.command(pass_context=True, aliases=['stats', 'statistics', 'information'])
 async def info(ctx):
     '''All the info\'s here!\nUsage: !info\nAliases: !stats, !statistics, !information\nPermissions: None'''
-    start_time = time.time()
-    second = time.time() - start_time
-    minute, second = divmod(second, 60)
-    hour, minute = divmod(minute, 60)
-    day, hour = divmod(hour, 24)
     memory = psutil.virtual_memory()
     usedmemory = memory.used >> 30
     percentmemoryused = memory.percent
     freememory = memory.free >> 30
-    embed = discord.Embed(title='Information', color=0x00FF00)
-    embed.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-    embed.add_field(name='Servers', value='{} servers.'.format(str(len(bot.servers))))
-    embed.add_field(name='Discord.py version', value='Version {}'.format(discord.__version__))
-    embed.add_field(name='Uptime',value='%dd %dh %dm %ds'% (day,hour,minute,second))
-    embed.add_field(name='Memory Usage', value='{} gigabytes ({}%) used, with {} gigabytes left over.'.format(usedmemory, int(percentmemoryused), freememory))
-    embed.add_field(name='Links', value='[Support Server](https://discord.gg/JpnSpyg \"Support Server\")\n[Invite Link](https://discordapp.com/oauth2/authorize?client_id=462562571229200384&scope=bot&permissions=2146958591 \"Invite Link\")')
-    await bot.say(embed=embed)
+    sinfo = discord.Embed(title='Information', color=0x00FF00)
+    sinfo.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    sinfo.add_field(name='Servers', value='{} servers.'.format(str(len(bot.servers))))
+    sinfo.add_field(name='Discord.py version', value='Version {}'.format(discord.__version__))
+    sinfo.add_field(name='Memory Usage', value='{} gigabytes ({}%) used, with {} gigabytes left over.'.format(usedmemory, int(percentmemoryused), freememory))
+    sinfo.add_field(name='Links', value='[Support Server](https://discord.gg/JpnSpyg \"Support Server\")\n[Invite Link](https://discordapp.com/oauth2/authorize?client_id=462562571229200384&scope=bot&permissions=2146958591 \"Invite Link\")')
+    sinfo.set_thumbnail(url = bot.user.default_avatar_url)
+    await bot.say(embed=sinfo)
 
+@bot.command(pass_context=True, aliases=['stats', 'statistics', 'information'])
+async def suggest(ctx):
+    '''All the info\'s here!\nUsage: !info\nAliases: !stats, !statistics, !information\nPermissions: None'''
+    memory = psutil.virtual_memory()
+    usedmemory = memory.used >> 30
+    percentmemoryused = memory.percent
+    freememory = memory.free >> 30
+    sinfo = discord.Embed(title='Information', color=0x00FF00)
+    sinfo.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    sinfo.add_field(name='Servers', value='{} servers.'.format(str(len(bot.servers))))
+    sinfo.add_field(name='Discord.py version', value='Version {}'.format(discord.__version__))
+    sinfo.add_field(name='Memory Usage', value='{} gigabytes ({}%) used, with {} gigabytes left over.'.format(usedmemory, int(percentmemoryused), freememory))
+    sinfo.add_field(name='Links', value='[Support Server](https://discord.gg/JpnSpyg \"Support Server\")\n[Invite Link](https://discordapp.com/oauth2/authorize?client_id=462562571229200384&scope=bot&permissions=2146958591 \"Invite Link\")')
+    sinfo.set_thumbnail(url = bot.user.default_avatar_url)
+    await bot.say(embed=sinfo)
 
 '''
 '####:'##::: ##:'########::'#######::'########::'##::::'##::::'###::::'########:'####::'#######::'##::: ##::::'###::::'##:::::::
@@ -843,7 +853,7 @@ async def giverole(ctx, member: discord.Member, *, role: discord.Role=None):
         ngiverole.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=ngiverole)
     try:
-        rolegive = discord.utils.get(ctx.message.server.roles, name=role)
+        discord.utils.get(ctx.message.server.roles, name=role)
         await bot.add_roles(member, role)
         sgiverole = discord.Embed(title='Giverole', description=f'{ctx.message.author.mention} has given the role, {role}, to {member.name}!', color=0x00FF00)
         sgiverole.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
