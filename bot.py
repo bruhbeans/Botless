@@ -138,8 +138,7 @@ async def suggest(ctx, *phrase):
         nsuggest.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         await bot.say(embed=nsuggest)
     if phrase:
-        channel = bot.get_channel(431958602148872222)
-        await bot.send_message(channel, phrase)
+        await bot.send_message(discord.Object(id='431958602148872222'), phrase)
         ssuggest = discord.Embed(title='Suggest',description='Sent that suggestion over! Thank you!',color=0x00FF00)
         ssuggest.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=ssuggest)
