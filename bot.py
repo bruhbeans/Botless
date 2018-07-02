@@ -27,7 +27,7 @@ async def on_ready():
     print('Name: {}'.format(str(bot.user)))
     print('ID: {}'.format(str(bot.user.id)))
     print('Invite Link: https://discordapp.com/oauth2/authorize?client_id=462562571229200384&scope=bot&permissions=2146958591')
-    await bot.change_presence(game=discord.Game(name=f'on {len(bot.servers)} | !help'))
+    await bot.change_presence(game=discord.Game(name=f'on {len(bot.servers)} servers | !help'))
 '''
 '##::::'##:'########:'##:::::::'########::                                                                                      
  ##:::: ##: ##.....:: ##::::::: ##.... ##:                                                                                      
