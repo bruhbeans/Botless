@@ -118,12 +118,11 @@ async def ping(ctx):
 async def info(ctx):
     '''All the info\'s here!\nUsage: !info\nAliases: !stats, !statistics, !information\nPermissions: None'''
     start_time = time.time()
+    time.ctime(int(time.time()))
     second = time.time() - start_time
     minute, second = divmod(second, 60)
     hour, minute = divmod(minute, 60)
     day, hour = divmod(hour, 24)
-    week, day = divmod(day, 7)
-    month, week =divmod(week, 4.3452)
     memory = psutil.virtual_memory()
     usedmemory = memory.used >> 30
     percentmemoryused = memory.percent
@@ -132,7 +131,7 @@ async def info(ctx):
     embed.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     embed.add_field(name='Servers', value='{} servers.'.format(str(len(bot.servers))))
     embed.add_field(name='Discord.py version', value='Version {}'.format(discord.__version__))
-    embed.add_field(name='Uptime',value=f'{month}m {week}w {day} {hour}h {minute}m {second}s')
+    embed.add_field(name='Uptime',value=f'{day}d {hour}h {minute}m {second}s')
     embed.add_field(name='Memory Usage', value='{} gigabytes ({}%) used, with {} gigabytes left over.'.format(usedmemory, int(percentmemoryused), freememory))
     embed.add_field(name='Links', value='[Support Server](https://discord.gg/JpnSpyg \"Support Server\")\n[Invite Link](https://discordapp.com/oauth2/authorize?client_id=462562571229200384&scope=bot&permissions=2146958591 \"Invite Link\")')
     await bot.say(embed=embed)
