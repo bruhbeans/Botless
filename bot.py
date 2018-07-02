@@ -140,8 +140,8 @@ async def suggest(ctx, *, phrase):
     osuggest = discord.Embed(title='Suggest',description=phrase,color=0x00FF00)
     osuggest.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     messagee = bot.say(embed=osuggest)
-    await messagee.add_reaction(phrase, '👍')
-    await messagee.add_reaction(phrase, '👎')
+    await bot.add_reaction(messagee, '👍')
+    await bot.add_reaction(messagee, '👎')
     if phrase:
         for server in bot.servers:
             for channel in server.channels:
