@@ -242,14 +242,9 @@ async def dog(ctx):
 @bot.command(pass_context=True)
 async def choice(ctx, *choose):
     '''Let Botless decide about something!\nUsage: !choice <1st thing> <2nd thing> [3rd thing] [...]\nAliases: None\nPermissions: None'''
-    if len(choose) == 0 or 1:
-        lchoice=discord.Embed(title='Error',description='That is too little choices!',color=0xFF0000)
-        lchoice.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=lchoice)
-    else:
-        schoice=discord.Embed(title='Choice',description=str(random.choice(*choose)),color=0x00FF00)
-        schoice.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=schoice)
+    schoice=discord.Embed(title='Choice',description=str(random.choice(*choose)),color=0x00FF00)
+    schoice.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=schoice)
 
 '''
 '##::::'##::::'###::::'########:'##::::'##:
