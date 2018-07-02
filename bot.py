@@ -130,7 +130,7 @@ async def info(ctx):
     sinfo.set_thumbnail(url = bot.user.default_avatar_url)
     await bot.say(embed=sinfo)
 
-@bot.command(pass_context=True, aliases=['stats', 'statistics', 'information'])
+@bot.command(pass_context=True)
 async def suggest(ctx):
     '''All the info\'s here!\nUsage: !info\nAliases: !stats, !statistics, !information\nPermissions: None'''
     memory = psutil.virtual_memory()
