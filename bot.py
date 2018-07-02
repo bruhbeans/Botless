@@ -144,7 +144,7 @@ async def cryptocurrency(ctx,coin:str=None):
     '''Find out cryptocurrency rates.\nUsage: !cryptocurrency <cryptocurrency symbol>\nAliases: !cc\nPermissions: None'''
     r = requests.get('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + str(coin) + '&tsyms=USD')
     json = r.json()
-    if r.status == 200:
+    if r.status_code == 200:
         if coin == None:
             ncryptocurrency=discord.Embed(title='Error',description='Specify the cryptocurrency symbol!',color=0xFF0000)
             ncryptocurrency.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
@@ -203,7 +203,7 @@ async def comic(ctx):
     '''Check out a random comic, with a total of 2013 comics!.\nUsage: !comic\nAliases: !xkcd\nPermissions: None'''
     r = requests.get(f'https://xkcd.com/{random.randint(1,2013)}/info.0.json')
     json = r.json()
-    if r.status == 200:
+    if r.status_code == 200:
         scomic=discord.Embed(title='Comic',description=str(json['title']),color=0x00FF00)
         scomic.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         scomic.set_image(url=json['img'])
@@ -219,7 +219,7 @@ async def cat(ctx):
     '''Check out a random cute or funny cat!\nUsage: !cat\nAliases: None\nPermissions: None'''
     r = requests.get(f'https://random.cat/meow')
     json = r.json()
-    if r.status == 200:
+    if r.status_code == 200:
         scat=discord.Embed(title='Cat',description='A random cute cat!',color=0x00FF00)
         scat.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         scat.set_image(url=json['file'])
@@ -235,7 +235,7 @@ async def dog(ctx):
     '''Check out a random cute or funny cat!\nUsage: !cat\nAliases: None\nPermissions: None'''
     r = requests.get(f'https://api.thedogapi.co.uk/v2/dog.php/')
     json = r.json()
-    if r.status == 200:
+    if r.status_code == 200:
         sdog=discord.Embed(title='Dog',description='A random cute dog!',color=0x00FF00)
         sdog.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         sdog.set_image(url=json['data'][0]['url'])
@@ -265,7 +265,7 @@ async def choice(ctx, *choose):
     else:
         schoice=discord.Embed(title='Choice',description=str(random.choice(*choose)),color=0x00FF00)
         schoice.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=C)
+        return await bot.say(embed=schoice)
 
 '''
 '##::::'##::::'###::::'########:'##::::'##:
@@ -343,7 +343,7 @@ async def divide(ctx,a,b):
     if b == None:
         ndivide2=discord.Embed(title='Error',description='Specify the second number!',color=0xFF0000)
         ndivide2.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        return await bot.say(embed=nadd2)
+        return await bot.say(embed=ndivide2)
     sdivide=discord.Embed(title='Divide',description=int(a) / int(b),color=0x00FF00)
     sdivide.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sdivide)
@@ -840,7 +840,7 @@ async def takerole(ctx, member: discord.Member, *, role: discord.Role = None):
         if 'Privilege is too low' in str(e):
             egiverole=discord.Embed(title='Error',description=f'The person you are trying to take a role from has high permissions.',color=0xFF0000)
             egiverole.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-            return await bot.say(embed=etakerole)
+            return await bot.say(embed=egiverole)
         else:
             pass
 
@@ -936,7 +936,7 @@ async def unban(ctx, member : discord.Member=None,*, reason='The unban hammer ha
         nunban=discord.Embed(title='Error',description=f'There isn\'t a person named {member.name} who is banned.',color=0xFF0000)
         nunban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=nunban)
-    await bot.unban(ctx.message.server, user)
+    await bot.unban(ctx.message.server, bember)
     sunban=discord.Embed(title='Unban',description=f'{ctx.message.author.mention} has unbanned {bember.mention}, because: {reason}',color=0x00FF00)
     sunban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     await bot.say(embed=sunban)
