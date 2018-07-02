@@ -131,7 +131,7 @@ async def info(ctx):
     await bot.say(embed=sinfo)
 
 @bot.command(pass_context=True)
-async def suggest(ctx, phrase):
+async def suggest(ctx, *, phrase):
     '''Suggest anything!\nUsage: !suggest <suggestion>\nAliases: None\nPermissions: None'''
     if phrase == None:
         nsuggest = discord.Embed(title='Error',description='Specify a suggestion!',color=0xFF0000)
