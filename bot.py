@@ -173,13 +173,13 @@ async def starwars(ctx):
         pass
     
 @starwars.command(pass_context=True,aliases=['p','c','characters'])
-async def people(ctx, *, search:list=None):
+async def people(ctx, *, search:str=None):
     if search == None:
         qpeople=discord.Embed(title='Error',description='Specify the search query!',color=0xFF0000)
         qpeople.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=qpeople)
     if search:
-        r = requests.get('https://swapi.co/api/people/?search=' + list(search) + '&format=json')
+        r = requests.get('https://swapi.co/api/people/?search=' + str(search) + '&format=json')
         json = r.json()
         ssearch=discord.Embed(title='People',description='Information about the characters in Star Wars',color=0x00FF00)
         ssearch.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
