@@ -118,7 +118,6 @@ async def ping(ctx):
 async def info(ctx):
     '''All the info\'s here!\nUsage: !info\nAliases: !stats, !statistics, !information\nPermissions: None'''
     start_time = time.time()
-    time.ctime(int(time.time()))
     second = time.time() - start_time
     minute, second = divmod(second, 60)
     hour, minute = divmod(minute, 60)
