@@ -1,17 +1,11 @@
 import discord
-from discord.ext.commands import Bot
 from discord.ext import commands
 import os
 import time
-from time import sleep
 import random
-from random import randint
-from subprocess import call
 import math
-import cmath
 import statistics
 import requests
-import asyncio
 import psutil
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('!'), description='The one, and only: Botless, created by Pointless#1278.', self_bot=False)
@@ -136,6 +130,7 @@ async def info(ctx):
     embed.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     embed.add_field(name='Servers', value='{} servers.'.format(str(len(bot.servers))))
     embed.add_field(name='Discord.py version', value='Version {}'.format(discord.__version__))
+    embed.add_field(name='Uptime',value='I\'ve been online for {week} week(s), {day} day(s), {hour} hour(s), {minute} minute(s), {second} second(s)!')
     embed.add_field(name='Memory Usage', value='{} gigabytes ({}%) used, with {} gigabytes left over.'.format(usedmemory, int(percentmemoryused), freememory))
     embed.add_field(name='Links', value='[Support Server](https://discord.gg/JpnSpyg \"Support Server\")\n[Invite Link](https://discordapp.com/oauth2/authorize?client_id=462562571229200384&scope=bot&permissions=2146958591 \"Invite Link\")')
     await bot.say(embed=embed)
@@ -281,7 +276,23 @@ async def roll(ctx, maxnumber:int=6):
     sroll.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sroll)
 
+@bot.command(pass_context=True)
+async def serverinfo(ctx):
+    '''See information about the server!\nUsage: !serverinfo\nAliases: None\nPermissions: None'''
 
+    sserverinfo = discord.Embed(title = (str(ctx.message.server.name)), colour = 0x00FF00)
+    sserverinfo.set_thumbnail(url = ctx.message.server.icon_url)
+    sserverinfo.add_field(name = '__Owner__', value = str(ctx.message.server.owner))
+    sserverinfo.add_field(name = '__ID__', value = str(ctx.message.server.id))
+    sserverinfo.add_field(name = '__Member Count__', value = str(ctx.message.server.member_count))
+    sserverinfo.add_field(name = '__Region__', value = str(ctx.message.server.region))
+    sserverinfo.add_field(name = '__AFK Timeout__', value = str(ctx.message.server.afk_timeout))
+    sserverinfo.add_field(name = '__AFK Channel__', value = str(ctx.message.server.afk_channel))
+    sserverinfo.add_field(name = '__Verification Level__', value = str(ctx.message.server.verification_level))
+    sserverinfo.add_field(name = '__Custom Emotes__', value=len(ctx.message.server.emojis))
+    sserverinfo.add_field(name = '__Channels__', value=len(ctx.message.server.channels))
+    sserverinfo.add_field(name = 'Features', value=str(ctx.message.server.features))
+    sserverinfo.set_footer(text =f'Created at: {str(ctx.message.server.created_at)}')
 '''
 '##::::'##::::'###::::'########:'##::::'##:
  ###::'###:::'## ##:::... ##..:: ##:::: ##:
