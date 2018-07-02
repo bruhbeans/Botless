@@ -187,10 +187,9 @@ async def people(ctx, *, search:str=None):
         ssearch.add_field(name='Height',value=str(json['results']['height']) + ' centimetres.')
         ssearch.add_field(name='Weight',value=str(json['results']['mass']) + ' kilograms.' )
         ssearch.add_field(name='Hair Color',value=str(json['results']['hair_color']))
-        ssearch.add_field(name='Skin Color',value=str(json['results']['skin_color'])
+        ssearch.add_field(name='Skin Color',value=str(json['results']['skin_color']))
         ssearch.add_field(name='Eye Color',value=str(json['results']['eye_color']))
-        ssearch.add_field(name='Birth Year',value=str(json['results']['birth_year'])
-        ssearch.add_field(name='Skin Color',value=str(json['results']['skin_color'])
+        ssearch.add_field(name='Birth Year',value=str(json['results']['birth_year']))
         ssearch.set_footer(text='Information by [Swapi](https://swapi.co/ \"Swapi\")')
         return await bot.say(embed=ssearch)
     else:
