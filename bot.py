@@ -131,20 +131,20 @@ async def info(ctx):
     await bot.say(embed=sinfo)
 
 @bot.command(pass_context=True)
-async def suggest(ctx):
-    '''All the info\'s here!\nUsage: !info\nAliases: !stats, !statistics, !information\nPermissions: None'''
-    memory = psutil.virtual_memory()
-    usedmemory = memory.used >> 30
-    percentmemoryused = memory.percent
-    freememory = memory.free >> 30
-    sinfo = discord.Embed(title='Information', color=0x00FF00)
-    sinfo.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-    sinfo.add_field(name='Servers', value='{} servers.'.format(str(len(bot.servers))))
-    sinfo.add_field(name='Discord.py version', value='Version {}'.format(discord.__version__))
-    sinfo.add_field(name='Memory Usage', value='{} gigabytes ({}%) used, with {} gigabytes left over.'.format(usedmemory, int(percentmemoryused), freememory))
-    sinfo.add_field(name='Links', value='[Support Server](https://discord.gg/JpnSpyg \"Support Server\")\n[Invite Link](https://discordapp.com/oauth2/authorize?client_id=462562571229200384&scope=bot&permissions=2146958591 \"Invite Link\")')
-    sinfo.set_thumbnail(url = bot.user.default_avatar_url)
-    await bot.say(embed=sinfo)
+async def suggest(ctx, *phrase):
+    '''Suggest anything!\nUsage: !suggest <suggestion>\nAliases: None\nPermissions: None'''
+    if phrase == None:
+        nsuggest = discord.Embed(title='Error',description='Specify a suggestion!',color=0xFF0000)
+        nsuggest.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        await bot.say(embed=nsuggest)
+    if phrase:
+        suggestionchannel = bot.get_channel(431958602148872222)
+        await bot.send_message(suggestionchannel, phrase)
+        ssuggest = discord.Embed(title='Suggest',description='Sent that suggestion over! Thank you!',color=0x00FF00)
+        ssuggest.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=ssuggest)
+    else:
+        return
 
 '''
 '####:'##::: ##:'########::'#######::'########::'##::::'##::::'###::::'########:'####::'#######::'##::: ##::::'###::::'##:::::::
