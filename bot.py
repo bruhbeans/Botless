@@ -148,8 +148,8 @@ async def suggest(ctx, *, phrase):
         ssuggest.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=ssuggest)
         themessage = await bot.say(embed=osuggest)
-        await bot.add_reaction(themessage, '✅')
-        await bot.add_reaction(themessage, '❌')
+        await bot.add_reaction(themessage, '\U0001F44E')
+        await bot.add_reaction(themessage, '\U0001F44D')
     else:
         return
 
