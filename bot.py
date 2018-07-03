@@ -144,9 +144,9 @@ async def suggest(ctx, *, idea):
         ssuggest = discord.Embed(title='Suggest',description='Sent that suggestion over! Thank you!',color=0x00FF00)
         ssuggest.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         await bot.send_message(destination=ctx.author.message.channel,embed=ssuggest)
-        themessage = await bot.say(embed=ssuggest)
-        await bot.add_reaction(themessage, '✅')
-        await bot.add_reaction(themessage, '❌')
+        reactionmessage = await bot.say(embed=ssuggest)
+        await bot.add_reaction(reactionmessage, '✅')
+        await bot.add_reaction(reactionmessage, '❌')
     else:
         pass
 
