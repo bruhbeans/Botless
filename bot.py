@@ -131,19 +131,16 @@ async def info(ctx):
     await bot.say(embed=sinfo)
 
 @bot.command(pass_context=True)
-async def suggest(ctx, *, phrase):
+async def suggest(ctx, *, idea):
     '''Suggest anything!\nUsage: !suggest <suggestion>\nAliases: None\nPermissions: None'''
-    if phrase == None:
+    if idea == None:
         nsuggest = discord.Embed(title='Error',description='Specify a suggestion!',color=0xFF0000)
         nsuggest.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         await bot.say(embed=nsuggest)
-    osuggest = discord.Embed(title='Suggest',description=phrase,color=0x00FF00)
-    osuggest.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-    if phrase:
-        for server in bot.servers:
-            for channel in server.channels:
-                if channel.id == '431958602148872222':
-                    await bot.send_message(channel, embed=osuggest)
+    if idea:
+        osuggest = discord.Embed(title='Suggest',description=idea,color=0x00FF00)
+        osuggest.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        await bot.send_message(discord.Object(id='431958602148872222'), embed=osuggest)
         ssuggest = discord.Embed(title='Suggest',description='Sent that suggestion over! Thank you!',color=0x00FF00)
         ssuggest.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=ssuggest)
@@ -151,7 +148,7 @@ async def suggest(ctx, *, phrase):
         await bot.add_reaction(themessage, '\U0001F44E')
         await bot.add_reaction(themessage, '\U0001F44D')
     else:
-        return
+        pass
 
 '''
 '####:'##::: ##:'########::'#######::'########::'##::::'##::::'###::::'########:'####::'#######::'##::: ##::::'###::::'##:::::::
