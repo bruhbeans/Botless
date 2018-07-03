@@ -140,11 +140,10 @@ async def suggest(ctx, *, idea):
     if idea:
         osuggest = discord.Embed(title='Suggest',description=idea,color=0x00FF00)
         osuggest.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-        await bot.send_message(discord.Object(id='431958602148872222'), embed=osuggest)
         ssuggest = discord.Embed(title='Suggest',description='Sent that suggestion over! Thank you!',color=0x00FF00)
         ssuggest.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         await bot.send_message(destination=ctx.message.channel,embed=ssuggest)
-        reactionmessage = await bot.say(embed=osuggest)
+        reactionmessage = await bot.send_message(discord.Object(id='431958602148872222'),embed=osuggest)
         await bot.add_reaction(reactionmessage, '✅')
         await bot.add_reaction(reactionmessage, '❌')
     else:
