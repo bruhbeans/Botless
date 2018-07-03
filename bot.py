@@ -145,8 +145,8 @@ async def suggest(ctx, *, idea):
         ssuggest.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         await bot.send_message(destination=ctx.author.message.channel,embed=ssuggest)
         themessage = await bot.say(embed=ssuggest)
-        await bot.add_reaction(themessage, '\U0001F44E')
-        await bot.add_reaction(themessage, '\U0001F44D')
+        await bot.add_reaction(themessage, '✅')
+        await bot.add_reaction(themessage, '❌')
     else:
         pass
 
