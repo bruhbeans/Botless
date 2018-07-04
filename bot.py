@@ -6,6 +6,7 @@ import random
 import math
 import statistics
 import requests
+import cmath
 import psutil
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('!'), description='The one, and only: Botless, created by Pointless#1278.', self_bot=False)
