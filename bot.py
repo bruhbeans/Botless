@@ -855,6 +855,10 @@ async def giverole(ctx, member: discord.Member, *, role: discord.Role=None):
         ngiverole = discord.Embed(title='Error', description='That isn\'t a role!', color=0xFF0000)
         ngiverole.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=ngiverole)
+    if role == None:
+        nogiverole = discord.Embed(title='Error', description='That isn\'t a role!', color=0xFF0000)
+        nogiverole.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=nogiverole)
     try:
         discord.utils.get(ctx.message.server.roles, name=role)
         await bot.add_roles(member, role)
