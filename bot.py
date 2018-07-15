@@ -197,7 +197,7 @@ async def calculate(ctx, expression):
             return await bot.say(embed=ncalculate)
         if expression:
             scalculate = discord.Embed(title='Expression', description='{}'.format(expression), color=0x00FF00)
-            scalculate.add_field(name='Answer', value='Your answer is: ' + text, color=0x00FF00)
+            scalculate.add_field(name='Answer', value='Your answer is: ' + text)
             scalculate.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
             return await bot.say(embed=scalculate)
         else:
