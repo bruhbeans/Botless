@@ -188,7 +188,7 @@ async def cryptocurrency(ctx, coin:str=None):
 @bot.command(pass_context=True, aliases=['math'])
 async def calculate(ctx, expression:str=None):
     '''Work out expressions and equations.\nUsage: !calculate <expression>\nAliases: !math\nPermissions: None'''
-    r = requests.get('http://api.mathjs.org/v4/?expr=' + str(expression))
+    r = requests.get('http://api.mathjs.org/v4/?expr=' + expression)
     text = r.text()
     if r.status_code == 200:
         if expression == None:
