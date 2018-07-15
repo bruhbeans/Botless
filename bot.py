@@ -331,15 +331,15 @@ async def serverinfo(ctx):
     sserverinfo.add_field(name ='Features',value=str(ctx.message.server.features))
     sserverinfo.set_footer(text =f'Created at: {str(ctx.message.server.created_at)}')
     await bot.say(embed=sserverinfo)
-
+'''
 @bot.command(pass_context=True)
 async def userinfo(ctx,user:str=ctx.message.author):
-    '''See information about a user!\nUsage: !userinfo [user]\nAliases: None\nPermissions: None'''
+    'See information about a user!\nUsage: !userinfo [user]\nAliases: None\nPermissions: None'
     suserinfo = discord.Embed(title = (str(ctx.message.server.name)),color=0x00FF00)
     suserinfo.set_thumbnail(url = ctx.message.author.icon_url)
     suserinfo.add_field(name='')
     await bot.say(embed=suserinfo)
-
+'''
 '''
 '##::::'##::::'###::::'##::: ##::::'###:::::'######:::'####:'##::: ##::'######:::                                               
  ###::'###:::'## ##::: ###:: ##:::'## ##:::'##... ##::. ##:: ###:: ##:'##... ##::                                               
