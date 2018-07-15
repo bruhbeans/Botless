@@ -196,7 +196,7 @@ async def calculate(ctx, expression:str=None):
             ncalculate.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
             return await bot.say(embed=ncalculate)
         if expression:
-            scalculate = discord.Embed(title='Expressio', description='Your expression was: {}'.format(str(expression)), color=0x00FF00)
+            scalculate = discord.Embed(title='Expressio', description='Your expression was: {}'.format(expression), color=0x00FF00)
             scalculate.add_field(name='Cryptocurrency', value='Your answer is: ' + text, color=0x00FF00)
             scalculate.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
             return await bot.say(embed=scalculate)
