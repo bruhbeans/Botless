@@ -189,15 +189,15 @@ async def cryptocurrency(ctx, coin:str=None):
 async def calculate(ctx, expression):
     '''Work out expressions and equations.\nUsage: !calculate <expression>\nAliases: !math\nPermissions: None'''
     r = requests.get('http://api.mathjs.org/v4/?expr=' + expression)
-    text = r.text()
+    text = r.text
     if r.status_code == 200:
         if expression == None:
             ncalculate = discord.Embed(title='Error', description='Specify the expression!', color=0xFF0000)
             ncalculate.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
             return await bot.say(embed=ncalculate)
         if expression:
-            scalculate = discord.Embed(title='Expressio', description='Your expression was: {}'.format(expression), color=0x00FF00)
-            scalculate.add_field(name='Cryptocurrency', value='Your answer is: ' + text, color=0x00FF00)
+            scalculate = discord.Embed(title='Expression', description='{}'.format(expression), color=0x00FF00)
+            scalculate.add_field(name='Answer', value='Your answer is: ' + text, color=0x00FF00)
             scalculate.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
             return await bot.say(embed=scalculate)
         else:
