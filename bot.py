@@ -198,12 +198,7 @@ async def calculate(ctx,*, expression):
         if expression:
             scalculate = discord.Embed(title='Expression', description='{}'.format(expression), color=0x00FF00)
             scalculate.add_field(name='Answer', value='Your answer is: ' + text)
-            scalculate.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-            return await bot.say(embed=scalculate)
-        if expression == 'help' or 'Help' :
-            scalculate = discord.Embed(title='Help', description='Help command for calculate.', color=0x00FF00)
-            scalculate.add_field(name='Operators', value='`+` Add `Note:Use the add() function.` | `-` Subtract | `*` Multiply | `/` Divide | `%` Modulo | `^` Power | `!` Factorial | `and` Logical And | `not` Logical Not | `or` Logical Or | `xor` Logical Exclusive Or | `=` Assignment | `to`,`in` Convert Units | `==` Equal | `!=` Unequal | `<` Smaller Than | `>` Larger Than | `<=` Smaller Than or Equal To | `=>` Larger Than or Equal To | `:` Range')
-            scalculate.add_field(name='Functions', value='`simplify` Simplify values | `abs` Absolute Value | `add` Add values | `cbrt` Cubic Root | `ceil` Ceiling | `cube` Cubed | `divide` Divide Values | `exp` Exponent | `expm1` Subtract 1 from Exponent | `fix` Round values towards zero | `floor` Round values towards minus infinity | `gcd` Greatest Common Divisor | `hypot` Hypotenusa of values | `lcm` Least Common Multiple | `log` Logarithm of a value to a base | `log10` Logarithm of a value | `log1p` Logarithm of a value + 1 | `log2` Logarithm of a value to a base of two | `mod` Modulus | `multiply` Multiply values | `norm` Norm of a value to vector or matrix | `nthRoot` nth root of a value | `nthRoots` nth roots of a value | `pow` Power of a value to a value | `round` Round a value to the nearest integer | `sqrt` Square Root` | `square` Squared | `subtract` Subtract Values | `xgcd` Extended Greatest Common Divisor | `arg` Argument of a complex value | `conj` Conjugate of a complex value | `im` Imaginary Part of a complex value | `re` Real Part of a complex value')
+            scalculate.set_footer(text='Type !calchelp for help')
             scalculate.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
             return await bot.say(embed=scalculate)
         else:
@@ -217,6 +212,13 @@ async def calculate(ctx,*, expression):
         rcalculate.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=rcalculate)
 
+@bot.command(pass_context=True)
+async def calchelp(ctx)
+    scalculate = discord.Embed(title='Help', description='Help command for calculate.', color=0x00FF00)
+    scalculate.add_field(name='Operators', value='`+` Add `Note:Use the add() function.` | `-` Subtract | `*` Multiply | `/` Divide | `%` Modulo | `^` Power | `!` Factorial | `and` Logical And | `not` Logical Not | `or` Logical Or | `xor` Logical Exclusive Or | `=` Assignment | `to`,`in` Convert Units | `==` Equal | `!=` Unequal | `<` Smaller Than | `>` Larger Than | `<=` Smaller Than or Equal To | `=>` Larger Than or Equal To | `:` Range')
+    scalculate.add_field(name='Functions', value='`simplify` Simplify values | `abs` Absolute Value | `add` Add values | `cbrt` Cubic Root | `ceil` Ceiling | `cube` Cubed | `divide` Divide Values | `exp` Exponent | `expm1` Subtract 1 from Exponent | `fix` Round values towards zero | `floor` Round values towards minus infinity | `gcd` Greatest Common Divisor | `hypot` Hypotenusa of values | `lcm` Least Common Multiple | `log` Logarithm of a value to a base | `log10` Logarithm of a value | `log1p` Logarithm of a value + 1 | `log2` Logarithm of a value to a base of two | `mod` Modulus | `multiply` Multiply values | `norm` Norm of a value to vector or matrix | `nthRoot` nth root of a value | `nthRoots` nth roots of a value | `pow` Power of a value to a value | `round` Round a value to the nearest integer | `sqrt` Square Root` | `square` Squared | `subtract` Subtract Values | `xgcd` Extended Greatest Common Divisor | `arg` Argument of a complex value | `conj` Conjugate of a complex value | `im` Imaginary Part of a complex value | `re` Real Part of a complex value')
+    scalculate.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    return await bot.say(embed=scalculate)
 
 
 '''
