@@ -303,7 +303,7 @@ async def cat(ctx):
         scat = discord.Embed(title='Cat', description='A random cute cat!', color=0x00FF00)
         scat.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         scat.set_image(url=json['url'])
-        scat.set_footer(text='Dogs by https://catapi.glitch.me/random!')
+        scat.set_footer(text='Cats by https://catapi.glitch.me/random!')
         return await bot.say(embed=scat)
     else:
         rcat = discord.Embed(title='Error', description='I could not access the API! Direct Message Pointless#1278 so this can be fixed! (You will be credited for finding it out!)', color=0xFF0000)
