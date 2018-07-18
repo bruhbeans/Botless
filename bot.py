@@ -4,7 +4,6 @@ import os
 import time
 import random
 import requests
-import psutil
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('!'), description='The one, and only: Botless, created by Pointless#1278.', self_bot=False)
 bot.remove_command('help')
@@ -41,7 +40,7 @@ async def help(ctx,helpc: str=None):
         hhelp = discord.Embed(title='Help', color=0x0000FF)
         hhelp.add_field(name='General', value='`help` `ping` `info` `suggest`')
         hhelp.add_field(name='Informational', value='`cryptocurrency` `calculate`')
-        hhelp.add_field(name='Fun', value='`coinflip` `8ball` `comic` `dog`')
+        hhelp.add_field(name='Fun', value='`coinflip` `8ball` `comic` `dog` `cat`')
         hhelp.add_field(name='Utility', value='`part` `roll` `serverinfo`')
         hhelp.add_field(name='Managing', value='`giverole` `takerole`')
         hhelp.add_field(name='Moderation', value='`kick` `ban` `unban` `softban` `channelmute` `channelunmute` `warn` `purge`')
@@ -281,7 +280,7 @@ async def comic(ctx):
 
 @bot.command(pass_context=True)
 async def dog(ctx):
-    '''Check out a random cute or funny cat!\nUsage: !cat\nAliases: None\nPermissions: None'''
+    '''Check out a random cute or funny dog!\nUsage: !dog\nAliases: None\nPermissions: None'''
     r = requests.get(f'https://api.thedogapi.co.uk/v2/dog.php/')
     json = r.json()
     if r.status_code == 200:
@@ -294,6 +293,22 @@ async def dog(ctx):
         rdog = discord.Embed(title='Error', description='I could not access the API! Direct Message Pointless#1278 so this can be fixed! (You will be credited for finding it out!)', color=0xFF0000)
         rdog.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=rdog)
+
+@bot.command(pass_context=True)
+async def cat(ctx):
+    '''Check out a random cute or funny cat!\nUsage: !cat\nAliases: None\nPermissions: None'''
+    r = requests.get(f'https://catapi.glitch.me/random/')
+    json = r.json()
+    if r.status_code == 200:
+        scat = discord.Embed(title='Cat', description='A random cute cat!', color=0x00FF00)
+        scat.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        scat.set_image(url=json['url'])
+        scat.set_footer(text='Dogs by https://catapi.glitch.me/random!')
+        return await bot.say(embed=scat)
+    else:
+        rcat = discord.Embed(title='Error', description='I could not access the API! Direct Message Pointless#1278 so this can be fixed! (You will be credited for finding it out!)', color=0xFF0000)
+        rcat.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=rcat)
 
 
 '''

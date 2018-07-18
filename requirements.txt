@@ -2,4 +2,3 @@ discord
 discord.py
 psutil
 requests
-gitpython
