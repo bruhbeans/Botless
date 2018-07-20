@@ -4,7 +4,7 @@ import os
 import time
 import random
 import requests
-
+import psutil
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('!'), description='The one, and only: Botless, created by Pointless#1278.', self_bot=False)
 bot.remove_command('help')
 
