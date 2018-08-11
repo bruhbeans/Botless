@@ -6,7 +6,7 @@ import urllib
 import random
 import requests
 import psutil
-bot = commands.Bot(command_prefix=commands.when_mentioned_o(','), description='The one, and only: Botless, created by Pointless#1278.', self_bot=False)
+bot = commands.Bot(command_prefix=commands.when_mentioned_or(','), description='The one, and only: Botless, created by Pointless#1278.', self_bot=False)
 bot.remove_command('help')
 
 
@@ -34,9 +34,9 @@ async def on_ready():
 ..:::::..::........::........::..:::::::::     '''
 
 
-@bot.command(pass_context=True, aliases=['commands', 'cmds'])
+@bot.command(pass_context=True, aliases=['commands', 'cmds','h'])
 async def help(ctx,helpc: str=None):
-    '''Get the list of commands.\nUsage: !help [command]\nAliases: !commands, !cmds\nPermissions: None'''
+    '''Get the list of commands.\nUsage: !help [command]\nAliases: !commands, !cmds,!h\nPermissions: None'''
     if helpc == None:
         hhelp = discord.Embed(title='Help', color=0x0000FF)
         hhelp.add_field(name='General', value='`help` `ping` `info` `suggest`')
@@ -97,7 +97,7 @@ async def restart(ctx):
 :......::::........::..::::..::........::..:::::..::..:::::..::........::        '''
 
 
-@bot.command(pass_context=True, aliases=['latency', 'pong'])
+@bot.command(pass_context=True, aliases=['latency', 'pong','p'])
 async def ping(ctx):
     '''Find the response time in milliseconds.\nUsage: !ping\nAliases: !latency, !pong\nPermissions: None'''
     ptime = time.time()
@@ -111,9 +111,9 @@ async def ping(ctx):
     ping1.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     await bot.edit_message(ping3, embed=ping1)
 
-@bot.command(pass_context=True, aliases=['stats', 'statistics', 'information'])
+@bot.command(pass_context=True, aliases=['stats', 'statistics', 'information','i'])
 async def info(ctx):
-    '''All the info\'s here!\nUsage: !info\nAliases: !stats, !statistics, !information\nPermissions: None'''
+    '''All the info\'s here!\nUsage: !info\nAliases: !stats, !statistics, !information, !i\nPermissions: None'''
     sinfo = discord.Embed(title='Information', color=0x00FF00)
     sinfo.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     sinfo.add_field(name='Servers', value='{} servers.'.format(str(len(bot.servers))))
@@ -122,9 +122,9 @@ async def info(ctx):
     sinfo.set_thumbnail(url = bot.user.avatar_url)
     await bot.say(embed=sinfo)
 
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,aliases=['s'])
 async def suggest(ctx, *, idea):
-    '''Suggest anything!\nUsage: !suggest <suggestion>\nAliases: None\nPermissions: None'''
+    '''Suggest anything!\nUsage: !suggest <suggestion>\nAliases: !s\nPermissions: None'''
     if idea == None:
         nsuggest = discord.Embed(title='Error',description='Specify a suggestion!',color=0xFF0000)
         nsuggest.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
@@ -179,7 +179,7 @@ async def cryptocurrency(ctx, coin:str=None):
         rcryptocurrency.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=rcryptocurrency)
 
-@bot.command(pass_context=True, aliases=['math'])
+@bot.command(pass_context=True, aliases=['math','c'])
 async def calculate(ctx,*, expression):
     '''Work out expressions and equations.\nUsage: !calculate <expression>\nAliases: !math\nPermissions: None'''
     r = requests.get('http://api.mathjs.org/v4/?expr=' + urllib.parse.quote_plus(expression))
@@ -206,7 +206,7 @@ async def calculate(ctx,*, expression):
         rcalculate.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=rcalculate)
 
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,aliases=['ch'])
 async def calchelp(ctx):
     calchelp1 = discord.Embed(title='Help', description='Help command for calculate.', color=0x00FF00)
     calchelp1.add_field(name='Operators', value='`+` Add `Note:Use the add() function.` \n `-` Subtract \n `*` Multiply \n `/` Divide \n `%` Modulo \n `^` Power \n `!` Factorial \n `and` Logical And \n `not` Logical Not \n `or` Logical Or \n `xor` Logical Exclusive Or \n `=` Assignment \n `to`,`in` Convert Units \n `==` Equal \n `!=` Unequal \n `<` Smaller Than \n `>` Larger Than \n `<=` Smaller Than or Equal To \n `=>` Larger Than or Equal To \n `:` Range')
@@ -231,9 +231,9 @@ async def calchelp(ctx):
 '''
 
 
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,aliases=['cf'])
 async def coinflip(ctx):
-    '''Flip a coin and either get heads or tails.\nUsage: !coinflip \nAliases: None\nPermissions: None'''
+    '''Flip a coin and either get heads or tails.\nUsage: !coinflip \nAliases: !cf\nPermissions: None'''
     scoinflip = discord.Embed(title='Coinflip', description=random.choice(['Heads', 'Tails']), color=0xFF0000)
     scoinflip.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=scoinflip)
@@ -256,9 +256,9 @@ async def eightball(ctx, question:str=None):
         return await bot.say(embed=seightball)
 
     
-@bot.command(pass_context=True, aliases=['xkcd'])
+@bot.command(pass_context=True, aliases=['xkcd','cm'])
 async def comic(ctx):
-    '''Check out a random comic, with a total of 2013 comics!.\nUsage: !comic\nAliases: !xkcd\nPermissions: None'''
+    '''Check out a random comic, with a total of 2013 comics!.\nUsage: !comic,!cm\nAliases: !xkcd\nPermissions: None'''
     r = requests.get(f'https://xkcd.com/{random.randint(1,2013)}/info.0.json')
     json = r.json()
     if r.status_code == 200:
@@ -320,7 +320,7 @@ async def cat(ctx):
 
 @bot.command(pass_context=True)
 async def part(ctx, *choice):
-    '''Make Botless take a letter out of any word!\nUsage: !part <word>\nAliases: None\nPermissions: None'''
+    '''Take a letter out of any word!\nUsage: !part <word>\nAliases: None\nPermissions: None'''
     spart = discord.Embed(title='Part', description=str(random.choice(*choice)), color=0x00FF00)
     spart.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=spart)
@@ -336,9 +336,9 @@ async def roll(ctx, maxnumber:int=6):
     sroll.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
     return await bot.say(embed=sroll)
 
-@bot.command(pass_context=True)
+@bot.command(pass_context=True,aliases=['si'])
 async def serverinfo(ctx):
-    '''See information about the server!\nUsage: !serverinfo\nAliases: None\nPermissions: None'''
+    '''See information about the server!\nUsage: !serverinfo\nAliases: !si\nPermissions: None'''
     sserverinfo = discord.Embed(title = (str(ctx.message.server.name)),colour=0x00FF00)
     sserverinfo.set_thumbnail(url = ctx.message.server.icon_url)
     sserverinfo.add_field(name='Owner', value=str(ctx.message.server.owner))
@@ -353,15 +353,23 @@ async def serverinfo(ctx):
     sserverinfo.add_field(name ='Features',value=str(ctx.message.server.features))
     sserverinfo.set_footer(text =f'Created at: {str(ctx.message.server.created_at)}')
     await bot.say(embed=sserverinfo)
-'''
-@bot.command(pass_context=True)
-async def userinfo(ctx,user:str=ctx.message.author):
-    'See information about a user!\nUsage: !userinfo [user]\nAliases: None\nPermissions: None'
-    suserinfo = discord.Embed(title = (str(ctx.message.server.name)),color=0x00FF00)
-    suserinfo.set_thumbnail(url = ctx.message.author.icon_url)
-    suserinfo.add_field(name='')
+
+@bot.command(pass_context=True,aliases=['ui'])
+async def userinfo(ctx, user:str='ctx.message.author'):
+    '''See information about a user!\nUsage: !userinfo\nAliases: !ui\nPermissions: None'''
+    suserinfo = discord.Embed(title = (str(ctx.message.author.mention)),colour=0x00FF00)
+    suserinfo.set_thumbnail(url = user.avatar_url)
+    suserinfo.add_field(name ='ID', value=str(user.id))
+    suserinfo.add_field(name ='Member Count', value=str(ctx.message.server.member_count))
+    suserinfo.add_field(name ='Region', value=str(ctx.message.server.region))
+    suserinfo.add_field(name ='AFK Timeout', value=str(ctx.message.server.afk_timeout))
+    suserinfo.add_field(name ='AFK Channel', value=str(ctx.message.server.afk_channel))
+    suserinfo.add_field(name ='Verification Level',value=str(ctx.message.server.verification_level))
+    suserinfo.add_field(name ='Custom Emotes',value=len(ctx.message.server.emojis))
+    suserinfo.add_field(name ='Channels',value=len(ctx.message.server.channels))
+    suserinfo.add_field(name ='Features',value=str(ctx.message.server.features))
+    suserinfo.set_footer(text =f'Created at: {str(ctx.message.server.created_at)}')
     await bot.say(embed=suserinfo)
-'''
 '''
 '##::::'##::::'###::::'##::: ##::::'###:::::'######:::'####:'##::: ##::'######:::                                               
  ###::'###:::'## ##::: ###:: ##:::'## ##:::'##... ##::. ##:: ###:: ##:'##... ##::                                               
