@@ -525,7 +525,6 @@ async def ban(ctx, member : discord.Member=None, *, reason='The ban hammer has s
 @bot.command(pass_context=True, aliases=['ub', 'uban'])
 async def unban(ctx, member : discord.Member=None, *, reason='The unban hammer has spoken!'):
     '''Unban someone\nUsage: !unban <member> [reason]\nAliases: !ub, !uban\nPermissions: Ban Members'''
-    await bot.say('Doesn\'t work, so if you have any way to fix it, look into my github. I\'ll credit ya!')
     if not ctx.message.author.server_permissions.ban_members:
         punban = discord.Embed(title='Error', description='You don\'t have permission to unban members!', color=0xFF0000)
         punban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
@@ -539,9 +538,13 @@ async def unban(ctx, member : discord.Member=None, *, reason='The unban hammer h
         runban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=runban)
     try:
-        banned = await bot.get_bans(ctx.message.server)
+        banned = bot.get_user_info(member.id)
     except:
         return
+    if not banned:
+        lunban = discord.Embed(title='Error', description='No one is banned.', color=0xFF0000)
+        lunban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        return await bot.say(embed=lunban)
     bember = discord.utils.get(banned, name=member.name)
     if bember is None:
         nunban = discord.Embed(title='Error', description=f'There isn\'t a person named {member.name} who is banned.', color=0xFF0000)
