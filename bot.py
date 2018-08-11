@@ -38,7 +38,7 @@ async def on_ready():
 async def help(ctx,helpc: str=None):
     '''Get the list of commands.\nUsage: !help [command]\nAliases: !commands, !cmds,!h\nPermissions: None'''
     if helpc == None:
-        hhelp = discord.Embed(title='Help', color=0x0000FF)
+        hhelp = discord.Embed(title='Help', color=0xFFFF00)
         hhelp.add_field(name='General', value='`help` `ping` `info` `suggest`')
         hhelp.add_field(name='Informational', value='`cryptocurrency` `calculate`')
         hhelp.add_field(name='Fun', value='`coinflip` `8ball` `comic` `dog` `cat`')
@@ -50,7 +50,7 @@ async def help(ctx,helpc: str=None):
         await bot.say(embed=hhelp)
     if helpc:
         helpget = bot.get_command(helpc)
-        shelp = discord.Embed(title='Help', color=0x0000FF)
+        shelp = discord.Embed(title='Help', color=0xFFFF00)
         shelp.add_field(name=f'Command: !{helpc}', value=f'Help: {helpget.help}')
         return await bot.say(embed=shelp)
     else:
@@ -208,7 +208,7 @@ async def calculate(ctx,*, expression):
 
 @bot.command(pass_context=True,aliases=['ch'])
 async def calchelp(ctx):
-    calchelp1 = discord.Embed(title='Help', description='Help command for calculate.', color=0x00FF00)
+    calchelp1 = discord.Embed(title='Help', description='Help command for calculate.', color=0xFFFF00)
     calchelp1.add_field(name='Operators', value='`+` Add `Note:Use the add() function.` \n `-` Subtract \n `*` Multiply \n `/` Divide \n `%` Modulo \n `^` Power \n `!` Factorial \n `and` Logical And \n `not` Logical Not \n `or` Logical Or \n `xor` Logical Exclusive Or \n `=` Assignment \n `to`,`in` Convert Units \n `==` Equal \n `!=` Unequal \n `<` Smaller Than \n `>` Larger Than \n `<=` Smaller Than or Equal To \n `=>` Larger Than or Equal To \n `:` Range')
     calchelp2 = discord.Embed(title='Arithmetic Functions', description='`simplify(expr)` Simplify an expression tree.\n`abs(x)` Calculate the absolute value of a number. \n `add(x,y)` Add two or more values, x + y. \n `cbrt(x [, allRoots])` Calculate the cubic root of a value. \n `ceil(x)` Round a value towards plus infinity If x is complex, both real and imaginary part are rounded towards plus infinity.\n`cube(x)` Calculate the cubic root of a value. \n`divide(x,y)` Divide two values, x / y.\n`exp(x)` Calculate the exponent of a value. \n `expm1` Subtract 1 from Exponent \n `fix` Round values towards zero \n `floor` Round values towards minus infinity \n `gcd` Greatest Common Divisor \n `hypot` Hypotenusa of values \n `lcm` Least Common Multiple \n `log` Logarithm of a value to a base \n `log10` Logarithm of a value \n `log1p` Logarithm of a value + 1 \n `log2` Logarithm of a value to a base of two \n `mod` Modulus \n `multiply` Multiply values \n `norm` Norm of a value to vector or matrix \n `nthRoot` nth root of a value \n `nthRoots` nth roots of a value \n `pow` Power of a value to a value \n `round` Round a value to the nearest integer \n `sqrt` Square Root \n `square` Squared \n `subtract` Subtract Values \n `xgcd` Extended Greatest Common Divisor \n `arg` Argument of a complex value \n `conj` Conjugate of a complex value \n `im` Imaginary Part of a complex value \n `re` Real Part of a complex value \n`acos` Inverse Cosine \n`acosh` Hyperbolic arccos\n`acot` Inverse Cotangent \n `acoth` Hyperbolic Arccotangent \n `acoth` Hyperbolic arccotangent \n `acsc` Inverse cosecant \n `acsch` Hyperbolic arccosecant \n `asec` Inverse secant` \n `asech` Hyperbolic arcsecant \n `asin` Inverse Sine\n`atan` Inverse tangent\n`atan2` Inverse tangent with two arguments\n`atanh` Hyperbolic arctangent\n`cos` Cosine\n`cosh` Hyperbolic cosine\n`cot` Cotangent\n`coth` Hyperbolic cotangent\n`csch` Hyperbolic cosecant\n`sec` Secant\n`sech` Hyperbolic Secant\n`sin` Sine\n`sinh` Hyperbolic Sine\n`tan` Tangent\n`tanh` Hyperbolic Tangent', color=0x00FF00)
     calchelp3 = discord.Embed(title='Tests', description='`isInteger(x)` Test whether a value is an integer number.\n`isNaN(x)` Test whether a value is NaN (not a number).\n`isNegative(x)` Test whether a value is negative: smaller than zero\n`isNumeric(x)` Test whether a value is an numeric value.\n`isPositive(x)` Test whether a value is positive: larger than zero.\n`isPrime(x)` Test whether a value is prime: has no divisors other than itself and one.\n`isZero(x)` Test whether a value is zero.',color=0x00FF00)
