@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import os
 import time
+import urllib
 import random
 import requests
 import psutil
@@ -181,7 +182,7 @@ async def cryptocurrency(ctx, coin:str=None):
 @bot.command(pass_context=True, aliases=['math'])
 async def calculate(ctx,*, expression):
     '''Work out expressions and equations.\nUsage: !calculate <expression>\nAliases: !math\nPermissions: None'''
-    r = requests.get('http://api.mathjs.org/v1/?expr=' + expression)
+    r = requests.get('http://api.mathjs.org/v1/?expr=' + urllib.parse(expression)
     text = r.text
     if r.status_code == 200:
         if expression == None:
