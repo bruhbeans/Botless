@@ -198,7 +198,7 @@ async def calculate(ctx,*, expression):
         else:
             return
     if r.status_code == 400:
-        icalculate = discord.Embed(title='Error', description='That is an invalid expression! If it has a + in it, it won\'t work. Use the add(x, y) function instead. If you know why, please DM Pointless#1278 and you will be credited.', color=0xFF0000)
+        icalculate = discord.Embed(title='Error', description='That is an invalid expression!', color=0xFF0000)
         icalculate.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         return await bot.say(embed=icalculate)
     else:
