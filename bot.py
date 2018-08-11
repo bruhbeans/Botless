@@ -256,9 +256,9 @@ async def eightball(ctx, question:str=None):
         return await bot.say(embed=seightball)
 
     
-@bot.command(pass_context=True, aliases=['xkcd','cm'])
+@bot.command(pass_context=True, aliases=['xkcd','co'])
 async def comic(ctx):
-    '''Check out a random comic, with a total of 2013 comics!.\nUsage: !comic,!cm\nAliases: !xkcd\nPermissions: None'''
+    '''Check out a random comic, with a total of 2013 comics!.\nUsage: !comic,!co\nAliases: !xkcd\nPermissions: None'''
     r = requests.get(f'https://xkcd.com/{random.randint(1,2013)}/info.0.json')
     json = r.json()
     if r.status_code == 200:
