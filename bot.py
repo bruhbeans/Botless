@@ -355,15 +355,15 @@ async def serverinfo(ctx):
     await bot.say(embed=sserverinfo)
 
 @bot.command(pass_context=True,aliases=['ui'])
-async def userinfo(ctx, user:str='ctx.message.author'):
+async def userinfo(ctx, user:discord.Member = ctx.message.author):
     '''See information about a user!\nUsage: !userinfo\nAliases: !ui\nPermissions: None'''
-    suserinfo = discord.Embed(title = (str(ctx.message.author.mention)),colour=0x00FF00)
+    suserinfo = discord.Embed(title = (str(user.name)),colour=0x00FF00)
     suserinfo.set_thumbnail(url = user.avatar_url)
     suserinfo.add_field(name ='ID', value=str(user.id))
-    suserinfo.add_field(name ='Is bot?', value=str(user.bot))
-    suserinfo.add_field(name ='Nickname', value=str(user.display_name))
+    suserinfo.add_field(name ='Nickname', value=str(user.nick))
     suserinfo.add_field(name ='Joined at', value=str(user.joined_at))
     suserinfo.add_field(name ='Game Playing',value=str(user.game))
+    suserinfo.add_field(name ='Status',value=str(user.status))
     suserinfo.add_field(name ='Highest Role',value=str(user.top_role))
     suserinfo.set_footer(text =f'Created at: {str(user.joined_at)}')
     await bot.say(embed=suserinfo)
