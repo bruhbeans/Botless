@@ -355,7 +355,7 @@ async def serverinfo(ctx):
     await bot.say(embed=sserverinfo)
 
 @bot.command(pass_context=True,aliases=['ui'])
-async def userinfo(ctx, user:discord.Member = ctx.message.author):
+async def userinfo(ctx, user:discord.Member = 'ctx.message.author'):
     '''See information about a user!\nUsage: !userinfo\nAliases: !ui\nPermissions: None'''
     suserinfo = discord.Embed(title = (str(user.name)),colour=0x00FF00)
     suserinfo.set_thumbnail(url = user.avatar_url)
