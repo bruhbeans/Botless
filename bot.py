@@ -6,7 +6,7 @@ import urllib
 import random
 import requests
 import psutil
-bot = commands.Bot(command_prefix=commands.when_mentioned_or('!'), description='The one, and only: Botless, created by Pointless#1278.', self_bot=False)
+bot = commands.Bot(command_prefix=commands.when_mentioned_o(','), description='The one, and only: Botless, created by Pointless#1278.', self_bot=False)
 bot.remove_command('help')
 
 
@@ -20,7 +20,7 @@ async def on_ready():
     print('Name: {}'.format(str(bot.user)))
     print('ID: {}'.format(str(bot.user.id)))
     print('Invite Link: https://discordapp.com/oauth2/authorize?client_id=462562571229200384&scope=bot&permissions=2146958591')
-    await bot.change_presence(game=discord.Game(name=f'over {len(bot.servers)} servers | !help',type=3))
+    await bot.change_presence(game=discord.Game(name=f'over {len(bot.servers)} servers | ,help',type=3))
 
 
 '''
