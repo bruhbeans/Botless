@@ -42,7 +42,7 @@ async def help(ctx,helpc: str=None):
         hhelp.add_field(name='General', value='`help` `ping` `info` `suggest`')
         hhelp.add_field(name='Informational', value='`cryptocurrency` `calculate`')
         hhelp.add_field(name='Fun', value='`coinflip` `8ball` `comic` `dog` `cat`')
-        hhelp.add_field(name='Utility', value='`part` `roll` `serverinfo`')
+        hhelp.add_field(name='Utility', value='`part` `roll` `serverinfo` `userinfo`')
         hhelp.add_field(name='Managing', value='`giverole` `takerole`')
         hhelp.add_field(name='Moderation', value='`kick` `ban` `unban` `softban` `channelmute` `channelunmute` `warn` `purge`')
         hhelp.add_field(name='Owner', value='`say` `restart`')
