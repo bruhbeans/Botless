@@ -525,6 +525,7 @@ async def ban(ctx, member : discord.Member=None, *, reason='The ban hammer has s
 @bot.command(pass_context=True, aliases=['ub', 'uban'])
 async def unban(ctx, member : discord.Member=None, *, reason='The unban hammer has spoken!'):
     '''Unban someone\nUsage: !unban <member> [reason]\nAliases: !ub, !uban\nPermissions: Ban Members'''
+    await bot.say('If you know how to make a working unban command that can unban people who are not in this server, using at least IDs, but usernames more preferable, in Python, please contact Pointless#1278 and you will be credited and your name will be placed onto the footer of the !unban command\'s embed! This will help me, you and everyone else who uses the bot.')
     if not ctx.message.author.server_permissions.ban_members:
         punban = discord.Embed(title='Error', description='You don\'t have permission to unban members!', color=0xFF0000)
         punban.set_author(name=f'{ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
